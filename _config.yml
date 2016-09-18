@@ -10,10 +10,10 @@ locale                   : "en"
 title                    : "Chun's Machine Learning Page"
 title_separator          : "-"
 name                     : "Trung Tran"
-description              : "Page of a machine learning's obsessor."
-url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+description              : "Page of a machine learning's enthuasiast."
+url                      : "https://ChunML.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "ChunML/MachineLearning" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
@@ -79,7 +79,7 @@ analytics:
 author:
   name             : "Trung Tran"
   avatar           : "bio-photo.jpg"
-  bio              : "A Machine Learning's Enthuatiast."
+  bio              : "A Machine Learning's Enthuasiast."
   location         : "Tokyo, Japan"
   email            :
   uri              :
