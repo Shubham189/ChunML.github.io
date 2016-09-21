@@ -13,7 +13,7 @@ You've been hearing about machine learning in the last few years, especially on 
 
 ### So, the very big question, and maybe the biggest reason which led you here: What exactly is Machine Learning?
 
-Well, I've got no intention to repeat something that was already written on Wikipedia (you're tired of it, right?). So my definition of Machine Learning is: we don't teach the computers to work anymore, we teach them how to learn, to do things itself!
+Well, I've got no intention to repeat something that was already written on Wikipedia (you're tired of it, right?). So my definition of Machine Learning is: we don't teach the computers to work anymore, we make them learn, to do things itself!
 
 Still confused? Let's see something cool instead.
 
@@ -63,7 +63,7 @@ Sounds familiar, right? Let's imagine the Dog recognition is taken place somewhe
 ### When we talk about Machine Learning, we talk about Features, Labels, Activations, and of course, a Model.
 
 So next step is, Training? Sounds like we're in the middle of the pitch and do some crazy training, just like Cristiano Ronaldo? No, of course we don't (or actually we can't). We're not training muscles, we're training the brain, the computer brain. That's the process when the computer learn from the images we shown it. But let's talk a little bit about how it learns. We won't even teach them (although we said machine LEARNING, so learning from what?)
-Imagine the label of each image is printed on the back so the computer can't see. I know you got it. Exactly what we do with our flashcards, the things you can't live without to prepare for your SAT, GMAT or something like that. Firstly, the computer will try to guess, without knowing anything about what a Dog should look like. Then it flips the back over, sees the answer, and learns. Yep, it learns from making MISTAKES. Just like human does, the bigger the mistake, the faster it learns.
+Imagine the label of each image is printed on the back so the computer can't see. I know you got it. Exactly what we do with our flashcards, the things you can't live without to prepare for your SAT, GMAT or something like that. Firstly, the computer will try to guess, without knowing anything about what a Dog should look like. Then it flips the back over, sees the answer, and learns. Yep, it learns from making MISTAKES. Just like human does, the bigger the mistake is, the faster it learns.
 
 Then next step is Evaluation? I assume we gave the computer 100 images (roughly 50 images of Dog, and 50 images of Not a dog). It will try to guess each image until it finish the 100th one. Then it counts the number of right guesses. For example, there are 69 right guesses, so it has a probability of 69% in recognising whether there is a dog. Not so bad, right? That's what we call Evaluation. The computer evaluates its own work:
 
