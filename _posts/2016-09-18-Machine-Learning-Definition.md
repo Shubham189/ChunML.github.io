@@ -51,7 +51,7 @@ So up to this point, I assume that you can draw your own sketch about what Machi
 
 ![Image_5](/images/5.jpg)
 
-WAIT! Where're you going? Grabbing your algebraic book or something like that? Or just finding your PS4's controller? Take it easy, man. You won't even have to grab a pencil to do some maths today, I promise!
+WAIT! Where're you going? Grabbing your algebraic book or something? Or just finding your PS4's controller? Take it easy, man. You won't even have to grab a pencil to do some maths today, I promise!
 So why the hell I shown you this? Because I'm afraid after you read this post, you'll run outside, tell your friends about Machine Learning, yeah you'll tell them about something like "four-leg feature", "long-tail feature", "a Dog", or "not a Dog"... Please don't do that. Sorry, I'm just joking, kind of over-joking. Let's get back to business. We all know about binary number (something like a switch with On-Off state, 0 or 1). And sadly, that's what computer can understand. So it won't see something like "four-leg feature", "long-tail feature". The things they actually see is just boring repeating 0s and 1s. All I want to say here is, Features, Labels & Activations, they're all matrices to computers. At this point I just want you to know it. (Maybe I don't even need to speak that long, right? Sorry, my bad again!)
 
 Let me summarize all the things we talked above by the image below:
