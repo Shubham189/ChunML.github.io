@@ -45,6 +45,8 @@ To make it more concrete, let's see the image below:
 
 Yeah, at least the computer can now distinguish between a Dog and a Crab. Wait! It doesn't know about a Crab, at this point it only know the second image is NOT a Dog. Okay, whatever, though. It gets better someday, definitely.
 
+### When we talk about Machine Learning, we talk about Features, Labels, Activations, and ...
+
 So up to this point, I assume that you can draw your own sketch about what Machine Learning actually is, what Machine Learning actually does (or be done). Quite simple right? Then I have something for you:
 
 ![Image_5](/images/5.jpg)
@@ -57,6 +59,9 @@ Let me summarize all the things we talked above by the image below:
 ![Image_7](/images/7.jpg)
 
 Sounds familiar, right? Let's imagine the Dog recognition is taken place somewhere in the computer, we call it a Model. The final goal is to help create this. We don't create, we're just the helpers, the computer must handle it alone. Don't forget that it's the one that learns :)
+
+### When we talk about Machine Learning, we talk about Features, Labels, Activations, and a Model, of course!
+
 So next step is, Training? Sounds like we're in the middle of the pitch and do some crazy training, just like Cristiano Ronaldo? No, of course we don't (or actually we can't). We're not training muscles, we're training the brain, the computer brain. That's the process when the computer learn from the images we shown it. But let's talk a little bit about how it learns. We won't even teach them (although we said machine LEARNING, so learning from what?)
 Imagine the label of each image is printed on the back so the computer can't see. I know you got it. Exactly what we do with our flashcards, the things you can't live without to prepare for your SAT, GMAT or something like that. Firstly, the computer will try to guess, without knowing anything about what a Dog should look like. Then it flips the back over, sees the answer, and learns. Yep, it learns from making MISTAKES. Just like human does, the bigger the mistake, the faster it learns.
 
@@ -68,6 +73,8 @@ But what if the evaluation result can't satisfy us? We just tell the computer ab
 
 So the loop Training-Evaluating-Parameter Updating is actually the core of Machine Learning. Until now, I think you can accept this easily without hurt. Thanks again, cool Dogs in the beginning :)
 
+### The core of Machine Learning: Training - Evaluating - Parameter Updating then repeat!
+
 So last, but not least, I just want you to do me a favor. I'm definitely sure you can. Did you notice the question mark on the fifth image (The annoying image with some kind of algebraic matrices)? So that's the last thing I want to reveal in the end of this post. And once again I'll show you some algebraic stuff, but stay calm, you won't get your hands dirty today!
 
 ![Image_9](/images/9.jpg)
@@ -76,7 +83,7 @@ Okay, such a long function which likely comes from hell. Please ignore it right 
 So from Feature to Activation, we'll go through Activation Function, very easy to remember, right?
 The parameter stands alone is call Bias, the other parameters which have their own X, are called Weights. That's all for today. Why are they called Bias & Weights, I'll reveal it in the next tutorial.
 
-So, finally we made it till the end. You may ask why I had to make such a long post, and sometimes talked so much about simple things. Well, the later posts will definitely contain a lot of things you don't want to face (such as algebraic stuff, ...), you will even get your hands dirty with some coding work. So I have to make sure you don't make any wrong assumption in the beginning, you know, people make mistakes by inappropriate assumptions, right?
+So, finally we made it till the end. You may ask why I had to make such a long post, and sometimes talked so much about simple things. Well, the later posts will definitely contain a lot of things you don't want to face (such as algebraic stuff, ...), you will even get your hands dirty with some coding work (Cool!). So I have to make sure you don't make any wrong assumption in the beginning, you know, people make mistakes by inappropriate assumptions, right?
 
 Hope this post is helpful to you on the long-run towards your Machine Learning's targets. 
 
