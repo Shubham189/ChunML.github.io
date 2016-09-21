@@ -17,7 +17,7 @@ Well, I've got no intention to repeat something that was already written on Wiki
 
 Still confused? Let's see something cool instead.
 
-Images_1
+({{ site.url }}/images/1.jpg)
 
 So as you can see in the picture, we have a model (the big one in the middle), an input which takes care of something call (Feature, Label) and an output which gives us something call Activation. So what the hell are all these things?
 
