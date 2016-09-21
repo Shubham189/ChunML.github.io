@@ -60,7 +60,7 @@ Let me summarize all the things we talked above by the image below:
 
 Sounds familiar, right? Let's imagine the Dog recognition is taken place somewhere in the computer, we call it a Model. The final goal is to help create this. We don't create, we're just the helpers, the computer must handle it alone. Don't forget that it's the one that learns :)
 
-### When we talk about Machine Learning, we talk about Features, Labels, Activations, and a Model, of course!
+### When we talk about Machine Learning, we talk about Features, Labels, Activations, and of course, a Model.
 
 So next step is, Training? Sounds like we're in the middle of the pitch and do some crazy training, just like Cristiano Ronaldo? No, of course we don't (or actually we can't). We're not training muscles, we're training the brain, the computer brain. That's the process when the computer learn from the images we shown it. But let's talk a little bit about how it learns. We won't even teach them (although we said machine LEARNING, so learning from what?)
 Imagine the label of each image is printed on the back so the computer can't see. I know you got it. Exactly what we do with our flashcards, the things you can't live without to prepare for your SAT, GMAT or something like that. Firstly, the computer will try to guess, without knowing anything about what a Dog should look like. Then it flips the back over, sees the answer, and learns. Yep, it learns from making MISTAKES. Just like human does, the bigger the mistake, the faster it learns.
