@@ -1,7 +1,10 @@
 # main links links
 main:
-  - title: "Sample Navigation Link"
-    url: https://mmistakes.github.io/minimal-mistakes/docs/navigation/
+  - title: "My Project Page"
+    url: https://chunml.github.io/
 
-  - title: "Sample Navigation Link 2"
-    url: /
+  - title: "My GitHub Repos"
+    url: https://github.com/ChunML/
+    
+  - title: "About"
+    url: https://github.com/ChunML/
