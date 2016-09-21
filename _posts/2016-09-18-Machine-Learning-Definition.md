@@ -9,8 +9,6 @@ tags:
   - learning
 ---
 
-{% include base_path %}
-
 You've been hearing about machine learning in the last few years, especially on the day on which AlphaGo was hotter than Donald Trump. You felt excited, you wanted to know what it is, or even more, you wanted to dig into it. But you just still can't get it? Let me help you this time. 
 
 ### So, the very big question, and maybe the biggest reason which led you here: What exactly is Machine Learning?
@@ -19,7 +17,7 @@ Well, I've got no intention to repeat something that was already written on Wiki
 
 Still confused? Let's see something cool instead.
 
-<img src="{{ "1.jpg" | prepend: "/images/" | prepend: site.github.url }}">
+![Image_1]({{ site.github }}/images/1.jpg)
 
 So as you can see in the picture, we have a model (the big one in the middle), an input which takes care of something call (Feature, Label) and an output which gives us something call Activation. So what the hell are all these things?
 
