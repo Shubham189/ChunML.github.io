@@ -9,26 +9,25 @@ tags:
   - learning
 ---
 
-### Default
+You've been hearing about machine learning in the last few years, especially on the day on which AlphaGo was hotter than Donald Trump. You felt excited, you wanted to know what it is, or even more, you wanted to dig into it. But you just still can't get it? Let me help you this time. 
 
-This is a paragraph. It should not have any alignment of any kind. It should just flow like you would normally expect. Nothing fancy. Just straight up text, free flowing, with love. Completely neutral and not picking a side or sitting on the fence. It just is. It just freaking is. It likes where it is. It does not feel compelled to pick a side. Leave him be. It will just be better that way. Trust me.
+### So, the very big question, and maybe the biggest reason which led you here: What exactly is Machine Learning?
 
-### Left Align
+Well, I've got no intention to repeat something that was already written on Wikipedia (you're tired of it, right?). So my definition of Machine Learning is: we don't teach the computers to work anymore, we teach them how to learn, to do things itself!
 
-This is a paragraph. It is left aligned. Because of this, it is a bit more liberal in it's views. It's favorite color is green. Left align tends to be more eco-friendly, but it provides no concrete evidence that it really is. Even though it likes share the wealth evenly, it leaves the equal distribution up to justified alignment.
-{: style="text-align: left;"}
+Still confused? Let's see something cool instead.
 
-### Center Align
+Images_1
 
-This is a paragraph. It is center aligned. Center is, but nature, a fence sitter. A flip flopper. It has a difficult time making up its mind. It wants to pick a side. Really, it does. It has the best intentions, but it tends to complicate matters more than help. The best you can do is try to win it over and hope for the best. I hear center align does take bribes.
-{: style="text-align: center;"}
+So as you can see in the picture, we have a model (the big one in the middle), an input which takes care of something call (Feature, Label) and an output which gives us something call Activation. So what the hell are all these things?
 
-### Right Align
+Let's imagine you want the computer to do you a favor: to tell you whether there is a dog in an image. So it becomes much clearer when I match up everything like the image below:
 
-This is a paragraph. It is right aligned. It is a bit more conservative in it's views. It's prefers to not be told what to do or how to do it. Right align totally owns a slew of guns and loves to head to the range for some practice. Which is cool and all. I mean, it's a pretty good shot from at least four or five football fields away. Dead on. So boss.
-{: style="text-align: right;"}
+Images_2
 
-### Justify Align
+Firstly, what is Features?
+If this is the first time you hear it, then congratulations, you will see this keyword everywhere, everywhen from now on (as long as you keep up with Machine Learning, of course). So let's make it simple. Look at the dog. He has four legs (like the other dogs on Earth), his nose is black, he is hanging out his tongue, he has a tail, ... Yeah, those are what come up when you see this dog, and importantly, you will see those in other dogs too. So it turns out to be some distinct features
+which make human's brain know it just saw a dog. Wait a minute, did I just say Features? Well, I hope you get the point here. So, Features are something distinct that make something different than the others. Human's brain recognises something by their Features, so why don't we teach the computer that trick? (Come on, don't be that selfish man)
 
-This is a paragraph. It is justify aligned. It gets really mad when people associate it with Justin Timberlake. Typically, justified is pretty straight laced. It likes everything to be in it's place and not all cattywampus like the rest of the aligns. I am not saying that makes it better than the rest of the aligns, but it does tend to put off more of an elitist attitude.
-{: style="text-align: justify;"}
+I know you're excited now. Ready to move on? So what about Label? Well, it's much simpler than the Feature. Label is a name of guys who have specific features. So we call guy who have four legs, one black nose, one long tongue and one long tail a DOG. Well, I just can't make it simpler. So what about the other guys? At this time, I just call them "Not a dog". Maybe you will ask me why I don't make it more specific, just like "a Cat", "a Bird" or something. You will have the answer at
+the end of this post. So please stay patient :) There is a lot of fun ahead, I promise.
