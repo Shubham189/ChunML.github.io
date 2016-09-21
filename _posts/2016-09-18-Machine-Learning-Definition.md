@@ -2,8 +2,6 @@
 title: "ML Tutorial: What is Machine Learning?"
 categories:
   - Tutorial
-img:
-
 tags:
   - machine-learning
   - model
@@ -25,7 +23,7 @@ So as you can see in the picture, we have a model (the big one in the middle), a
 
 Let's imagine you want the computer to do you a favor: to tell you whether there is a dog in an image. So it becomes much clearer when I match up everything like the image below:
 
-Images_2
+![Image_2](/images/2.jpg)
 
 Firstly, what is Features?
 If this is the first time you hear it, then congratulations, you will see this keyword everywhere, everywhen from now on (as long as you keep up with Machine Learning, of course). So let's make it simple. Look at the dog. He has four legs (like the other dogs on Earth), his nose is black, he is hanging out his tongue, he has a tail, ... Yeah, those are what come up when you see this dog, and importantly, you will see those in other dogs too. So it turns out to be some distinct features
@@ -33,3 +31,17 @@ which make human's brain know it just saw a dog. Wait a minute, did I just say F
 
 I know you're excited now. Ready to move on? So what about Label? Well, it's much simpler than the Feature. Label is a name of guys who have specific features. So we call guy who have four legs, one black nose, one long tongue and one long tail a DOG. Well, I just can't make it simpler. So what about the other guys? At this time, I just call them "Not a dog". Maybe you will ask me why I don't make it more specific, just like "a Cat", "a Bird" or something. You will have the answer at
 the end of this post. So please stay patient :) There is a lot of fun ahead, I promise.
+
+So I've talked about Features and Labels, but what to do next? Remember when we were kids, our parents bought us some picture books? Then we spent days after days, kept pointing in and speak out loud names of things we saw, with so much pride. Omg, my parents must be so patient with me back in the day. So what the hell does the childhood's story make sense here? Well, we will do exactly what our parents did. We show them images, a large amount of them, just like this:
+
+![Image_3](/images/3.jpg)
+
+As you can see, each image is labeled whether the image contains a dog. Just like what we did in the past, the computer will try to learn from the images we shown them. I said it LEARNS, not MEMORIZES. We could learn, so can the computer, right?
+
+And lastly, what is Activation? Simply speaking, we can call it a Guess. Imagine your computer knew how to tell whether it saw a dog (we just assume that, we'll back to it right below), then you show it some image it has never seen before, so it has to Guess, based on its own mind. And you can easily figure it out, the Guess (or Activation) must be one of the Labels we taught them. (We can't teach them about Dogs, then force them to recognise a Cat, it doesn't make any sense right?)
+
+To make it more concrete, let's see the image below:
+
+![Image_4](/images/4.jpg)
+
+Yeah, at least the computer can now distinguish between a Dog and a Crab. Wait! It doesn't know about a Crab, at this point it only know the second image is NOT a Dog. Okay, whatever, though. It gets better someday, definitely.
