@@ -31,3 +31,7 @@ So, based on Input types, we can divide Machine Learning into three categories l
 * Unsupervised Learning
 * Reinforcement Learning
 
+And similarly, based on Output types, we can divide our Machine Learning problems into two categories like below:
+
+* Regression Problem
+* Classification Problem
