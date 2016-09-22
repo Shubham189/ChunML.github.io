@@ -69,7 +69,7 @@ Then next step is Evaluation? I assume we gave the computer 100 images (roughly 
 
 ![Image_8](/images/8.jpg)
 
-But what if the evaluation result can't satisfy us? We just tell the computer about that, it will update its own Parameters. But what the hell are 'Parameters' here? So much new keywords today! (Maybe many of you want to tell me that!) Remember the Model I said above? Parameters are just something put into the Model, just like machines in the factory. If something goes wrong with the product, they just have them fixed. Exactly the same with Parameters. Simple, right? Just as the image above, let's call it 'θ'. Don't ask me why, I don't know! Everyone uses that, and you don't want everyone to look at you just like "What the hell that guy is talking about!" when you talk about Machine Learning, right?
+But what if the evaluation result can't satisfy us? We just tell the computer about that, it will update its own Parameters. But what the hell are 'Parameters' here? So much new keywords today! (Maybe many of you want to tell me that!) Remember the Model I said above? Parameters are just something put into the Model, just like machines in the factory. If something goes wrong with the product, they just have them fixed. Exactly the same with Parameters. Simple, right? Just as the image above, let's call it 'θ'. Some other places you will see thay use 'W' for Weights, and 'b' for Biases, but right now for the sake of simplicity, just remember 'θ'. Don't ask me about the naming convention, I don't know! Everyone uses that, and you don't want everyone to look at you just like "What the hell that guy is talking about!" when you talk about Machine Learning, right?
 
 So the loop Training-Evaluating-Parameter Updating is actually the core of Machine Learning. Until now, I think you can accept this easily without hurt. Thanks again, cool Dogs in the beginning :)
 
@@ -79,7 +79,7 @@ So last, but not least, I just want you to do me a favor. I'm definitely sure yo
 
 ![Image_9](/images/9.jpg)
 
-Okay, such a long function which likely comes from hell. Please ignore it right now. All I need you to know is: Activation Function, Bias and Weights. I won't make it long this time.
+Okay, such a long function which likely comes from hell. Please ignore it right now. All I need you to know are just: Activation Function, Bias and Weights. I won't make it long this time.
 So from Feature to Activation, we'll go through Activation Function, very easy to remember, right?
 The parameter stands alone is call Bias, the other parameters which have their own X, are called Weights. That's all for today. Why are they called Bias & Weights, I'll reveal it in the next tutorial.
 
