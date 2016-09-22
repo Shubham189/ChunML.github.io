@@ -81,7 +81,7 @@ So last, but not least, I just want you to do me a favor. I'm definitely sure yo
 
 Okay, such a long function which likely comes from hell. Please ignore it right now. All I need you to know are just: Activation Function, Bias and Weights. I won't make it long this time.
 So from Feature to Activation, we'll go through Activation Function, very easy to remember, right?
-The parameter stands alone is call Bias, the other parameters which have their own X, are called Weights. That's all for today. Why are they called Bias & Weights, I'll reveal it in the next tutorial.
+The parameter standing alone is call Bias, the other parameters which have their own Xs, are called Weights. That's all for today. Why are they called Bias & Weights, I'll reveal it in the next tutorial.
 
 So, finally we made it till the end. You may ask why I had to make such a long post, and sometimes talked so much about simple things. Well, the later posts will definitely contain a lot of things you don't want to face (such as algebraic stuff, ...), you will even get your hands dirty with some coding work (Cool!). So I have to make sure you don't make any wrong assumption in the beginning, you know, people make mistakes by inappropriate assumptions, right?
 
