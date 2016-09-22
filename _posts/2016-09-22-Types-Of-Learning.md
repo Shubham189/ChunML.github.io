@@ -26,6 +26,7 @@ So we have to admit that, different things require different learning approaches
 
 Sounds like a headache here, right? But don't worry, it's not that complicated in the case of Machine Learning. Above I told you that you won't be able to get progressed in learning piano with some mathematical approach. In the case of Machine Learning, piano repertoires can be treated as Inputs. So different Input types do require different approach of learning. It does make some sense, right?
 So, based on Input types, we can divide Machine Learning into three categories like below:
+
 * Supervised Learning
 * Unsupervised Learning
 * Reinforcement Learning
