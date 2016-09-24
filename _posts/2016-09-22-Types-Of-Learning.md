@@ -57,7 +57,4 @@ It may be too long to write all about these two types of Learning. Actually in t
 To be honest, I rarely talk about something I don't know much about. Actually at the time of writing, I'm just in the beginning of my research on Reinforcement Learning. So for the sake of simplicity, Reinforcement Learning is the learning through the interaction with Environment. Supervised Learning and Unsupervised Learning are not. Why are they not? Remember the way they actually learn? We give them a set of Input for them to learn from. And they use what they learned from that Input to make predictions (another way of saying "Guess", I guess). So the way they predict depends entirely on the Input they learn from. We may see the disadvantage here, right?
 So Reinforcement Learning appears as a solution to eliminate that disadvantage. You can simply think that the computers will actually learn from dynamic Input, it makes them much more robust, precise and confident. But the trade off, that kind of learning is very complicated, especially for Machine Learning's newcomers. So just put it in the list, OK?
 
-And similarly, based on Output types, we can divide our Machine Learning problems into two categories like below:
-
-* Regression Problem
-* Classification Problem
+So, now you know about three main types of Machine Learning (there's a lot out there but you only need to focus on these three, I think). I hope after this post, you can have a (slightly) deeper thought about Machine Learning. In the next post, I'll talk about Linear Regression, the most common and basic algorithm (let say for almost advanced algorithms). And we'll finally get our hands dirty with some coding (sounds cool?). So stay updated, and I'll see you there. See ya!
