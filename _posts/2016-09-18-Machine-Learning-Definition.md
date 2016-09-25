@@ -17,13 +17,13 @@ Well, I've got no intention to repeat something that was already written on Wiki
 
 Still confused? Let's see something cool instead.
 
-![Image_1](/images/1.jpg)
+![Image_1](/images/tutorials/what-is-machine-learning/1.jpg)
 
 So as you can see in the picture, we have a model (the big one in the middle), an input which takes care of something call (Feature, Label) and an output which gives us something call Activation. So what the hell are all these things?
 
 Let's imagine you want the computer to do you a favor: to tell you whether there is a dog in an image. So it becomes much clearer when I match up everything like the image below:
 
-![Image_2](/images/2.jpg)
+![Image_2](/images/tutorials/what-is-machine-learning/2.jpg)
 
 Firstly, what is Features?
 If this is the first time you hear it, then congratulations, you will see this keyword everywhere, everywhen from now on (as long as you keep up with Machine Learning, of course). So let's make it simple. Look at the dog. He has four legs (like the other dogs on Earth), his nose is black, he is hanging out his tongue, he has a tail, ... Yeah, those are what come up when you see this dog, and importantly, you will see those in other dogs too. So it turns out to be some distinct features
@@ -33,7 +33,7 @@ I know you're excited now. Ready to move on? So what about Label? Well, it's muc
 
 So I've talked about Features and Labels, but what to do next? Remember when we were kids, our parents bought us some picture books? Then we spent days after days, kept pointing in and speak out loud names of things we saw, with so much pride. Omg, my parents must be so patient with me back in the day. So what the hell does the childhood's story make sense here? Well, we will do exactly what our parents did. We show them images, a large amount of them, just like this:
 
-![Image_3](/images/3.jpg)
+![Image_3](/images/tutorials/what-is-machine-learning/3.jpg)
 
 As you can see, each image is labeled whether the image contains a dog. Just like what we did in the past, the computer will try to learn from the images we shown them. I said it LEARNS, not MEMORIZES. We could learn, so can the computer, right?
 
@@ -41,7 +41,7 @@ And lastly, what is Activation? Simply speaking, we can call it a Guess. Imagine
 
 To make it more concrete, let's see the image below:
 
-![Image_4](/images/4.jpg)
+![Image_4](/images/tutorials/what-is-machine-learning/4.jpg)
 
 Yeah, at least the computer can now distinguish between a Dog and a Crab. Wait! It doesn't know about a Crab, at this point it only know the second image is NOT a Dog. Okay, whatever, though. It gets better someday, definitely.
 
@@ -49,14 +49,14 @@ Yeah, at least the computer can now distinguish between a Dog and a Crab. Wait! 
 
 So up to this point, I assume that you can draw your own sketch about what Machine Learning actually is, what Machine Learning actually does (or be done). Quite simple right? Then I have something for you:
 
-![Image_5](/images/5.jpg)
+![Image_5](/images/tutorials/what-is-machine-learning/5.jpg)
 
 WAIT! Where're you going? Grabbing your algebraic book or something? Or just finding your PS4's controller? Take it easy, man. You won't even have to grab a pencil to do some maths today, I promise!
 So why the hell I shown you this? Because I'm afraid after you read this post, you'll run outside, tell your friends about Machine Learning, yeah you'll tell them about something like "four-leg feature", "long-tail feature", "a Dog", or "not a Dog"... Please don't do that. Sorry, I'm just joking, kind of over-joking. Let's get back to business. We all know about binary number (something like a switch with On-Off state, 0 or 1). And sadly, that's what computer can understand. So it won't see something like "four-leg feature", "long-tail feature". The things they actually see is just boring repeating 0s and 1s. All I want to say here is, Features, Labels & Activations, they're all matrices to computers. At this point I just want you to know it. (Maybe I don't even need to speak that long, right? Sorry, my bad again!)
 
 Let me summarize all the things we talked above by the image below:
 
-![Image_7](/images/7.jpg)
+![Image_7](/images/tutorials/what-is-machine-learning/7.jpg)
 
 Sounds familiar, right? Let's imagine the Dog recognition is taken place somewhere in the computer, we call it a Model. The final goal is to help create this. We don't create, we're just the helpers, the computer must handle it alone. Don't forget that it's the one that learns :)
 
@@ -67,7 +67,7 @@ Imagine the label of each image is printed on the back so the computer can't see
 
 Then next step is Evaluation? I assume we gave the computer 100 images (roughly 50 images of Dog, and 50 images of Not a dog). It will try to guess each image until it finish the 100th one. Then it counts the number of right guesses. For example, there are 69 right guesses, so it has a probability of 69% in recognising whether there is a dog. Not so bad, right? That's what we call Evaluation. The computer evaluates its own work:
 
-![Image_8](/images/8.jpg)
+![Image_8](/images/tutorials/what-is-machine-learning/8.jpg)
 
 But what if the evaluation result can't satisfy us? We just tell the computer about that, it will update its own Parameters. But what the hell are 'Parameters' here? So much new keywords today! (Maybe many of you want to tell me that!) Remember the Model I said above? Parameters are just something put into the Model, just like machines in the factory. If something goes wrong with the product, they just have them fixed. Exactly the same with Parameters. Simple, right? Just as the image above, let's call it 'θ'. Some other places you will see thay use 'W' for Weights, and 'b' for Biases, but right now for the sake of simplicity, just remember 'θ'. Don't ask me about the naming convention, I don't know! Everyone uses that, and you don't want everyone to look at you just like "What the hell that guy is talking about!" when you talk about Machine Learning, right?
 
@@ -77,7 +77,7 @@ So the loop Training-Evaluating-Parameter Updating is actually the core of Machi
 
 So last, but not least, I just want you to do me a favor. I'm definitely sure you can. Did you notice the question mark on the fifth image (The annoying image with some kind of algebraic matrices)? So that's the last thing I want to reveal in the end of this post. And once again I'll show you some algebraic stuff, but stay calm, you won't get your hands dirty today!
 
-![Image_9](/images/9.jpg)
+![Image_9](/images/tutorials/what-is-machine-learning/9.jpg)
 
 Okay, such a long function which likely comes from hell. Please ignore it right now. All I need you to know are just: Activation Function, Bias and Weights. I won't make it long this time.
 So from Feature to Activation, we'll go through Activation Function, very easy to remember, right?
