@@ -40,13 +40,13 @@ Everything is exactly the same in Machine Learning, Supervised Learning indicate
 ### Unsupervised Learning
 Obviously, Unsupervised Learning is the opposite of Supervised Learning. It means that you will be given a mess of Features without any Labels on them. So it doesn't make any sense here, you may suppose. How can the computer actually learn without knowing whether it's doing right? A picture is worth of thousand words. Let me show you:
 
-Image_1
+![Image_1](/images/tutorials/types-of-learning/Image_1.jpg)
 
 As you can see in the picture above. We have two set of points (just ignore the axises' names, I just want you to focus on the points). Some are red, and some are blue. And it's obvious that we can draw a line between them, let say the green one. As you might get, it's exactly an another example of Supervised Learning, where the Labels are Red & Blue.
 (For ones who find it hard to understand. Just imagine the Red points are images of "Dog", and the Blue ones are images of "Not a Dog". But don't worry, I'll make it more concrete when we come to Logistic Regression!) 
 So, what about this one:
 
-Image_2
+![Image_2](/images/tutorials/types-of-learning/Image_2.jpg)
 
 I just simply made them all Blue! So what's the computer supposed to do now? As you could see from the previous example, the Labels may help in the learning process, but they're not something which we can't live without. It's the distribution of Features which matters! For example, the computer may not see the "Dog" label (or the "Not a Dog" label, either), but it can put things with four-leg features, black-nose features, long-tail features, long-tongue features in the same group. So in the end, we can have the same result with what we got from Supervised Learning.
 (Of course, actually it can't be always the same! Imagine that the computer will also have a group for things with two-leg features, two-swing features (for birds' images); a group for things with no-leg features, long-tongue features (for snakes' images) and so on. That's because Unsupervised Learning is not limited by the Input Labels, so the result may vary depending on how the computer learns)
