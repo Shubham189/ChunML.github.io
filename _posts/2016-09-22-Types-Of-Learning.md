@@ -1,5 +1,5 @@
 ---
-title: "ML Tutorial: Types of Learning"
+title: "Machine Learning Part 2: Types of Learning"
 categories:
   - Tutorial
 tags:
