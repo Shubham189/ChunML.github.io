@@ -11,7 +11,7 @@ tags:
 
 Technology sometimes seems like magic, especially when we don't have any idea about how it was done, or we even think it can't be done at all.
 When I was a kid, I was a huge fan of Sci-Fi Films, which were on every TV channel in the 1990s in my country. They did inspire me a lot, help grow up an "engineering mindset" in me.
-Being an engineer sometimes makes me feel so great, because I can mostly understand many things that seem to be magical to other ones. But to be honest, there are still be lots of things out there can make me feel like a fool. Let me tell you one of them.
+Being an engineer sometimes makes me feel so great, because I can mostly understand many things that seem to be magical to others. But to be honest, there are still lots of things out there can make me feel like a fool. Just let me tell you one of them.
 
 It was sometime in 2015, I watched a demo video from a startup company in Japan. It was about Object Recognition using Deep Learning. At that time, I didn't even have any idea about what Machine Learning is, not to mention Deep Learning! 
 My thought then? "That was impossible. How did they do that?"
