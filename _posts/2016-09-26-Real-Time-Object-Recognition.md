@@ -1,7 +1,7 @@
 ---
 title: "Real Time Object Recognition (Part 1)"
 categories:
-  - Tutorial
+  - Project
 tags:
   - machine-learning
   - VGG
