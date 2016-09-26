@@ -1,5 +1,5 @@
 ---
-title: "ML Tutorial: What is Machine Learning?"
+title: "Machine Learning Part 1: What is Machine Learning?"
 categories:
   - Tutorial
 tags:
