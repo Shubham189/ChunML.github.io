@@ -88,18 +88,3 @@ So, finally we made it till the end. You may ask why I had to make such a long p
 Hope this post is helpful to you on the long-run towards your Machine Learning's targets. 
 
 So stay updated, and I'll meet you on the next post of this tutorial. See ya!
-
-{% comment %}<!-- only show related on a post page when not disabled -->{% endcomment %}
-  {% if page.id and page.related and site.related_posts.size > 0 %}
-    <div class="page__related">
-      {% if site.data.ui-text[site.locale].related_label %}
-        <h4 class="page__related-title">{{ site.data.ui-text[site.locale].related_label | default: "You May Also Enjoy" }}</h4>
-      {% endif %}
-      <div class="grid__wrapper">
-        {% for post in site.related_posts limit:4 %}
-          {% include archive-single.html type="grid" %}
-        {% endfor %}
-      </div>
-    </div>
-  {% endif %}
-
