@@ -102,4 +102,4 @@ So stay updated, and I'll meet you on the next post of this tutorial. See ya!
       </div>
     </div>
   {% endif %}
-</div>
+
