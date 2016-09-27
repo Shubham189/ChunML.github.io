@@ -7,6 +7,7 @@ tags:
   - VGG
   - object recognition
   - learning
+  - project
 ---
 
 Technology sometimes seems like magic, especially when we don't have any idea about how it was done, or we even think it can't be done at all.
@@ -27,10 +28,105 @@ Writing it all in one post may hurt, so I separate this project into two parts l
 * Part 1: Go through the folder containing the images, recognize object in each.
 * Part 2: Real time object recognition through input from camera
 
+Before I begin, let's talk a little bit about how Machine Learning works. I had post about what Machine Learning exactly is, and how it exactly works here: [What is Machine Learning?](https://chunml.github.io/tutorial/Machine-Learning-Definition/)
+The main part of any Machine Learning system, is the Model. It contains the algorithms and all the associated parameters. A good Model will produce a good prediction. Because of that, the training process (i.e. the process which produces the Model) can be heavily computational and take a lot of resources (you know, RAM and memories to store the parameters).
+Fortunately, a great work from [François Chollet](https://github.com/fchollet) helps make this problem become much more relaxing than ever. I mean that you won't have to spend a great deal of money on a giant computer (with powerful CPU and GPUs), you won't have to spend time on training the data yourself, thanks to François Chollet for providing us the pretrained Model on the most outstanding CNN architectures. Sounds cool, right? Among those, I will use the VGG16 Model for this project.
+
 So, let's get down to business.
 
-Firstly, let's talk a little bit about how Machine Learning works. I had post about what Machine Learning exactly is, and how it exactly works here: [What is Machine Learning?](https://chunml.github.io/tutorial/Machine-Learning-Definition/)
-The main part of any Machine Learning system, is the Model. It contains the algorithms and all the associated parameters. A good Model will produce a good prediction. Because of that, the training process (i.e. the process which produces the Model) can be heavily computational and take a lot of resources (you know, RAM and memories to store the parameters).
-Fortunately, a great work from [François Chollet](https://github.com/fchollet) helps make this problem become much more relaxing than ever. I mean that you won't have to spend a great deal of money on a giant computer (with powerful CPU and GPUs), you won't have to spend time on training the data yourself. Because François Chollet provides us the pretrained Model on the most outstanding CNN architectures. Sounds cool, right? And I will use the VGG16 Model for this project.
+Firstly, I downloaded some images for testing purpose, and put them in the same folder.
 
-(to be continued...)
+{% highlight python %}
+ap = argparse.ArgumentParser()
+ap.add_argument("-f", "--folder", required=True)
+args = vars(ap.parse_args())
+
+files = [os.path.join(args["folder"], f) for f in os.listdir(args["folder"])]
+random.shuffle(files)
+{% endhighlight %}
+
+As written in the code above, I passed the folder name, then got the list of file names stored in *files* variable. I shuffled the list for demonstration purpose (you don't want the same order everytime, right?)
+
+Next, I initiate the VGG16 Model, provided by François Chollet. You will have to clone his repository first, from [here](https://github.com/fchollet/deep-learning-models)
+
+{% highlight python %}
+from vgg16 import VGG16
+
+model = VGG16(weights="imagenet")
+{% endhighlight %}
+
+As you can see we are passing the *weights="imagenet"* parameter, to tell the Model to initialize with pretrained parameter set. It is quite a large file (approximately 550MB), so it will take some time to download on its first run. (The parameter set is saved somewhere in keras' temporary folder)
+
+Then, I looped through the file list created above, in each iteration:
+
+{% highlight python %}
+from keras.preprocessing import image as image_utils
+
+image = image_utils.load_img(file, target_size=(224, 224))
+image = image_utils.img_to_array(image)
+{% endhighlight %}
+
+Keras provides us a method for loading image for training and testing purpose. Note that OpenCV and Keras treat the input image in different ways, so we cannot use image loaded by OpenCV's imread method for Keras. Concretely, let say we have a 3-channel image (a common color image). OpenCV's imread will produce an (width, height, 3) array, whereas Keras requires an (3, width, height) format.
+Another way to solve this is to use Numpy's tranpose method:
+
+{% highlight python %}
+import numpy as np
+
+image = cv2.imread(file)
+image = image.transpose((2, 0, 1))
+{% endhighlight %}
+
+I prefer the second approach, you will understand why when we come to the second part of this project.
+
+Next, we need to add one more dimension to the array obtained above. Why we have to do that? If you have experience with Neural Network, you may find the term *mini_batch* similar. The additional dimension will tell the Model the number of input arrays (for example, you have 70,000 data, so you need to pass an array with shape (70000, depth, width, height) for the Model to run on, let say SGD or RMSprop or something). If you don't have any idea about what I've just talked, you can ignore it for now. I'll talk about Neural Network in later posts, I promise.
+
+After convert the input image to Keras's format, I passed it through a pre-processing method:
+
+{% highlight python %}
+from imagenet_utils import preprocess_input
+
+image = preprocess_input(image)
+{% endhighlight %}
+
+The pre-processing method came along with the models provided by François Chollet. It simply subtracts each channel with its mean value, and solve the ordering conflict between Theano and Tensorflow.
+
+So we now have things ready. Let's pass the preprocessed array to the Model and get it predicted:
+
+{% highlight python %}
+preds = model.predict(image)
+(inID, label) = decode_predictions(preds)[0]
+{% endhighlight %}
+
+Let's talk a little bit about ImageNet's image database (the database on which VGG16 was trained). It was organized according to WordNet hierarchy (you can find more details [here](http://wordnet.princeton.edu/)). But the predicting result is always numerical (Neural Network only works with numerical labels), so we have to map between the numerical result, and the noun provided by WordNet. Once again, François Chollet provided a method to do that: decode_predictions method. It simply map the predicted result with a JSON file, and return the associated noun instead. Here's what the JSON file looks like:
+
+{% highlight json %}
+{"0": ["n01440764", "tench"], 
+ "1": ["n01443537", "goldfish"], 
+ "2": ["n01484850", "great_white_shark"], 
+ "3": ["n01491361", "tiger_shark"], 
+ "4": ["n01494475", "hammerhead"], 
+ "5": ["n01496331", "electric_ray"], 
+ "6": ["n01498041", "stingray"], 
+ "7": ["n01514668", "cock"], 
+ "8": ["n01514859", "hen"], 
+ "9": ["n01518878", "ostrich"], 
+ "10": ["n01530575", "brambling"], ...}
+{% endhighlight %}
+
+Finally, the easiest part: load the input image with OpenCV's imread, then put the label found above on it, then show the result. And we are DONE!
+
+{% highlight python %}
+origin = cv2.imread(file)
+cv2.putText(origin, "Predict: {}".format(label), (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
+cv2.imshow("Result", origin)
+{% endhighlight %}
+
+Here are some results I got from my test images:
+
+![Image_1](/images/projects/real-time-object-recognition/1.jpg)
+
+![Image_2](/images/projects/real-time-object-recognition/2.jpg)
+
+So I've just walked through the first part of the Real time Object Recognition project. You may think that it's not a big deal anyway. But in my opinion, it did help a lot in visualizing some real work on Object Recognition using Convolutional Neural Network. Just implementing the code to use the model may not take you some months to work on, but importantly, it now doesn't seem like a magic anymore.
+
+That's all for part 1. Hope you enjoy it. In part 2, I will continue with real time object recognition through continuous input from camera. So stay updated and I'll see you there.
