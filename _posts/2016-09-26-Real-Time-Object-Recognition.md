@@ -127,6 +127,6 @@ Here are some results I got from my test images:
 
 ![Image_2](/images/projects/real-time-object-recognition/2.jpg)
 
-So I've just walked through the first part of the Real time Object Recognition project. You may think that it's not a big deal anyway. But in my opinion, it did help a lot in visualizing some real work on Object Recognition using Convolutional Neural Network. Just implementing the code to use the model may not take you some months to work on, but importantly, it now doesn't seem like a magic anymore.
+So I've just walked through the first part of the Real time Object Recognition project. You may think that it's not a big deal anyway. But in my opinion, it did help a lot in visualizing some real work on Object Recognition using Convolutional Neural Network. Just implementing the code to use the model may not take you some months to work on, but importantly, it now doesn't seem like magic anymore.
 
 That's all for part 1. Hope you enjoy it. In part 2, I will continue with real time object recognition through continuous input from camera. So stay updated and I'll see you there.
