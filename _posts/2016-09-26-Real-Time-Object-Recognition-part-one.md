@@ -17,6 +17,7 @@ Being an engineer sometimes makes me feel so great, because I can mostly underst
 It was sometime in 2015, I watched a demo video from a startup company in Japan. It was about Object Recognition using Deep Learning. At that time, I didn't even have any idea about what Machine Learning is, not to mention Deep Learning! 
 My thought then? "That was impossible. How did they do that?"
 I kept questioning myself for a while. I just couldn't get it out of my mind. But unfortunately, because my first thought was "That was impossible", or at least "That was impossible to me", I gave it up, left the mystery unrevealed.
+
 It was not until I paid serious attention to Machine Learning that I somehow made the mystery become clear. As I was working around with Convolutional Neural Network, then I suddenly thought of the mystery I gave up one year ago. I mean, that was really exciting and crazy. (Feels like Mission 6 accomplished to me, lol)
 
 Seems like a pretty long beginning (I didn't mean to write a preface for my book or something, though). So I am here to share my work. In fact, it was not something impresssive (especially when comparing to outstanding projects out there). But I really hope this post can help, especially for ones who have enthusiasm in Machine Learning and once came accross something like me before.
@@ -29,7 +30,9 @@ Writing it all in one post may hurt, so I separate this project into two parts l
 * Part 2: Real time object recognition through input from camera
 
 Before I begin, let's talk a little bit about how Machine Learning works. I had post about what Machine Learning exactly is, and how it exactly works here: [What is Machine Learning?](https://chunml.github.io/tutorial/Machine-Learning-Definition/)
+
 The main part of any Machine Learning system, is the Model. It contains the algorithms and all the associated parameters. A good Model will produce a good prediction. Because of that, the training process (i.e. the process which produces the Model) can be heavily computational and take a lot of resources (you know, RAM and memories to store the parameters).
+
 Fortunately, a great work from [François Chollet](https://github.com/fchollet) helps make this problem become much more relaxing than ever. I mean that you won't have to spend a great deal of money on a giant computer (with powerful CPU and GPUs), you won't have to spend time on training the data yourself, thanks to François Chollet for providing us the pretrained Model on the most outstanding CNN architectures. Sounds cool, right? Among those, I will use the VGG16 Model for this project.
 
 So, let's get down to business.
@@ -78,9 +81,11 @@ image = image.transpose((2, 0, 1))
 
 I prefer the second approach, you will understand why when we come to the second part of this project.
 
-Next, we need to add one more dimension to the array obtained above. Why we have to do that? If you have experience with Neural Network, you may find the term *mini_batch* similar. The additional dimension will tell the Model the number of input arrays (for example, you have 70,000 data, so you need to pass an array with shape (70000, depth, width, height) for the Model to run on, let say SGD or RMSprop or something). If you don't have any idea about what I've just talked, you can ignore it for now. I'll talk about Neural Network in later posts, I promise.
+Next, we need to add one more dimension to the array obtained above. Why we have to do that? If you have experience with Neural Network, you may find the term *mini_batch* similar. The additional dimension will tell the Model the number of input arrays (for example, you have 70,000 data, so you need to pass an array with shape (70000, depth, width, height) for the Model to run on, let say SGD or RMSprop or something).
 
-After convert the input image to Keras's format, I passed it through a pre-processing method:
+If you don't have any idea about what I've just talked, you can ignore it for now. I'll talk about Neural Network in later posts, I promise.
+
+After converting the input image to Keras's format, I passed it through a pre-processing method:
 
 {% highlight python %}
 from imagenet_utils import preprocess_input
@@ -97,7 +102,9 @@ preds = model.predict(image)
 (inID, label) = decode_predictions(preds)[0]
 {% endhighlight %}
 
-Let's talk a little bit about ImageNet's image database (the database on which VGG16 was trained). It was organized according to WordNet hierarchy (you can find more details [here](http://wordnet.princeton.edu/)). But the predicting result is always numerical (Neural Network only works with numerical labels), so we have to map between the numerical result, and the noun provided by WordNet. Once again, François Chollet provided a method to do that: decode_predictions method. It simply map the predicted result with a JSON file, and return the associated noun instead. Here's what the JSON file looks like:
+Let's talk a little bit about ImageNet's image database (the database on which VGG16 was trained). It was organized according to WordNet hierarchy (you can find more details [here](http://wordnet.princeton.edu/)). But the predicting result is always numerical (Neural Network only works with numerical labels), so we have to map between the numerical result, and the noun provided by WordNet.
+
+Once again, François Chollet provided a method to do that: decode_predictions method. It simply map the predicted result with a JSON file, and return the associated noun instead. Here's what the JSON file looks like:
 
 {% highlight json %}
 {"0": ["n01440764", "tench"], 
