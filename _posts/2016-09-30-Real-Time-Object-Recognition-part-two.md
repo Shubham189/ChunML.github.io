@@ -113,7 +113,7 @@ Tired of reading? So sorry to make it long. I'll show you the result I got right
 {:/nomarkdown}
 
 
-Let's talk a little bit about the result above. You can see that, despite of the bad light condition (my room is only equipped with one damn yellow light!), the model still performed pretty well and totally satisfied me. Sometimes it got wrong (couln't recognize my G-Shock, or having trouble in distinguish whether it was a screen or a TV!), but that was far more than I was expected.
+Let's talk a little bit about the result above. You can see that, despite of the bad light condition (my room is only equipped with one damn yellow light!), the model still performed pretty well and totally satisfied me. Sometimes it got wrong (couln't recognize my G-Shock, or having trouble in distinguishing whether it was a screen or a TV!), but that was far more than I was expected.
 
 And finally, here's the code in case you need: [Object Recognition Code](https://github.com/ChunML/DeepLearning). Most of them was cloned from François Chollet's repository. I just coded two files below:
 
