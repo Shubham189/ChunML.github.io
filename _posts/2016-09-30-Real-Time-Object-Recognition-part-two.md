@@ -112,6 +112,7 @@ Tired of reading? So sorry to make it long. I'll show you the result I got right
 <iframe width="560" height="315" src="https://www.youtube.com/embed/70Kv8Rr72ag" frameborder="0" allowfullscreen></iframe>
 {:/nomarkdown}
 
+
 Let's talk a little bit about the result above. You can see that, despite of the bad light condition (my room is only equipped with one damn yellow light!), the model still performed pretty well and totally satisfied me. Sometimes it got wrong (couln't recognize my G-Shock, or having trouble in distinguish whether it was a screen or a TV!), but that was far more than I was expected.
 
 And finally, here's the code in case you need: [Object Recognition Code](https://github.com/ChunML/DeepLearning). Most of them was cloned from François Chollet's repository. I just coded two files below:
@@ -123,4 +124,5 @@ test_imagenet.py
 camera_test.py
 
 Hope you enjoy this project. Feel free to leave me some feedbacks or questions. I will be more than pleased to help.
-And see you soon, in the next projects!
+
+So we are done with this Real time Object Recognition project, but not with Machine Learning! And I'll see you soon, in the next projects!
