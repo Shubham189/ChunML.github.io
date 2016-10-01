@@ -26,10 +26,10 @@ So from the image above, the first thing coming to our minds is, how the compute
 
 Well, we will continue from what we were doing on the first post. The answer to above question is: Activation Function
 
-# Activation Function
+### Activation Function
 
-# Cost Function
+### Cost Function
 
-# Gradient Descent
+### Gradient Descent
 
-# Parameter Update
+### Parameter Update
