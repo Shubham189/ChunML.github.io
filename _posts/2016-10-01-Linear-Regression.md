@@ -24,12 +24,15 @@ So from the image above, the first thing coming to our minds is, how the compute
 
 ![Image_1](/images/tutorials/what-is-machine-learning/9.jpg)
 
-Well, we will continue from what we were doing on the first post. The answer to above question is: Activation Function
+Well, we will continue from what we were doing on the first post. The answer to the question above is: Activation Function.
 
 ### Activation Function
 
+
 ### Cost Function
 
+
 ### Gradient Descent
+
 
 ### Parameter Update
