@@ -9,7 +9,7 @@ author_profile: true
 
 <div class="grid__wrapper">
   {% for post in site.posts %}
-    {{ post.title }}
+    {{ post.categories }}
     {% if post.categories == 'Project' %}
       {% include archive-single.html type="grid" %}
       
