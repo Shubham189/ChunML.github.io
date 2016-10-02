@@ -22,11 +22,11 @@ I just helped you to recall about what Machine Learning is. But I think it would
 
 So from the image above, the first thing coming to our minds is, how the computer can compute *y* from *X* during the learning process, and how it can compute prediction *a* from *X*?
 
-![Image_1](/images/tutorials/what-is-machine-learning/9.jpg)
-
-Well, we will continue from what we were doing on the first post. The answer to the question above is: Activation Function.
+Well, we will continue from what we were doing on the first post. The answer to the question above is: we need an learning algorithm. And in order to make an algorithm work, we need something called Activation Function.
 
 ### Activation Function
+
+![Image_1](/images/tutorials/what-is-machine-learning/9.jpg)
 
 
 ### Cost Function
