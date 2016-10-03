@@ -71,14 +71,37 @@ If we plot them on the coordinate plane, we will obtain something like this:
 
 So, our mission now, is to find an appropriate function which can best fit those points. In case of Linear Regression with one variable, because the activation function is actually a straight line, so we will have to find a straight line which can almost go through all those points, intuitively.
 
-But, how do we start? Well, we will start by randomizing all the parameters, which means \\( \theta_0,\theta_1 \\). So let's set them both one. Now we can compute *a* by activation function: \\(a=1+x\\). Now if we plot *X*, *y*, and the straight line \\(a=1+x\\), we will have something like this:
+But, how do we start? Well, we will start by randomizing all the parameters, which means \\( \theta_0,\theta_1 \\). So let's set them both to *1*. Now we can compute *a* by activation function: \\(a=1+x\\). Now if we plot *X*, *y*, and the straight line \\(a=1+x\\), we will have something like this:
 
 ![Randomized_function](/images/tutorials/linear-regression/2.jpg)
 
-Obviously, the straight line we obtain from \\(a=1+x\\) doesn't fit our training data well. But that's OK because we just began by randomizing the parameters, and no learning was actually performed. So here comes the next question: how can we improve the activation function so that it can fit the data better? Or I can say it differently: how can we make the computer learn to fit the data? The answer is: we will compute something called Cost Function.
+Obviously, the straight line we obtain from \\(a=1+x\\) doesn't fit our training data well. But that's OK because we just began by randomizing the parameters, and no learning was actually performed. So here comes the next question: how can we improve the activation function so that it can fit the data better? Or I can say it differently: how can we make the computer learn to fit the data? 
 
-### Cost Function
+Obviously, we must think of some way to evaluate how well the current function is performing. One way to accomplish this task is to compute Cost Function, which takes the difference between the Label and the prediction as its variable. And among many types of Cost Function, I will introduce to you the Mean Squared Error Function, which is the most appropriate approach for Linear Regression, and yet maybe the simplest one for you to understand.
 
+### Mean Squared Error Function
+
+Firstly, let's see what Mean Squared Error Function (MSE) looks like:
+
+$$
+\begin{align*}
+  J(\theta)=\frac{1}{2m}\sum_{i=1}^m(h_\theta(X^{(i)})-y^{(i)})^2=\frac{1}{2m}\sum_{i=1}^m(a^{(i)}-y^{(i)})^2
+\end{align*}
+$$
+
+Now everything has just become clear. It computes the mean value of the squared errors, which are the differences between the  Prediction \\( h_theta(X^{(i)}) \\) and the Label \\( y^{(i)} \\). You can see that if the value of \\( J(\theta) \\) is large, it means that the difference between the Prediction and the Label is also large, which causes the straight line can not fit the training data well. In contrast, if the value of \\( J(\theta) \\) is close to zero, it means that the Prediction and the Label lie very closely in the coordinate plane, which we can tell that the straight line obtained from the activation function fits the training data pretty well.
+
+Here you may have a question: why don't we just take mean value of the difference between Prediction and Label? Why must we use the squared value instead? Well, there's no "must" here. In this case the squared error works just fine, so it was chosen. There's no problem if we just use the difference instead. But let's consider this case. Imagine you have \\( a^{(1)}=2 \\), \\( y^{(1)}=4 \\) and \\( a^{(2)}=5 \\), \\( y^{(1)}=3 \\). What will happen in both cases?
+
+No squared error:
+$$J(\theta) = \frac{1}{2x2}((2-4)+(5-3)) = \frac{1}{2x2}(-2+2) = 0$$
+
+With squared error:
+$$J(\theta) = \frac{1}{2x2}((2-4)^2+(5-3)^2) = \frac{1}{2x2}(4+4) = 2$$
+
+As you can see, the MSE will accumulate the error without caring the sign of the error, whereas the Mean Error is likely to omit the error like the example above. Of course, in another place, using the Mean Error instead of MSE will somehow make some sense, but that's beyond the scope of this post, so I'll talk about it when I have chance.
+
+So, through MSE value, we can somehow evaluate how well the activation function is performing, or how well the straight line obtained by the same function is fitting our training data. Then what will we do in the next step? We'll come to a new concept called, Gradien Descent. Keep going, you're half way there!
 
 ### Gradient Descent
 
