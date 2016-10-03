@@ -28,6 +28,26 @@ Well, we will continue from what we were doing on the first post. The answer to 
 
 ![Image_1](/images/tutorials/what-is-machine-learning/9.jpg)
 
+Here's where we left off in the first post. The reason why I mentioned it to you because you will face the term Activation Function not only in Linear Regression, or Logistic Regression in later post, but also in the more complicated algorithms which you will learn in the future. So, what is Activation Function? That's a function which takes *X* as variable, and we use it to compute the prediction *a*.
+
+In case of Linear Regression, the Activation Function is so simple that it's not considered an Activation Function at all!
+
+$$
+\begin{align*}
+  & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
+  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
+  & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
+      \phi(e_1, e_1) & \cdots & \phi(e_1, e_n) \\
+      \vdots & \ddots & \vdots \\
+      \phi(e_n, e_1) & \cdots & \phi(e_n, e_n)
+    \end{array} \right)
+  \left( \begin{array}{c}
+      y_1 \\
+      \vdots \\
+      y_n
+    \end{array} \right)
+\end{align*}
+$$
 
 ### Cost Function
 
