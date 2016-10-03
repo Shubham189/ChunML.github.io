@@ -34,9 +34,48 @@ In case of Linear Regression, the Activation Function is so simple that it's not
 
 $$
 \begin{align*}
-  h_\theta(X^{(i)})=\theta_0+\theta_1X_1^{(i)}+\theta_2X_2^{(i)}+\cdots+\theta_nX_n^{(i)}
+  h_\theta(X^{(i)})=\theta_0+\sum_{j=1}^m\theta_jX_j^{(i)}=\theta_0+\theta_1X_1^{(i)}+\theta_2X_2^{(i)}+\cdots+\theta_nX_n^{(i)}
 \end{align*}
 $$
+
+I'll explain the equation above. First, the superscript and the subscript on each *X*, what do they mean? Imagine we have a training dataset which has 10 examples, each example has 4 features, so the superscript will indicate the *ith* example, and the subscript will indicate the *jth* feature. You will be used to this convention soon, so don't worry if you can't get that right now.
+
+For the sake of simplicity, let's consider an example, where we have 10 examples, each example only contains one feature. So the Activation Function will look like this:
+
+$$
+\begin{align*}
+  h_\theta(X^{(i)})=\theta_0+\theta_1X_1^{(i)}
+\end{align*}
+$$
+
+Does it look similar to you? Yeah, that's exactly a linear equation with one variable which you learned a lot at high school. If we plot it on the coordinate plane, we will obtain a straight line. That's the idea of Linear Regression.
+
+Imagine our training data look like this:
+
+| X       | y           |
+| ------------- |-------------| 
+| 1      | 5 | 
+| 2      | 7 |
+| 3      | 9 |
+| 4      | 11 |
+| 5      | 13 |
+| 6      | 15 |
+| 7      | 17 |
+| 8      | 19 |
+| 9      | 21 |
+| 10      | 23 |
+
+If we plot them on the coordinate plane, we will obtain something like this:
+
+Image_1
+
+So, our mission now, is to find an appropriate function which can best fit those points. In case of Linear Regression with one variable, because the activation function is actually a straight line, so we will have to find a straight line which can almost go through all those points, intuitively.
+
+But, how do we start? Well, we will start by randomizing all the parameters, which means \\( \theta_0,\theta_1 \\). So let's set them both one. Now we can compute *a* by activation function: \\(a=1+x\\). Now if we plot *X*, *y*, and the straight line \\(a=1+x\\), we will have something like this:
+
+Image_2
+
+Obviously, the straight line we obtain from \\(a=1+x\\) doesn't fit our training data well. But that's OK because we just began by randomizing the parameters, and no learning was actually performed. So here comes the next question: how can we improve the activation function so that it can fit the data better? Or I can say it differently: how can we make the computer learn to fit the data? The answer is: we will compute something called Cost Function.
 
 ### Cost Function
 
