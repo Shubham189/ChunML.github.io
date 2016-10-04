@@ -11,7 +11,7 @@ Your  access  to  and  use  of  [Chun's Machine Learning Page](https://chunml.gi
 2. **CREDIT CARD DETAILS**
 [Chun's Machine Learning Page](https://chunml.github.io/) will never ask for your credit card details and we advice our customers to not enter their credit cards details on [Chun's Machine Learning Page](https://chunml.github.io/) website or by submitting such details in any other form.
 
-3.**LEGAL ADVICE**
+3. **LEGAL ADVICE**
 The contents of [Chun's Machine Learning Page](https://chunml.github.io/) website do not constitute advice and should not be relied upon in making or refraining from making, any decision.   
 All material contained on [Chun's Machine Learning Page](https://chunml.github.io/) is provided without any or warranty of any kind. You use the material on [Chun's Machine Learning Page](https://chunml.github.io/) at your own discretion
 
