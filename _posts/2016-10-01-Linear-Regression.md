@@ -94,16 +94,32 @@ Now everything has just become clear. It computes the mean value of the squared 
 Here you may have a question: why don't we just take mean value of the difference between Prediction and Label? Why must we use the squared value instead? Well, there's no "must" here. In this case the squared error works just fine, so it was chosen. There's no problem if we just use the difference instead. But let's consider this case. Imagine you have \\( a^{(1)}=2 \\), \\( y^{(1)}=4 \\) and \\( a^{(2)}=5 \\), \\( y^{(1)}=3 \\). What will happen in both cases?
 
 No squared error:
-$$J(\theta) = \frac{1}{2x2}((2-4)+(5-3)) = \frac{1}{2x2}(-2+2) = 0$$
+$$J(\theta) = \frac{1}{2*2}((2-4)+(5-3)) = \frac{1}{2*2}(-2+2) = 0$$
 
 With squared error:
-$$J(\theta) = \frac{1}{2x2}((2-4)^2+(5-3)^2) = \frac{1}{2x2}(4+4) = 2$$
+$$J(\theta) = \frac{1}{2*2}((2-4)^2+(5-3)^2) = \frac{1}{2*2}(4+4) = 2$$
 
 As you can see, the MSE will accumulate the error without caring the sign of the error, whereas the Mean Error is likely to omit the error like the example above. Of course, in another place, using the Mean Error instead of MSE will somehow make some sense, but that's beyond the scope of this post, so I'll talk about it when I have chance.
 
 So, through MSE value, we can somehow evaluate how well the activation function is performing, or how well the straight line obtained by the same function is fitting our training data. Then what will we do in the next step? We'll come to a new concept called, Gradien Descent. Keep going, you're half way there!
 
 ### Gradient Descent
+Before digging deeper into Gradient Descent. Let's look back our MSE function:
 
+$$J(\theta)=\frac{1}{2m}\sum_{i=1}^m(h_\theta(X^{(i)})-y^{(i)})^2=\frac{1}{2m}\sum_{i=1}^m(a^{(i)}-y^{(i)})^2$$
+
+Note that our cost function takes \\( \theta \\) as its variable, not \\( X^{(i)} \\). For the sake of simplicity, let say \\( \theta \\) contains only \\( \theta_1 \\). Then our cost function will look like below:
+
+$$J(\theta)=\frac{1}{2m}[(\theta_1X_1^{(1)}-y^{(1)})^2+(\theta_1X_1^{(2)}-y^{(2)})^2+\dots]=A\theta_1^2+B\theta+C$$
+
+As you can see, our cost function now becomes a quadratic function with \\( \theta \\) variable. Let's take one more step, when we plot a quadratic function, we will obtain some figure like this:
+
+![Quadratic function](/images/tutorials/linear-regression/3.jpg)
+
+A picture's worth a thousands word, right? Our learning objective is to find the parameter \\( \theta \\) so that we can draw a straight line which can almost go through all the points in the coordinate plane. In order to accomplish that, we compute a Cost Function (in this case we use the MSE function). We want the value of the Cost Function to be as small as possible.  
+
+As we can see in the figure above, our Cost Function is now a quadratic function \\( A\theta^2+B\theta+C \\). Because we have \\( A>0 \\), so that our Cost Function is a [convex function](https://en.wikipedia.org/wiki/Convex_function). You can think of a convex function as some function which has one or many minima. In the case of quadratic function with one variable, our Cost Function only has one minimum. Obviously, all we have to do now, is to find that minimum's value. But how will we do that? Let's consider the next figure:
+
+![Gradien Descent](/images/tutorials/linear-regression/4.jpg)
 
 ### Parameter Update
