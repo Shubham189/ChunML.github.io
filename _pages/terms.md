@@ -1,4 +1,8 @@
-
+---
+permalink: /terms/
+title: "Terms and Privacy Policy"
+modified: 2016-10-01
+---
 
 ###THE TERMS AND CONDITIONS OF https://chunml.github.io/
 1. ####Acceptance The Use Of https://chunml.github.io/ Terms and Conditions
