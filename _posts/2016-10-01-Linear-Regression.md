@@ -132,4 +132,8 @@ $$\frac{\mathrm d}{\mathrm d\theta}J(\theta)$$
 * Gradient (multiple-variable function):  
 $$\nabla J(\theta)=\begin{bmatrix}\frac{\partial}{\partial \theta_1}J(\theta)\\\frac{\partial}{\partial \theta_2}J(\theta)\\\vdots\\\frac{\partial}{\partial \theta_n}J(\theta)\\\end{bmatrix}$$
 
+I think I'm not going any further in explaining what is behind the Gradient. You can just think of it as a way to tell the computer: which direction to move its next step from the current point. With the right direction, it will gradually make it closer and closer to the minimum, and when it's finally there, we will have our Cost Function reach its minimum value, and as a result, we will have our final Activation Function which can best fit our training data.
+
+So now you might understand how exactly the learning process occurs. Here comes the final step: how does the computer update the parameters after it reached a new point on the Cost Function \\( J(\theta) \\) graph?
+
 ### Parameter Update
