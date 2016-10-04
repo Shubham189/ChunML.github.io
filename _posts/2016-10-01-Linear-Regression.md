@@ -122,4 +122,14 @@ As we can see in the figure above, our Cost Function is now a quadratic function
 
 ![Gradien Descent](/images/tutorials/linear-regression/4.jpg)
 
+You may remember that early in this post, we started by randomize the parameter \\( \theta \\). So with that randomized value, let say some value which is far from the minimum. How is it supposed to go down to the minimum? Oops, you already got it right. It just simply goes down, step by step. But mathematically, how can we force it to go down?
+
+Look at the first arrow to the right a little bit. You may find it very familiar, there's something that is equal to the slope of the tangent line of the Cost Function of the starting point. I'll help you this time: that is Derivatives. To be more exact, when \\( J(\theta) \\) is the function of multiple variables, instead of saying Derivatives, we will use the term: Gradient. Gradient is actually a vector whose elements are Partial Derivatives. Find it hard to understand?
+
+* Derivative (one-variable function):  
+$$\frac{\mathrm d}{\mathrm d\theta}J(\theta)$$
+
+* Gradient (multiple-variable function):  
+$$\nabla J(\theta)=\begin{bmatrix}\frac{\partial}{\partial \theta_1}J(\theta)\\\frac{\partial}{\partial \theta_2}J(\theta)\\\vdots\\\frac{\partial}{\partial \theta_n}J(\theta)\\\end{bmatrix}$$
+
 ### Parameter Update
