@@ -53,4 +53,4 @@ If you breach these Conditions of Use and we take no action, we will still be en
 12. **GOVERNING LAW**
 These Terms and Conditions shall be governed by and construed in accordance with the law of Japan and you hereby submit to the exclusive jurisdiction of the Japan courts.
 
-For any further information please email [https://chunml.github.io/](mailto:ahzhong11491@gmail.com) Team
+For any further information please email [Chun's Machine Learning Page](mailto:ahzhong11491@gmail.com) Team
