@@ -11,8 +11,6 @@ author_profile: true
   {% for post in site.posts %}
     {% if post.categories contains 'Project' %}
       {% include archive-single.html type="grid" %}
-    {% else %}
-      {{ post.categories }}
     {% endif %}
   {% endfor %}
 </div>
