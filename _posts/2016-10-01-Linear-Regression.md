@@ -193,11 +193,9 @@ You can see that our Cost Function's value has dropped significantly after just 
 
 Eh, there's still much room for improvement. Doing similarly until the forth step, here's what we got:
 
-$$
-\theta_0 = 1.28
-\theta_1 = 2.30
-J(\theta) = 3.75
-$$
+$$\theta_0 = 1.28$$  
+$$\theta_1 = 2.30$$  
+$$J(\theta) = 3.72$$  
 
 Let's plot it onto the coordinate plane:
 
