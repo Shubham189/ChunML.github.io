@@ -122,7 +122,7 @@ As we can see in the figure above, our Cost Function is now a quadratic function
 
 ![Gradien Descent](/images/tutorials/linear-regression/4.jpg)
 
-You may remember that early in this post, we started by randomize the parameter \\( \theta \\). So with that randomized value, let say some value which is far from the minimum. How is it supposed to go down to the minimum? Oops, you already got it right. It just simply goes down, step by step. But mathematically, how can we force it to go down?
+You may remember that earlier in this post, we started by randomize the parameter \\( \theta \\). So with that randomized value, let say some value which is far from the minimum. How is it supposed to go down to the minimum? Oops, you already got it right. It just simply goes down, step by step. But mathematically, how can we force it to go down?
 
 Look at the first arrow to the right a little bit. You may find it very familiar, there's something that is equal to the slope of the tangent line of the Cost Function of the starting point. I'll help you this time: that is Derivatives. To be more exact, when \\( J(\theta) \\) is the function of multiple variables, instead of saying Derivatives, we will use the term: Gradient. Gradient is actually a vector whose elements are Partial Derivatives. Find it hard to understand?
 
@@ -134,6 +134,38 @@ $$\nabla J(\theta)=\begin{bmatrix}\frac{\partial}{\partial \theta_1}J(\theta)\\\
 
 I think I'm not going any further in explaining what is behind the Gradient. You can just think of it as a way to tell the computer: which direction to move its next step from the current point. With the right direction, it will gradually make it closer and closer to the minimum, and when it's finally there, we will have our Cost Function reach its minimum value, and as a result, we will have our final Activation Function which can best fit our training data.
 
-So now you might understand how exactly the learning process occurs. Here comes the final step: how does the computer update the parameters after it reached a new point on the Cost Function \\( J(\theta) \\) graph?
+So now you might understand how exactly the learning process occurs. Here comes the final step: how does the computer update the parameters to move towards the next point on the Cost Function \\( J(\theta) \\) graph?
 
 ### Parameter Update
+With the Gradient \\( \nabla J(\theta) \\) obtained above, we will perform update on the parameters like below:
+
+$$\theta=\theta-\alpha\nabla J(\theta)$$
+
+Note that bote \\( \theta \\) and \\( \nabla J(\theta) \\) are vectors, so I can re-write the equation above like this:
+
+$$\begin{bmatrix}\theta_0\\\theta_1\\\vdots\\\theta_n\end{bmatrix}=\begin{bmatrix}\theta_0\\\theta_1\\\vdots\\\theta_n\end{bmatrix}-\alpha\begin{bmatrix}\frac{\partial}{\partial\theta_0}J(\theta)\\\frac{\partial}{\partial\theta_1}J(\theta)\\\vdots\\\frac{\partial}{\partial\theta_n}J(\theta)\end{bmatrix}$$
+
+You may see the newcomer \\( \alpha \\). It's called *learning rate*, which indicates how fast the parameters are updated at each step. Simply, if we set \\( \alpha \\) to be large, then it will be likely to go down faster, and reach the desired minimum faster, and vice versa, if \\( \alpha \\) is too small, then it will take more time until it reach the minimum. So you may ask, why don't we just make \\( \alpha \\) large? Well, learning with large *learning rate* is always risky. Consider the figure below:
+
+![Unreachable minumum](/images/tutorials/linear-regression/5.jpg)
+
+As you might see, if we set our *learning rate* too large, then it will behave unexpectedly, and be likely never reach the minimum. So my advice is, try to set \\( \alpha \\) to be small at first (but not too small), then see whether it worked or not. Then you can think about increasing \\( \alpha \\) gradually to improve the performance.
+
+After you know what the learning rate \\( \alpha \\) is. The last question (I hope) you may ask is: how do we compute the Gradient? That's pretty easy, since our MSE function is just a quadratic function. You can compute the Partial Derivatives using the [Chain Rule](https://en.wikipedia.org/wiki/Chain_rule). It may take some time to compute, so I show you the result right below. You can confirm it yourselves afterwards.
+
+* For weights (\\( \theta_1 \ldots \theta_n\\))
+
+$$\frac{\partial}{\partial \theta_j}J(\theta) = \frac{1}{m}\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)}).x_j^{(i)}$$
+
+There's one more thing I want remind you: Weights and Bias. As I said in the first post, Weights are parameters which associate with X, and Bias is parameter which stands alone. So I show you above how to update the Weights. What about the Bias? Because Bias doesn't associate with X, so its Partial Derivative doesn't, either.
+
+* For bias (\\( \theta_0 \\))
+$$\frac{\partial}{\partial \theta_j}J(\theta) = \frac{1}{m}\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)})$$
+
+Until this point, you may understand why we use \\( \frac{1}{2m} \\) instead of \\( \frac{1}{m} \\) in the MSE function. Because it's a quadratic function, using \\( \frac{1}{2m} \\) will make it easier for computing Partial Derivative. Everything happens for some reason, right?
+
+Now let's put things together. Here what we have:
+
+$$\begin{bmatrix}\theta_0\\\theta_1\\\vdots\\\theta_n\end{bmatrix}=\begin{bmatrix}\theta_0\\\theta_1\\\vdots\\\theta_n\end{bmatrix}-\frac{\alpha}{m}\begin{bmatrix}\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)})\\\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)}).x_1^{(i)}\\\vdots\\\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)}).x_n^{(i)}\end{bmatrix}$$
+
+Seems like a mess, huh? The best way to understand something is doing something with it. Now let's solve the problem above, we will try to make the straight line to fit our training points.
