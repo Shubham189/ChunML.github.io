@@ -180,8 +180,8 @@ At starting point, our Cost Function's value is unacceptably large. So we have t
 
 Let's set the learning rate \\( \alpha=0.03 \\), here's the new parameters after we performed the update:
 
-$$\theta_0 = \theta_0 - \frac{\alpha}{m}\sum_{i=1}^m(h_\theta^{(i)}(X^{(i)})-y^{(i)})=1.25$$
-$$\theta_1 = \theta_1 - \frac{\alpha}{m}\sum_{i=1}^m(h_\theta^{(i)}(X^{(i)})-y^{(i)}).X^{(i)}=2.55$$
+$$\theta_0 = \theta_0 - \frac{\alpha}{10}\sum_{i=1}^m(X^{(i)} + 1 - y^{(i)})=1.25$$
+$$\theta_1 = \theta_1 - \frac{\alpha}{10}\sum_{i=1}^m(X^{(i)} + 1 - y^{(i)}).X^{(i)}=2.55$$
 
 With the new parameters, let's re-compute the Cost Function:
 
