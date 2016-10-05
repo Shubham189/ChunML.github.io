@@ -153,19 +153,58 @@ As you might see, if we set our *learning rate* too large, then it will behave u
 
 After you know what the learning rate \\( \alpha \\) is. The last question (I hope) you may ask is: how do we compute the Gradient? That's pretty easy, since our MSE function is just a quadratic function. You can compute the Partial Derivatives using the [Chain Rule](https://en.wikipedia.org/wiki/Chain_rule). It may take some time to compute, so I show you the result right below. You can confirm it yourselves afterwards.
 
-* For weights (\\( \theta_1 \ldots \theta_n\\))
+* For weights (\\( \theta_1, \ldots, \theta_n\\))
 
 $$\frac{\partial}{\partial \theta_j}J(\theta) = \frac{1}{m}\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)}).x_j^{(i)}$$
 
 There's one more thing I want remind you: Weights and Bias. As I said in the first post, Weights are parameters which associate with X, and Bias is parameter which stands alone. So I show you above how to update the Weights. What about the Bias? Because Bias doesn't associate with X, so its Partial Derivative doesn't, either.
 
 * For bias (\\( \theta_0 \\))
-$$\frac{\partial}{\partial \theta_j}J(\theta) = \frac{1}{m}\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)})$$
+
+$$\frac{\partial}{\partial \theta_0}J(\theta) = \frac{1}{m}\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)})$$
 
 Until this point, you may understand why we use \\( \frac{1}{2m} \\) instead of \\( \frac{1}{m} \\) in the MSE function. Because it's a quadratic function, using \\( \frac{1}{2m} \\) will make it easier for computing Partial Derivative. Everything happens for some reason, right?
 
-Now let's put things together. Here what we have:
+Now let's put things together. Here's what we have:
 
 $$\begin{bmatrix}\theta_0\\\theta_1\\\vdots\\\theta_n\end{bmatrix}=\begin{bmatrix}\theta_0\\\theta_1\\\vdots\\\theta_n\end{bmatrix}-\frac{\alpha}{m}\begin{bmatrix}\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)})\\\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)}).x_1^{(i)}\\\vdots\\\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)}).x_n^{(i)}\end{bmatrix}$$
 
 Seems like a mess, huh? The best way to understand something is doing something with it. Now let's solve the problem above, we will try to make the straight line to fit our training points.
+
+1. Parameters Initialization:  
+As above, we initialized \\(\theta_0=1\\), \\(\theta_1=1\\). We will compute our Cost Function \\( J(\theta) \\).
+
+$$J(\theta) = \frac{1}{2*10}\sum_{i=1}^{10}(X^{(i)} + 1 - y^{(i)})^2=38.34$$
+
+At starting point, our Cost Function's value is unacceptably large. So we have to update our parameters using Gradient Descent. Let's do it now.
+
+Let's set the learning rate \\( \alpha=0.03 \\), here's the new parameters after we performed the update:
+
+$$\theta_0 = \theta_0 - \frac{\alpha}{m}\sum_{i=1}^m(h_\theta^{(i)}(X^{(i)})-y^{(i)})=1.25$$
+$$\theta_1 = \theta_1 - \frac{\alpha}{m}\sum_{i=1}^m(h_\theta^{(i)}(X^{(i)})-y^{(i)}).X^{(i)}=2.55$$
+
+With the new parameters, let's re-compute the Cost Function:
+
+$$J(\theta) = \frac{1}{2*10}\sum_{i=1}^{10}(2.55*X^{(i)} + 1.25 - y^{(i)})^2=4.89$$
+
+You can see that our Cost Function's value has dropped significantly after just one update step. Let's plot our new Activation Function to see how well it improved:
+
+![Update 1](/images/tutorials/linear-regression/6.jpg)
+
+Eh, there's still much room for improvement. Doing similarly until the forth step, here's what we got:
+
+$$
+\theta_0 = 1.28
+\theta_1 = 2.30
+J(\theta) = 3.75
+$$
+
+Let's plot it onto the coordinate plane:
+
+![Update 4](/images/tutorials/linear-regression/7.jpg)
+
+As you can see, we now have our straight line which can fit our training data fairly well. And if we run the update few more rounds, you may see that our Cost Function still keeps decreasing but just slightly changes. And we can barely visualize the improvement in the graph. Obviously, we just can't ask for more in case of a straight line. And since this is the simplest algorithm that I used to explain the learning process, I hope you can now understand what is actually "behind the scenes" and visualize the learning process.
+
+In the next post, I'll continue with the second part on Linear Regression. I'll show you how we can improve the performance of Linear Regression, and we will, finally, using Python's powerful libraries to help us complete the implementation.
+
+That's it for today. Drop me a line if you have any question. See you in the next post!
