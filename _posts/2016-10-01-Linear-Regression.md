@@ -201,7 +201,7 @@ Let's plot it onto the coordinate plane:
 
 ![Update 4](/images/tutorials/linear-regression/7.jpg)
 
-As you can see, we now have our straight line which can fit our training data fairly well. And if we run the update few more rounds, you may see that our Cost Function still keeps decreasing but just slightly changes. And we can barely visualize the improvement in the graph. Obviously, we just can't ask for more in case of a straight line. And since this is the simplest algorithm that I used to explain the learning process, I hope you can now understand what is actually "behind the scenes" and visualize the learning process.
+As you can see, we now have our straight line which can fit our training data fairly well. And if we run the update few more rounds, you may see that our Cost Function still keeps decreasing but with just slight changes. And we can barely visualize the improvement in the graph. Obviously, we just can't ask for more in case of a straight line. And since this is the simplest algorithm that I used to explain the learning process, I hope you can now understand what is actually "behind the scenes" and visualize the learning process.
 
 In the next post, I'll continue with the second part on Linear Regression. I'll show you how we can improve the performance of Linear Regression, and we will, finally, using Python's powerful libraries to help us complete the implementation.
 
