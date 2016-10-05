@@ -89,7 +89,7 @@ $$
 \end{align*}
 $$
 
-Now everything has just become clear. It computes the mean value of the squared errors, which are the differences between the  Prediction \\( h_theta(X^{(i)}) \\) and the Label \\( y^{(i)} \\). You can see that if the value of \\( J(\theta) \\) is large, it means that the difference between the Prediction and the Label is also large, which causes the straight line can not fit the training data well. In contrast, if the value of \\( J(\theta) \\) is close to zero, it means that the Prediction and the Label lie very closely in the coordinate plane, which we can tell that the straight line obtained from the activation function fits the training data pretty well.
+Now everything has just become clear. It computes the mean value of the squared errors, which are the differences between the  Prediction \\( h_\theta(X^{(i)}) \\) and the Label \\( y^{(i)} \\). You can see that if the value of \\( J(\theta) \\) is large, it means that the difference between the Prediction and the Label is also large, which causes the straight line can not fit the training data well. In contrast, if the value of \\( J(\theta) \\) is close to zero, it means that the Prediction and the Label lie very closely in the coordinate plane, which we can tell that the straight line obtained from the activation function fits the training data pretty well.
 
 Here you may have a question: why don't we just take mean value of the difference between Prediction and Label? Why must we use the squared value instead? Well, there's no "must" here. In this case the squared error works just fine, so it was chosen. There's no problem if we just use the difference instead. But let's consider this case. Imagine you have \\( a^{(1)}=2 \\), \\( y^{(1)}=4 \\) and \\( a^{(2)}=5 \\), \\( y^{(1)}=3 \\). What will happen in both cases?
 
@@ -110,9 +110,9 @@ $$J(\theta)=\frac{1}{2m}\sum_{i=1}^m(h_\theta(X^{(i)})-y^{(i)})^2=\frac{1}{2m}\s
 
 Note that our cost function takes \\( \theta \\) as its variable, not \\( X^{(i)} \\). For the sake of simplicity, let say \\( \theta \\) contains only \\( \theta_1 \\). Then our cost function will look like below:
 
-$$J(\theta)=\frac{1}{2m}[(\theta_1X_1^{(1)}-y^{(1)})^2+(\theta_1X_1^{(2)}-y^{(2)})^2+\dots]=A\theta_1^2+B\theta+C$$
+$$J(\theta)=\frac{1}{2m}[(\theta_1X_1^{(1)}-y^{(1)})^2+(\theta_1X_1^{(2)}-y^{(2)})^2+\dots]=A\theta_1^2+B\theta_1+C$$
 
-As you can see, our cost function now becomes a quadratic function with \\( \theta \\) variable. Let's take one more step, when we plot a quadratic function, we will obtain some figure like this:
+As you can see, our cost function now becomes a quadratic function with \\( \theta_1 \\) variable. Let's take one more step, when we plot a quadratic function, we will obtain some figure like this:
 
 ![Quadratic function](/images/tutorials/linear-regression/3.jpg)
 
