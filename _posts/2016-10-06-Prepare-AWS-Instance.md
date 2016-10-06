@@ -23,40 +23,40 @@ And this post is for ones who consider to use AWS for running their own Machine 
 
 Firstly, you have to register for AWS. You can do it by access to [AWS Home Page](https://aws.amazon.com/), then choose "Sign In to the Console", you will be redirected to the page like this:
 
-[Register page](/images/projects/prepare-aws-instance/register.jpg)
+![Register page](/images/projects/prepare-aws-instance/register.jpg)
 
 After the registration completes, go back to AWS Home Page and sign in with your registered account. Here's what you will see:
 
-[User page](/images/projects/prepare-aws-instance/userpage.jpg)
+![User page](/images/projects/prepare-aws-instance/userpage.jpg)
 
 On the top right, make sure you're choosing N. California region. If it is somewhere else, change it to N. California.
 
 We will use EC2 instance, so choose EC2 (the first one in Compute category). You will see the following page showing up:
 
-[EC2](/images/projects/prepare-aws-instance/ec2.jpg)
+![EC2](/images/projects/prepare-aws-instance/ec2.jpg)
 
 Click "Launch Instance". Here's where we will create our new instance, or you can also choose to use pre-configured one. You may wonder why. A new created instance is just like a new computer, with just OS installed. If you want to work with Python, you have to install Python, if you want to work with Caffe, you have to install and configure Caffe. Sounds challenging, right? In my case, although I got a few experiences working with environment configuration on my own PC, I don't feel like doing it all over again, especially on a computer belonging to someone else. So I choose to use the pre-configured one! And I recommend you to do so.
 
 On the next page after clicking "Launch Instance", choose "Community Instance" on the left, and type "cs231n" to the search bar. That's the instance configured by Stanford University, which have Caffe, Torch, Theano, Keras, Lasagne installed, which means it's already up and ready.
 
-[cs231n](/images/projects/prepare-aws-instance/cs231n.jpg)
+![cs231n](/images/projects/prepare-aws-instance/cs231n.jpg)
 
 Click "Select", on the next screen, scroll down to "g2.2xlarge" type. Select it and click "Review and Launch". We are working on Machine Learning projects, which requires a great deal of parallel computing. And a GPU Instance's type will be the best fit for that.
 
-[g22xlarge](/images/projects/prepare-aws-instance/g22xlarge.jpg)
+![g22xlarge](/images/projects/prepare-aws-instance/g22xlarge.jpg)
 
 Simply click "Launch" on the next screen. At this step, AWS will require a key-pair authentication. Because this is the first time you launch, just select "Create a new key pair", and type whatever you want to name that key. And click "Launch Instances".
 
-[keypair](/images/projects/prepare-aws-instance/keypair.jpg)
+![keypair](/images/projects/prepare-aws-instance/keypair.jpg)
 
 You should then receive a .pem file which holds your key-pair information. Keep it safe because there's no way to get it back once you lose it!
 
 At this point, you may receive an error, telling you that your account in under verification.
 
-[launch_failed](/images/projects/prepare-aws-instance/launch_failed.jpg)
+![launch_failed](/images/projects/prepare-aws-instance/launch_failed.jpg)
 
 Just give it about 2 hours and try to launch again. Here's what you will see after your account is verified:
  
-[launched](/images/projects/prepare-aws-instance/launched.jpg) 
+![launched](/images/projects/prepare-aws-instance/launched.jpg) 
 
 That's it. Let's log in our instance and make sure everything works properly.
