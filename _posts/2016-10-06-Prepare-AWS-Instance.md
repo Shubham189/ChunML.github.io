@@ -17,7 +17,7 @@ But life is not that easy. Things get tougher as you keep moving on. Now instead
 
 No way am I stopping. There must be some way out, I supposed. And I finally found it, Amazon Web Service (AWS).
 
-You can simply think of AWS as a place which offers desktop for rent. Of course, it costs! But it won't cost you as much as buying a powerful giant desktop. Moreover, they even offer 12-month free trial! What a deal! It means you won't have to pay a penny for a thousand-dollar desktop in one year. You know, you are free to have our own choices. But I choose AWS, for now.
+You can simply think of AWS as a place which offers desktop for rent. Of course, it costs! But it won't cost you as much as buying a powerful giant desktop. You know, you are free to have our own choices. But I choose AWS, for now.
 
 And this post is for ones who consider to use AWS for running their own Machine Learning projects, just like me. Setting things up in AWS won't be hard, but takes some time.
 
