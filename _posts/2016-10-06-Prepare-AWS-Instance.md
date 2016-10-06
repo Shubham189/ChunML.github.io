@@ -59,4 +59,35 @@ Just give it about 2 hours and try to launch again. Here's what you will see aft
  
 ![launched](/images/projects/prepare-aws-instance/launched.jpg) 
 
-That's it. Let's log in our instance and make sure everything works properly.
+After launching into the instance, it will take a while to initialize, so you have to wait until the status changes to "2/2 checks passed":
+
+![running](/images/projects/prepare-aws-instance/running.jpg) 
+
+Then take note the instance's public IP address, open your local machine's terminal, type:
+
+{% highlight Bash shell scripts %}
+ssh -i PEM_FILE ubuntu@PUBLIC_IP
+{% endhighlight %}
+
+You will probably get an error like this:
+
+{% highlight Bash shell scripts %}
+Permissions 0664 for PEM_FILE are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key PEM_FILE: bad permissions
+{% endhighlight %}
+
+That's because your PEM file is accessible by all users. You must change the file's permissions by typing:
+
+{% highlight Bash shell scripts %}
+chmod 600 PEM_FILE
+{% endhighlight %}
+
+Note that you must be in the folder where you placed you PEM_FILE.
+
+After that, you will now be able to log in and use the GPU instance everytime you want. Just don't forget to **Stop** it when you finished your work, or your credit card bill payments will shock you till death. And note that there's two different options: **Stop** and **Terminate**. **Stop** means to *Shut down*, while **Terminate** means to *Delete* the instance. You can read more [here](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingInstanceInitiatedShutdownBehavior) if you want to change the initiated Shutdown behavior, or [here](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingDisableAPITermination) to disable the **Terminate** option.
+
+If you encounter any error during working with your instance, try to *Terminate* and start it all over again. Then everything should work just fine.
+
+That's it. Simple enough, right? Hope you find this post helpful. And I'll be back soon to reveal the cool stuff I've been doing to you.
