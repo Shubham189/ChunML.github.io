@@ -17,6 +17,8 @@ In this post, I am assuming that you are using a computer running on Linux based
 
 We will install OpenCV for Computer Vision, and Keras (Theano backend) for Machine Learning. I will make it short and clear, just to make sure that you will have a working environment, without spending so much time on struggling with unknown errors.
 
+1. INSTALL OPENCV
+
 Firstly, open your *Terminal*, and type the lines below to Update and Upgrade the packages:
 
 {% highlight Bash shell scripts %}
@@ -127,7 +129,11 @@ python
 '3.0.0'
 {% endhighlight %}
 
-If you see the output like above, then Congratulations! You have successfully installed OpenCV! Now let's move on to install Keras. Actually we will almost use the *scikit-learn* library, not Keras in the near future, but Keras is not so hard to install, so I decided to add it here so that I won't have to make another post for Keras.
+If you see the output like above, then Congratulations! You have successfully installed OpenCV! 
+
+2. INSTALL KERAS
+
+Now let's move on to install Keras. Actually we will almost use the *scikit-learn* library, not Keras in the near future, but Keras is not so hard to install, so I decided to add it here so that I won't have to make another post for Keras.
 
 As I mentioned earlier, you may not want to mess up your environments. So let's create another virtual enviroment for Keras.
 
