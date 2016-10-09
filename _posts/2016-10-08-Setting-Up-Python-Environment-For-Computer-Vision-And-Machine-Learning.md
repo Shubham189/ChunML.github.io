@@ -176,7 +176,7 @@ python
 Using Theano backend.
 {% endhighlight %}
 
-If you had the exact output as above, then Congratulations again! Wait... what if you didn't, but received *Using TensorFlow backend* error instead. Well, sometimes Keras failed to choose the right backend, and you must do it manually. But don't worry, it should be just a piece of cake!
+If you had the exact output as above, then Congratulations again! Wait... what if you didn't, but received *Using TensorFlow backend* error instead. Well, sometimes Keras fails to choose the right backend, and you must do it manually. But don't worry, it should be just a piece of cake!
 
 All you have to do is modify the file *~/.keras/keras.json*, replace 'TensorFlow' with 'Theano', then try to test it again. It should work just fine!
 
