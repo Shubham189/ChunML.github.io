@@ -96,7 +96,7 @@ Makefile:575: recipe for target '.build_release/src/caffe/net.o' failed
 make: *** [.build_release/src/caffe/net.o] Error 1
 {% endhighlight %}
 
-Seems like a mess, huh? It is because *hdf5* library and *hdf5_hl* library actually have a postfix *serial* in their names, the compiler cannot find them. To fix this, we just have to make a **link** to the actuall files. Remember, we are not changing their names!
+Seems like a mess, huh? It is because *hdf5* library and *hdf5_hl* library actually have a postfix *serial* in their names, the compiler cannot find them. To fix this, we just have to make a **link** to the actual files. Remember, we are not changing their names!
 
 But first, let's check out the actual name of the libraries. It may vary on your machines, though.
 
@@ -135,4 +135,45 @@ And these two should be working as well. And you will be likely to see the resul
 
 If you saw something similar, then Congratulations! You have successfully installed Caffe! Now you can get your hands dirty with some real Deep Neural Network projects and become a part of Caffe community!
 
-If you still had troubles installing Caffe. Then feel free to comment below, and I will try to help you figure it out why. See you!
+But we are not done yet. Caffe provides us some examples of the most well-known models. We will use the LeNet model to train the MNIST dataset. Everything was already set up. All we have to do is just make it work:
+
+{% highlight Bash shell scripts %}
+cd ~/Downloads/caffe
+./data/mnist/get_mnist.sh
+./examples/mnist/create_mnist.sh
+{% endhighlight %}
+
+Note that you have to change the path to where you put *caffe* accordingly. Next, we will train the model:
+
+{% highlight Bash shell scripts %}
+./examples/mnist/train_lenet.sh
+{% endhighlight %}
+
+At this point, there should be an error telling you that it was trying to use GPU in CPU-only configuration:
+
+{% highlight Bash shell scripts %}
+I1009 18:51:42.646926 22536 caffe.cpp:217] Using GPUs 0
+F1009 18:51:42.647065 22536 common.cpp:66] Cannot use GPU in CPU-only Caffe: check mode.
+*** Check failure stack trace: ***
+    @     0x7fd00383f5cd  google::LogMessage::Fail()
+    @     0x7fd003841433  google::LogMessage::SendToLog()
+    @     0x7fd00383f15b  google::LogMessage::Flush()
+    @     0x7fd003841e1e  google::LogMessageFatal::~LogMessageFatal()
+    @     0x7fd003c38c00  caffe::Caffe::SetDevice()
+    @           0x40ad33  train()
+    @           0x4071c0  main
+    @     0x7fd0027b0830  __libc_start_main
+    @           0x4079e9  _start
+    @              (nil)  (unknown)
+Aborted (core dumped)
+{% endhighlight %}
+
+Well, that's OK. We just have to apply a tiny fix to the file *examples/mnist/lenet_solver.prototxt*, replace *GPU* with **CPU**, and save it. Try to run the command above again, then everything should work just fine!
+
+It will take a while to finish the training (maybe long since we are using CPU). When it completes, you may see something like this:
+
+![Training](/images/projects/installing-caffe-cpu-only/training.png)
+
+Your result may vary but we will be likely to accomplish an accurary value of approximately 99%. Congratulations again! Caffe is now working perfectly on your machine!
+
+After today's post, I hope that you all had Caffe installed successfully on you machines. But if you still had troubles installing Caffe, like some frustrating errors keep coming or something, then feel free to leave me a comment below, and I will try to help you figure out why. See you!
