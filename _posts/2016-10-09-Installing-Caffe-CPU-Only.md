@@ -1,5 +1,7 @@
 ---
 title: "Installing Caffe on Ubuntu (CPU-ONLY)"
+header:
+  teaser: teaser.jpg
 categories:
   - Project
 tags:
