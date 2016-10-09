@@ -19,7 +19,7 @@ With that thought, I decided to install Caffe on my laptop. And guess what? It t
 
 My laptop is running on Ubuntu 16.04, with OpenCV 3.0.0 installed. The other versions of Ubuntu should work as well, because it is the Caffe and the necessary dependencies matter, not the Ubuntu version.
 
-As you may already knew, Caffe is a powerful framework written in C++ for implementing Deep Neural Network and it is being used almost everywhere out there. For that reason, you can just type *Caffe installation" in Google search bar, and you can find a lot of websites telling you how to do it. But sometimes it may not work to someone, just like my case. So what is the reason then?
+As you may already knew, Caffe is a powerful framework written in C++ for implementing Deep Neural Network and it is being used almost everywhere out there. For that reason, you can just type *Caffe installation* in Google search bar, and you can find a lot of websites telling you how to do it. But sometimes it may not work to someone, just like my case. So what is the reason then?
 
 First, Caffe does require a lot of necessary dependencies to make it work. And errors occur mostly because of dependencies incompatibility.
 
