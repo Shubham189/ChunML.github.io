@@ -156,8 +156,6 @@ make: *** [python/caffe/_caffe.so] Error 1
 The error indicates that it can not find a header file named *arrayobject.h*. It was caused because *numpy* was installed in a different path, and we must manually point to it. Actually, this problem was solved at the time of writing, but the installation path varies, so not everyone will get through it. For ones who encountered the error above, all you have to do is to make a small change to your *Makefile.config* from this:
 
 {% highlight Bash shell scripts %}
-sudo vim Makefile.config
-
 PYTHON_INCLUDE := /usr/include/python2.7 \
 /usr/lib/python2.7/dist-packages/numpy/core/include
 {% endhighlight %}
@@ -165,8 +163,6 @@ PYTHON_INCLUDE := /usr/include/python2.7 \
 to this:
 
 {% highlight Bash shell scripts %}
-sudo vim Makefile.config
-
 PYTHON_INCLUDE := /usr/include/python2.7 \
 /usr/local/lib/python2.7/dist-packages/numpy/core/include
 {% endhighlight %}
