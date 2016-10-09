@@ -191,6 +191,8 @@ defaults:
       comments: true
       share: true
       related: true
+      sidebar:
+        nav: "posts"
   # _pages
   - scope:
       path: ""
