@@ -15,7 +15,7 @@ main:
 posts:
   - title: Most Popular
     children:
-      - title: "Installing Caffe Ubuntu"
+      - title: "Installing Caffe on Ubuntu"
         url: /project/Installing-Caffe-CPU-Only/
         
       - title: "Installing OpenCV & Keras"
@@ -27,5 +27,5 @@ posts:
       - title: "Linear Regression"
         url: /tutorial/Linear-Regression/
         
-      - title: "What is Machine Learning"
+      - title: "What is Machine Learning?"
         url: /tutorial/Machine-Learning-Definition/
