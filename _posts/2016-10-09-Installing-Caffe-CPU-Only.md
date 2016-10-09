@@ -59,6 +59,7 @@ cp Makefile.config.example Makefile.config
 Next, we will have to install all the necessary Python packages, using *pip*. Navigate to *python* folder, and type the line below:
 
 {% highlight Bash shell scripts %}
+sudo pip install scikit-image protobuf
 cd python
 for req in $(cat requirements.txt); sudo do pip install $req; done
 {% endhighlight %}
@@ -114,7 +115,6 @@ libhdf5_serial_hl.so.10.0.2
 
 You may find the two files like above. Note again that the version may be different. Just take note the ones you saw. Then we will make a link to them:
 
-
 {% highlight Bash shell scripts %}
 sudo ln -s /usr/lib/x86_64-linux-gnu/libhdf5_serial.so.10.1.0 /usr/lib/x86_64-linux-gnu/libhdf5.so
 sudo ln -s /usr/lib/x86_64-linux-gnu/libhdf5_serial_hl.10.0.2 /usr/lib/x86_64-linux-gnu/libhdf5_hl.so
@@ -136,6 +136,62 @@ And these two should be working as well. And you will be likely to see the resul
 ![Success](/images/projects/installing-caffe-cpu-only/success.png)
 
 If you saw something similar, then Congratulations! You have successfully installed Caffe! Now you can get your hands dirty with some real Deep Neural Network projects and become a part of Caffe community!
+
+Next step is optional but I highly recommend because we are using Python for our works. We will compile the Python layer so that we can use *caffe* directly in our Python source code.
+
+{% highlight Bash shell scripts %}
+make pycaffe
+{% endhighlight %}
+
+Here, most of your machine will compile without error. But someone may see some error like below (I did too).
+
+{% highlight Bash shell scripts %}
+CXX/LD -o python/caffe/_caffe.so python/caffe/_caffe.cpp
+python/caffe/_caffe.cpp:10:31: fatal error: numpy/arrayobject.h: No such file or directory
+compilation terminated.
+Makefile:501: recipe for target 'python/caffe/_caffe.so' failed
+make: *** [python/caffe/_caffe.so] Error 1
+{% endhighlight %}
+
+The error indicates that it can not find a header file named *arrayobject.h*. It was caused because *numpy* was installed in a different path, and we must manually point to it. Actually, this problem was solved at the time of writing, but the installation path varies, so not everyone will get through it. For ones who encountered the error above, all you have to do is to make a small change to your *Makefile.config* from this:
+
+{% highlight Bash shell scripts %}
+sudo vim Makefile.config
+
+PYTHON_INCLUDE := /usr/include/python2.7 \
+/usr/lib/python2.7/dist-packages/numpy/core/include
+{% endhighlight %}
+
+to this:
+
+{% highlight Bash shell scripts %}
+sudo vim Makefile.config
+
+PYTHON_INCLUDE := /usr/include/python2.7 \
+/usr/local/lib/python2.7/dist-packages/numpy/core/include
+{% endhighlight %}
+
+After that, let's do *make pycaffe* again, and it should work now. Next, we will have to add the module directory to our $PYTHONPATH by adding this line to the end of *~/.bashrc* file.
+
+{% highlight Bash shell scripts %}
+sudo vim ~/.bashrc
+
+export PYTHONPATH=$HOME/Downloads/caffe/python:$PYTHONPATH
+{% endhighlight %}
+
+Note that you have to change your *caffe* directory accordingly. We are nearly there, next execute the command below to make things take effect:
+
+{% highlight Bash shell scripts %}
+source ~/.bashrc
+{% endhighlight %}
+
+At this time, you can import *caffe* in Python code without any error. Not so hard, right?
+
+{% highlight Bash shell scripts %}
+python
+>>> import caffe
+>>>
+{% endhighlight %}
 
 But we are not done yet. Caffe provides us some examples of the most well-known models. We will use the LeNet model to train the MNIST dataset. Everything was already set up. All we have to do is just make it work:
 
