@@ -15,11 +15,13 @@ main:
 posts:
   - title: Most Popular
     children:
-      - title: "Installing Caffe Ubuntu"
+      - title: "Installing Caffe Ubuntu (CPU-only)"
         url: /project/Installing-Caffe-CPU-Only/
       - title: "Installing OpenCV & Keras"
         url: /tutorial/Setting-Up-Python-Environment-For-Computer-Vision-And-Machine-Learning/
-      - title: "What is Machine Learning"
-        url: /tutorial/Machine-Learning-Definition/
       - title: "Real time Object Recognition"
         url: /project/Real-Time-Object-Recognition-part-two/
+      - title: "Linear Regression"
+        url: /tutorial/Linear-Regression/
+      - title: "What is Machine Learning"
+        url: /tutorial/Machine-Learning-Definition/
