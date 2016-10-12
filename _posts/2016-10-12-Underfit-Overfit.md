@@ -22,7 +22,7 @@ That is enough of talking. First, let's get our hands dirty. If you went through
 Open Terminal and go into Python console mode:
 
 {% highlight Bash shell scripts %} 
-$ python
+python
 {% endhighlight %}
 
 Now let's import *sklearn* module for Linear Regression. *sklearn* is a shortname of **scikit-learn**, a great Python library for Machine Learning.
@@ -66,7 +66,7 @@ plt.plot(X, y, 'ro')
 plt.show()
 {% endhighlight %}
 
-![Training_data](/images/tutorials/linear-regression/1.jpg)]
+![Training_data](/images/tutorials/linear-regression/1.jpg)
 
 Next, let's initialize the Linear Regression model:
 
@@ -107,7 +107,7 @@ axes.set_ylim([0, 30])
 plt.show()
 {% endhighlight %}
 
-![poly_1](/images/tutorials/underfit-overfit/poly_1.jpg)]
+![poly_1](/images/tutorials/underfit-overfit/poly_1.jpg)
 
 So simple, right? Just a few lines of code, we have just prepared our training data, trained our Model, and visualized the result we got! Yeah, **scikit-learn** helps us do all the heavy things. In later posts, you will see that it can even handle more complicated jobs.
 
@@ -162,7 +162,7 @@ plt.plot(X[:, 0], y, 'ro', x[:, 0], a)
 plt.show()
 {% endhighlight %}
 
-![poly_2](/images/tutorials/underfit-overfit/poly_2.jpg)]
+![poly_2](/images/tutorials/underfit-overfit/poly_2.jpg)
 
 As you can see, now we obtain a curved line, which seems to fit our training data much better. To be more concrete, let's use the *score* function:
 
@@ -188,7 +188,7 @@ axes.set_ylim([0, 30])
 plt.show()
 {% endhighlight %}
 
-![poly_9](/images/tutorials/underfit-overfit/poly_9.jpg)]
+![poly_9](/images/tutorials/underfit-overfit/poly_9.jpg)
 
 Now we just obtained a new curve which fit our training data perfectly. Let's use the *score* function again to get an exact number:
 
@@ -223,7 +223,7 @@ plt.plot(X, y, 'ro')
 plt.show()
 {% endhighlight %}
 
-![full_data](/images/tutorials/underfit-overfit/full_data.jpg)]
+![full_data](/images/tutorials/underfit-overfit/full_data.jpg)
 
 Let's see what happens if we use the Model obtained from 9th degree polynomial features:
 
@@ -234,7 +234,7 @@ axes.set_ylim([0, 30])
 plt.show()
 {% endhighlight %}
 
-![poly_9_overfit](/images/tutorials/underfit-overfit/poly_9_overfit.jpg)]
+![poly_9_overfit](/images/tutorials/underfit-overfit/poly_9_overfit.jpg)
 
 Do you see what I am seeing? What a tragic! It doesn't seem to fit the new data at all! We don't even feel the need of computing the accuracy on the new data! So what the hell this is all about?
 
@@ -266,7 +266,7 @@ plt.plot(X, y, 'ro', X, a)
 plt.show()
 {% endhighlight %}
 
-![poly_1_test](/images/tutorials/underfit-overfit/poly_1_test.jpg)]
+![poly_1_test](/images/tutorials/underfit-overfit/poly_1_test.jpg)
 
 #### Model 2
 {% highlight python %} 
@@ -304,7 +304,7 @@ axes.set_ylim([0, 30])
 plt.show()
 {% endhighlight %}
 
-![poly_9_overfit](/images/tutorials/underfit-overfit/poly_9_overfit.jpg)]
+![poly_9_overfit](/images/tutorials/underfit-overfit/poly_9_overfit.jpg)
 
 As you can see, both by visualizing and by looking at the accuracy. Our first model is too simple, which didn't fit our data well. This is an example of *Underfitting* problem. In contrast, our third model is way too complicated, which performed very well on training data, but failed to fit the testing data. This is what we called *Overfitting* problem.
 
