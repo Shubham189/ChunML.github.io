@@ -285,7 +285,7 @@ axes.set_ylim([0, 30])
 plt.show()
 {% endhighlight %}
 
-![poly_2_test](/images/tutorials/underfit-overfit/poly_2_test.jpg)]
+![poly_2_test](/images/tutorials/underfit-overfit/poly_2_test.jpg)
 
 #### Model 3
 {% highlight python %} 
