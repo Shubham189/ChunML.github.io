@@ -1,0 +1,251 @@
+---
+title: "Machine Learning Part 5: Underfitting and Overfitting Problem"
+categories:
+  - Tutorial
+tags:
+  - machine-learning
+  - linear-regression
+  - implementation
+  - underfit
+  - overfit
+  - problems
+---
+
+Here we are again, in the fifth post of Machine Learning tutorial series. Today I will talk about very common problems you may face in Machine Learning: Underfitting and Overfitting. Wait! There is something wrong, isn't it? - You may wonder...
+
+Of course I remember promising you in the previous post, that today I will dig deeper into Linear Regression, and together we will do some coding. Actually, I intended to name today's post "Implementing Linear Regression" or something, but I soon realized that it would be inappropriate. Good news is today's post will mainly focus on implementation of Linear Regression, and what we can do to improve the quality of the Model. By doing that, I am actually leading you to go into some concept which is more general, and can be applied not only in Linear Regression, but every spot which Machine Learning takes place.
+
+That is enough of talking. First, let's get our hands dirty. If you went through my previous post, you would now have everything set up. But if you didn't, you might want to take a look at it here: [Setting-Up-Python-Environment](https://chunml.github.io/ChunML.github.io/tutorial/Setting-Up-Python-Environment-For-Computer-Vision-And-Machine-Learning/).
+
+### Implementing Linear Regression
+
+Open Terminal and go into Python console mode:
+
+{% highlight Bash shell scripts %} 
+$ python
+{% endhighlight %}
+
+Now let's import *sklearn* module for Linear Regression. *sklearn* is a shortname of **scikit-learn**, a great Python library for Machine Learning.
+
+{% highlight python %} 
+from sklearn.linear_model import LinearRegression
+import numpy as np
+import matplotlib.pyplot as plt
+{% endhighlight %}
+
+We are not using only *LinearRegression*. We will work with arrays, so here I also imported *numpy* for dealing with arrays. We will also draw some graphs to visualize the data, so that's why I imported *pyplot*, a great module for graph drawing.
+
+Remember the data I used in the previous post on Linear Regression? I will show it right below for you:
+
+| X       | y           |
+| ------------- |-------------| 
+| 1      | 7 | 
+| 2      | 8 |
+| 3      | 7 |
+| 4      | 13 |
+| 5      | 16 |
+| 6      | 15 |
+| 7      | 19 |
+| 8      | 23 |
+| 9      | 18 |
+| 10      | 21 |
+
+Now let's use that to prepare our training data:
+
+{% highlight python %} 
+X = np.arange(1, 11).reshape(10, 1)
+y = np.array([7, 8, 7, 13, 16, 15, 19, 23, 18, 21]).reshape(10, 1)
+{% endhighlight %}
+
+Nearly every Machine Learning library requires data to be formatted in the way which each row is one training example (or testing example), and each column represents one feature's data. So we have to reshape our data accordingly.
+
+Now let's plot our training data. You will receive the same figure with the one in the previous post:
+
+{% highlight python %} 
+plt.plot(X, y, 'ro')
+plt.show()
+{% endhighlight %}
+
+![Training_data](/images/tutorials/linear-regression/1.jpg)]
+
+Next, let's initialize the Linear Regression model:
+
+{% highlight python %} 
+model = LinearRegression()
+{% endhighlight %}
+
+Then we will train our Model, using the training data above. You can do that by simply calling the **fit** function, which takes feature matrix **X** and label vector **y** as parameters:
+
+{% highlight python %} 
+model.fit(X, y)
+{% endhighlight %}
+
+Our training data is quite simple, so the learning process finished so fast as if it never happened. All the change during training (like weights and bias), was stored in the model object. Let's see what we got:
+
+{% highlight python %} 
+model.coef_
+array([[ 1.77575758]])
+
+model.intercept_
+array([ 4.93333333])
+{% endhighlight %}
+
+Obviously, you can get more information through other attributes of model object, but now we will only focus on *coef_*, which stores the weight parameter, and *intercept_*, which stores the bias parameter.
+
+Next, let's compute the prediction vector *a*, using the obtained weight and bias:
+
+{% highlight python %} 
+a = model.coef_ * X + model.intercept_
+{% endhighlight %}
+
+Now let's draw all *X*, *y* and *a* on the same plot. Here we got a straight line, which fit the data better than what we did before (which is easy to understand, since we only went through 4 iterations).
+
+{% highlight python %} 
+plt.plot(X, y, 'ro', X, a)
+axes = plt.gca()
+axes.set_ylim([0, 30])
+plt.show()
+{% endhighlight %}
+
+![poly_1](/images/tutorials/underfitting-overfitting/poly_1.jpg)]
+
+So simple, right? Just a few lines of code, we have just prepared our training data, trained our Model, and visualized the result we got! Yeah, **scikit-learn** helps us do all the heavy things. In later posts, you will see that it can even handle more complicated jobs.
+
+### Improving the performance of Linear Regression
+
+Obviously, we can see that the straight line above fits pretty well, but not good enough. And we need a more suitable approach. But first, let's evaluate how well the Model is performing numerically, by computing the accuracy over the training data:
+
+{% highlight python %} 
+print(model.score(X, y))
+0.84988070842366825
+{% endhighlight %}
+
+We cannot always evaluate something just by seeing it, right? We need something which is more concrete, yeah, a number. By looking at numbers, we will have a better look, and easily compare different things. **scikit-learn** provides us the *score* function, whose parameters are similar to the *fit* function.
+
+And you can see that, our Model now has the accuracy of 85% over the training data. Commonly,  we demand a higher accuracy, let's say 90% or 95%. So by looking at the current accuracy, we can tell that our Model is not performing as we are expecting. So let's think about an improvement. But how can we do that?
+
+Remember I told you about Features in the first [Post](https://chunml.github.io/ChunML.github.io/tutorial/Machine-Learning-Definition/)? Features are something we use to distinguish one object from others. So obviously, if we have more Features, then we will be likely to have a better fit model, since it can receive more necessary information for training. But how we can acquire more Features?
+
+#### Polynomial Features
+The easiest way to add more Features, is to computing *polynomial features* from the provided features. It means that if we have \\(X\\), then we can use \\(X^2\\), \\(X^3\\), etc as additional features. So let's use this approach and see if we can improve the current Model. First, we have to modify our **X** matrix by adding \\(X^2\\) and \\(X^3\\):
+
+{% highlight python %} 
+X = np_c[X, X**2, X**3]
+X
+array([[   1,    1,    1],
+       [   2,    4,    8],
+       [   3,    9,   27],
+       [   4,   16,   64],
+       [   5,   25,  125],
+       [   6,   36,  216],
+       [   7,   49,  343],
+       [   8,   64,  512],
+       [   9,   81,  729],
+       [  10,  100, 1000]])
+{% endhighlight %}
+
+Similar to previous step, let's train our new Model, then compute the prediction vector *a*:
+
+{% highlight python %} 
+model.fit(X, y)
+x = np.arange(1, 11, 0.1)
+x = np.c_[x, x**2, x**3]
+a = np.dot(X, model.coef_.transpose()) + model.intercept_
+{% endhighlight %}
+
+Mathematically, we will now have \\(a=theta_0 + theta_1*X + theta_2*X^2 + theta_3*X^3\\). Note that now we have more complicated matrix *X*, so we will have to use the *dot* function. An error will occur if we just use the multiply operator like above. I also created a new *x* variable, which ranges from 1 to 10, but with 0.1 step. Use the new *x* to compute *a* will result in a smoother graph of *a*, since *a* is no longer a straight line anymore.
+
+Now let's plot things out and see what we got with new feature matrix:
+
+{% highlight python %} 
+plt.plot(X[:, 0], y, 'ro', x[:, 0], a)
+plt.show()
+{% endhighlight %}
+
+![poly_3](/images/tutorials/underfitting-overfitting/poly_3.jpg)]
+
+As you can see, now we obtain a curved line, which seems to fit our training data much better. To be more concrete, let's use the *score* function:
+
+{% highlight python %} 
+model.score(X, y)
+0.90329957530218907
+{% endhighlight %}
+
+You see that? Now we got a new accuracy of 90%, which is a huge improvement right? At this point, you may think that we can improve it a lot more by continuing to add more polynomial features to it. Well, don't guess. Let's just do it. This time we will use up to the 9th degree.
+
+{% highlight python %} 
+X = np.arange(1, 11)
+X = np.c_[X, X**2, X**3, X**4, X**5, X**6, X**7, X**8, X**9]
+x = np.arange(1, 11, 0.1)
+x = np.c_[x, x**2, x**3, x**4, x**5, x**6, x**7, x**8, x**9]
+
+model.fit(X, y)
+a = np.dot(x, model.coef_.transpose()) + model.intercept_
+
+plt.plot(X[:, 0], y, 'ro', x[:, 0], a)
+axes = plt.gca()
+axes.set_ylim([0, 30])
+plt.show()
+{% endhighlight %}
+
+![poly_9](/images/tutorials/underfitting-overfitting/poly_9.jpg)]
+
+Now we just obtained a new curve which fit our training data perfectly. Let's use the *score* function again to get an exact number:
+
+{% highlight python %} 
+model.score(X, y)
+0.99992550472904074
+{% endhighlight %}
+
+Wow, let's see what we have here, an accuracy of 100%. This is real magic, you may think.
+
+But that is just where the tragic begins...
+
+### OVERFITTING & UNDERFITTING
+
+Now let imagine our data has total 15 examples, and I just showed you the first 10. I will reveal the last 5 examples like below:
+
+| X       | y           |
+| ------------- |-------------| 
+| 11      | 24 | 
+| 12      | 23 |
+| 13      | 22 |
+| 14      | 26 |
+| 15      | 28 |
+
+So actually our data will look like this:
+
+{% highlight python %} 
+X = np.arange(1, 16)
+y = np.append(y, [24, 23, 22, 26, 28])
+
+plt.plot(X, y, 'ro')
+plt.show()
+{% endhighlight %}
+
+![full_data](/images/tutorials/underfitting-overfitting/full_data.jpg)]
+
+Let's see what happens if we use the Model obtained from 9th degree polynomial features:
+
+{% highlight python %} 
+plt.plot(X, y, 'ro', x[:, 0], a)
+axes = plt.gca()
+axes.set_ylim([0, 30])
+plt.show()
+{% endhighlight %}
+
+![poly_9_overfit](/images/tutorials/underfitting-overfitting/poly_9_overfit.jpg)]
+
+Do you see what I am seeing? What a tragic! It doesn't seem to fit the new data at all! We don't even feel the need of computing the accuracy on the new data! So what the hell this is all about?
+
+As I told you before, in the first post, that we only provided a fixed set of training data, and the Model will have to deal with new data which it has never seen before. New data, which may vary in unpredictable way in real life, penalized our trained Model this time! In Machine Learning term, we call it **OVERFITTING** problem (or High Variance). Overfitting, as the name is self-explained itself, means that the Model fits the data very well when we prodived a set of data containing a lot of features. We can see that the Model tends to memorize the data, rather than to learn from it, which makes it unable to predict the new data.
+
+In contrast, what will happen if we use just one feature like we did in the beginning (or we can say that we provided a set of data which is poorly informative)? You have already seen that it resulted in a very low accuracy, which is not what we expected, either. We call this problem **UNDERFITTING** (or High Bias).
+
+Overfitting & Underfitting, in both cases, are something that we try to avoid. And you will be likely to face these problems all the time you work with Machine Learning. Of course, there are many ways to deal with them, but I will leave all the details for a future post. This time I will tell you the simplest way, which can be seen as a "must-do" in the very first step of any Machine Learning problem.
+
+### Splitting dataset for training and testing
+
+
+
+
