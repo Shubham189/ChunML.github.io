@@ -74,7 +74,7 @@ To this:
 #    libraries=['cudart'],
 #    language='c++',
 #    runtime_library_dirs=[CUDA['lib64']],
-#    # this syntax is specific to this build system
+    # this syntax is specific to this build system
     # we're only going to use certain compiler args with nvcc and not with
     # gcc the implementation of this trick is in customize_compiler() below
 #    extra_compile_args={'gcc': ["-Wno-unused-function"],
