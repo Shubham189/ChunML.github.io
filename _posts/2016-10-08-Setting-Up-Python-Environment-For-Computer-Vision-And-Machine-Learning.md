@@ -30,8 +30,9 @@ From now on, just hit *y* when prompted. Next, we will install the necessary pac
 
 {% highlight Bash shell scripts %}
 sudo apt-get install build-essential cmake git pkg-config libjpeg8-dev \
-libtiff5-dev libjasper-dev libpng12-dev libgtk2.0-dev \
+libjasper-dev libpng12-dev libgtk2.0-dev \
 libavcodec-dev libavformat-dev libswscale-dev libv4l-dev gfortran
+sudo apt-get install libtiff5-dev 
 {% endhighlight %}
 
 Next, we will need library to optimizing purpose (there will be a lot of simultaneous computation in Computer Vision and Machine Learning which mainly bottleneck the performance). We will use ATLAS (among many other BLAS implementation):
