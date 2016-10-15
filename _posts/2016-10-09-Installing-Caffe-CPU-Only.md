@@ -61,7 +61,7 @@ Next, we will have to install all the necessary Python packages, using *pip*. Na
 {% highlight Bash shell scripts %}
 sudo pip install scikit-image protobuf
 cd python
-for req in $(cat requirements.txt); sudo do pip install $req; done
+for req in $(cat requirements.txt); do sudo pip install $req; done
 {% endhighlight %}
 
 Note that I got to add *sudo* to make it work on my laptop. Because what it was supposed to install directly to the real environment.
