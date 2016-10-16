@@ -117,7 +117,7 @@ You may find the two files like above. Note again that the version may be differ
 
 {% highlight Bash shell scripts %}
 sudo ln -s /usr/lib/x86_64-linux-gnu/libhdf5_serial.so.10.1.0 /usr/lib/x86_64-linux-gnu/libhdf5.so
-sudo ln -s /usr/lib/x86_64-linux-gnu/libhdf5_serial_hl.10.0.2 /usr/lib/x86_64-linux-gnu/libhdf5_hl.so
+sudo ln -s /usr/lib/x86_64-linux-gnu/libhdf5_serial_hl.so.10.0.2 /usr/lib/x86_64-linux-gnu/libhdf5_hl.so
 {% endhighlight %}
 
 And note that the postfixes of *hdf5* and *hdf5_hl* are not always the same. In my case, I assumed that they are the same (*10.1.0*) and it made me pay the price with another error (of course it took me another while to figure out what I did wrong).
