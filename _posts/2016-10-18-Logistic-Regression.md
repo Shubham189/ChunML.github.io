@@ -60,6 +60,7 @@ Perfect, right? That is exactly what we need. So how are we supposed to apply th
 $$
 z = \theta^TX = \theta_0 + \theta_1X_1 + \theta_2X_2 + \dots + \theta_nX_n
 $$  
+
 $$
 h_\theta(X) = g(z) = \frac{1}{1+e^{-z}} = \frac{1}{1+e^{-\theta^TX}}
 $$
