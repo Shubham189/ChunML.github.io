@@ -60,9 +60,7 @@ And the graph of sigmoid function looks like this:
 Perfect, right? That is exactly what we need. So how are we supposed to apply this to our case. It's very simple, we just do like below:
 
 $$
-z = \theta^TX = \theta_0 + \theta_1X_1 + \theta_2X_2 + \dots + \theta_nX_n
-$$
-$$
+z = \theta^TX = \theta_0 + \theta_1X_1 + \theta_2X_2 + \dots + \theta_nX_n  
 h_\theta(X) = g(z) = \frac{1}{1+e^{-z}} = \frac{1}{1+e^{-\theta^TX}}
 $$
 
@@ -83,4 +81,23 @@ So we can also rewrite the probability that \\(y=0\\) like this:
 $$
 1 - h_\theta(X) = P(y=0|x;\theta)
 $$
+
+So we have done with sigmoid function, the function which we chose as our Activation Function. To recall a little, sigmoid function is a great choice here because it can satisfy both conditions: restricting the output's values and ensuring there is no sharp changes in graph.
+
+### Cost function
+After choosing the activation function, let's move to our next target: the Cost Function. As you may remember, the cost function evaluate our Model performance based on the difference between its Predictions and the actual Labels. In the case of Linear Regression, our cost function looks like this:
+
+$$
+J(\theta)=\frac{1}{2m}\sum_{i=1}^m(h_\theta(X^{(i)})-y^{(i)})^2
+$$
+
+Can we use the same cost function in Logistic Regression? The answer is: definitely **NO**. You got the right to ask me why. Well, in the learning process, what the computer tries to do is to minimize the cost function. Therefore, our cost function must be some kind of convex functions so that we can find the minimum by using Gradient Descent. In the case of Logistic Regression, if we use the same cost function like above, we will end up with a non-convex function. And for sure, the computer has no way to find the minimum.
+
+So we are likely to find a new form of cost function which can both evaluate our Model's performance and tends to converge to some minimum. I don't want to talk deeper into how they found the appropriate cost function for Logistic Regression because it requires a lot of mathematical explanations. To make it as easily to understand as possible, you can see that our activation function contains an exponential element \\(e^{-z}\\), and one way to linearize that kind of function is to use logarithm. That is why the cost function for Logistic Regression was defined like below, and called the log-likelyhood cost function or the cross-entropy cost function:
+
+$$
+J(\theta)=-\frac{1}{m}\sum_{i=1}^m[y^{(i)}\log(h_\theta(X^{(i)})) + (1 - y^{(i)})\log(1 - h_\theta(X^{(i)}))]
+$$
+
+Let's talk a little bit about the cost function above. You can see that our new defined cost function has two seperate part: \\(y^{(i)}\log(h_\theta(X^{(i)}))\\) and \\((1 - y^{(i)})\log(1 - h_\theta(X^{(i)}))\\). Since the Label \\(y\\) can only be \\(0\\) or \\(1\\), so one of the two terms above will be \\(0\\). So we have a cost function which can cover both two cases: \\(y=0\\) and \\(y=1\\). Furthermore, our new cost function can also accumulate the output errors in each case properly, as explained above.
 
