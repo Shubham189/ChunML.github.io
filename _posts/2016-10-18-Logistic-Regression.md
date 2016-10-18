@@ -25,6 +25,8 @@ A classification problem, as you may guess, is where our labels \\(y\\) can only
 
 Okay, so I hope you know can see the difference between a regression problem and a classification problem. Let's see how we will do to deal with a classification problem. To make it easily for you to understand, it is better that we should now consider a two-class classification problem like above.
 
+### Activation Function
+
 You still remember how Machine Learning actually works? It is important for any Machine Learning algorithms to have a way to compute the Predictions from the feature data \\(X\\) which we called Activation Functions. In the case of Linear Regression, the activation function is just as simple as below:
 
 $$
@@ -62,15 +64,15 @@ z = \theta^TX = \theta_0 + \theta_1X_1 + \theta_2X_2 + \dots + \theta_nX_n
 h_\theta(X) = g(z) = \frac{1}{1+e^{-z}} = \frac{1}{1+e^{-\theta^TX}}
 $$
 
-So with a function which doesn't contain any sharp change, we can now use a threshold value to restrict the output value to be either \\(0\\) or \\(1\\). Let say we choose \\(thresh = 0.5\\). Then our sigmoid function's output will become like this:
+Next, I want to talk a little bit about the output of the function about, \\(h_\theta(X)\\). \\(h_\theta(X)\\) is interpreted as the probability that \\(y=1\\) on input \\(X\\), which can be expressed in mathematical terms like this:
 
 $$
-g(z) = \cases{ 1 & \text{if } z \ge 0 \cr 0 & \text{if } z \lt 0}
+h_\theta(X) = P(y=1|x;\theta)
 $$
 
-From \\(e^{-0} = 1\\), you can prove the result above very easily. So what if we want a result in terms of \\(\theta\\) and \\(X\\)? Since \\(z = \theta^TX\\), we can obtain the same result like below:
+And obviously, since we always have \\(P(y=1|x;\theta)+P(y=0|x;\theta)=1\\), so we can also rewrite the probability that \\(y=0\\) (\\(P(y=0|x;\theta)=1\\)) like this:
 
 $$
-h_\theta(X) = \cases{ 1 & \text{if } \theta^TX \ge 0 \cr 0 & \text{if } \theta^TX \lt 0}
+1 - h_\theta(X) = P(y=0|x;\theta)
 $$
 
