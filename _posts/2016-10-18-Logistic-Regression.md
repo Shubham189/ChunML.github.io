@@ -70,7 +70,13 @@ $$
 h_\theta(X) = P(y=1|x;\theta)
 $$
 
-And obviously, since we always have \\(P(y=1|x;\theta)+P(y=0|x;\theta)=1\\), so we can also rewrite the probability that \\(y=0\\) like this:
+And obviously, since we always have:
+
+$$
+P(y=1|x;\theta)+P(y=0|x;\theta)=1
+$$
+
+So we can also rewrite the probability that \\(y=0\\)(\\(P(y=0|x;\theta)\\)) like this:
 
 $$
 1 - h_\theta(X) = P(y=0|x;\theta)
