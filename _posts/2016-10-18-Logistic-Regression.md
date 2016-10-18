@@ -60,7 +60,7 @@ And the graph of sigmoid function looks like this:
 Perfect, right? That is exactly what we need. So how are we supposed to apply this to our case. It's very simple, we just do like below:
 
 $$
-z = \theta^TX = \theta_0 + \theta_1X_1 + \theta_2X_2 + \dots + \theta_nX_n
+z = \theta^TX = \theta_0 + \theta_1X_1 + \theta_2X_2 + \dots + \theta_nX_n\cr
 h_\theta(X) = g(z) = \frac{1}{1+e^{-z}} = \frac{1}{1+e^{-\theta^TX}}
 $$
 
@@ -70,7 +70,7 @@ $$
 h_\theta(X) = P(y=1|x;\theta)
 $$
 
-And obviously, since we always have \\(P(y=1|x;\theta)+P(y=0|x;\theta)=1\\), so we can also rewrite the probability that \\(y=0\\) (\\(P(y=0|x;\theta)=1\\)) like this:
+And obviously, since we always have \\(P(y=1|x;\theta)+P(y=0|x;\theta)=1\\), so we can also rewrite the probability that \\(y=0\\) like this:
 
 $$
 1 - h_\theta(X) = P(y=0|x;\theta)
