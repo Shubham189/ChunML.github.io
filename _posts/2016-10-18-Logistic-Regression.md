@@ -100,5 +100,27 @@ $$
 J(\theta)=-\frac{1}{m}\sum_{i=1}^m[y^{(i)}\log(h_\theta(X^{(i)})) + (1 - y^{(i)})\log(1 - h_\theta(X^{(i)}))]
 $$
 
-Let's talk a little bit about the cost function above. You can see that our new defined cost function has two seperate part: \\(y^{(i)}\log(h_\theta(X^{(i)}))\\) and \\((1 - y^{(i)})\log(1 - h_\theta(X^{(i)}))\\). Since the Label \\(y\\) can only be \\(0\\) or \\(1\\), so one of the two terms above will be \\(0\\). So we have a cost function which can cover both two cases: \\(y=0\\) and \\(y=1\\). Furthermore, our new cost function can also accumulate the output errors in each case properly, as explained above.
+Let's talk a little bit about the cost function above. First, note that now we divide the sum by \\(\frac{1}{m}\\), because our new cost function is no longer a quadratic function. And don't forget the **minus** sign, either! It's very easy to explain why there is minus sign there. The logarithm of a number whose value is from \\(0\\) to \\(1\\) is a minus number, so adding a minus sign will make sure our cost function will always greater than or equal to \\(0\\).
+
+Next, you can see that our new defined cost function has two seperate part: \\(y^{(i)}\log(h_\theta(X^{(i)}))\\) and \\((1 - y^{(i)})\log(1 - h_\theta(X^{(i)}))\\). Since the Label \\(y\\) can only be \\(0\\) or \\(1\\), so one of the two terms above will be \\(0\\). So we have a cost function which can cover both two cases: \\(y=0\\) and \\(y=1\\). Furthermore, our new cost function can also accumulate the output errors in each case properly, as explained above.
+
+### Gradient Descent
+
+So I have just talked about the cost function used in Logistic Regression problems. After we have a cost function, we will compute Gradien Descent. Do you still remember what Gradien Descent is? We need to compute Gradient Descent in order to update the parameter \\(\theta\\) (After assuring our cost function is convex, we need a way to go downhill, right?). So, let's compute Gradient Descent. Our new cost function seems very complicate this time, which you may think that it would take a day to compute all its partial derivatives. Don't worry, things are not that bad. In fact, computing the log-likelihood cost function's partial derivatives is very easy, all you have to do is using the *chain rule* which I mentioned before in earlier post. Writing it our here will make this post long and boring, so I leave it for you, lol. Here, I just want to show you the result. And it may make you surprised. Yeah, it looks just like what we had with Linear Regression:
+
+* For weights (\\( \theta_1, \ldots, \theta_n\\))
+
+$$\frac{\partial}{\partial \theta_j}J(\theta) = \frac{1}{m}\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)}).x_j^{(i)}$$
+
+* For bias (\\( \theta_0 \\))
+
+$$\frac{\partial}{\partial \theta_0}J(\theta) = \frac{1}{m}\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)})$$
+
+As I mentioned above, you can compute the partial derivatives yourselves (I highly recommend you to do so, though). And with a little patience, I'm quite sure that you will have the same result.
+
+So now you know everything you need to know about Logistic Regression: the sigmoid function, the log-likelihood cost function and its gradient descent. Note that not only Linear Regression and Logistic Regreesion, knowing these three terms also help you understand and use any other Machine Learning algorithms as well (even those complicated algorithms such as Neural Network!). 
+
+### Summary
+
+So today, we have talked about Logistic Regression. We talked about the difference between a regression problem and a classification problem. We talked about the activation function, the cost function used in Logistic Regression and how to compute its gradient descent as well. In the next post, I will continue with **Regularization**, another very important technique that you must know to deal with Overfitting problem, as you will use that technique in every Machine Learning problems you may face in the future! So stay updated, and I will be back with you soon!
 
