@@ -10,7 +10,7 @@ tags:
   - overfit
   - problems
 ---
-
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 Here we are again, in the fifth post of Machine Learning tutorial series. Today I will talk about two common problems you may face in Machine Learning: Underfitting and Overfitting. Wait! There is something wrong, isn't it? - You may wonder...
 
 Of course I remember promising you in the previous post, that today I will dig deeper into Linear Regression, and together we will do some coding. Actually, I intended to name today's post "Implementing Linear Regression" or something, but I soon realized that it would be inappropriate. Good news is today's post will mainly focus on implementation of Linear Regression, and what we can do to improve the quality of the Model. By doing that, I am actually leading you to go into some concept which is more general, and can be applied not only in Linear Regression, but every spot which Machine Learning takes place.
