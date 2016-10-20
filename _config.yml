@@ -170,7 +170,7 @@ collections:
   recipes:
     output: true
     permalink: /:collection/:path/
-  pets:
+  tutorials:
     output: true
     permalink: /:collection/:path/
   portfolio:
