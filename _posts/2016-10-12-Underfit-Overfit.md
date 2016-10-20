@@ -153,7 +153,7 @@ x = np.c_[x, x**2]
 a = np.dot(X, model.coef_.transpose()) + model.intercept_
 {% endhighlight %}
 
-Mathematically, we will now have \\(a=theta_0 + theta_1*X + theta_2*X^2\\). Note that now we have more complicated matrix *X*, so we will have to use the *dot* function. An error will occur if we just use the multiply operator like above. I also created a new *x* variable, which ranges from 1 to 10, but with 0.1 step. Use the new *x* to compute *a* will result in a smoother graph of *a*, since *a* is no longer a straight line anymore.
+Mathematically, we will now have \\(a=\theta_0 + \theta_1X + \theta_2X^2\\). Note that now we have more complicated matrix *X*, so we will have to use the *dot* function. An error will occur if we just use the multiply operator like above. I also created a new \\(x\\) variable, which ranges from 1 to 10, but with 0.1 step. Use the new \\(x\\) to compute \\(a\\) will result in a smoother graph of \\(a\\), since \\(a\\) is no longer a straight line anymore.
 
 Now let's plot things out and see what we got with new feature matrix:
 
