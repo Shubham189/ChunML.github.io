@@ -168,7 +168,7 @@ Let's visualize the result above:
 
 ![boundary](/images/tutorials/logistic-regression/boundary.png)
 
-As you can see, with the constraint above, we can draw a straight line, in this case: the \\(2X_1 + 3_2 - 1\\) line and have it seperate our hyperplane into two parts. The area above the line, which have \\(2X_1 + 3_2 - 1 \ge 0\\) is where our prediction \\(y_{predict} = 1\\) and the other one is where \\(y_{predict} = 0\\).
+As you can see, with the constraint above, we can draw a straight line, in this case: the \\(2X_1 + 3X_2 - 1 = 0\\) line and have it seperate our hyperplane into two parts. The area above the line, which have \\(2X_1 + 3X_2 - 1 \ge 0\\) is where our prediction \\(y_{predict} = 1\\) and the other one is where \\(y_{predict} = 0\\).
 
 So I hope you now understand what decision boundary is. It is a very important concept in classification problems. In the near future, you will see that the decision boundary is not necessarily a straight line. Depending on the algorithm you use, you can achieve a curve decision boundary (as I already shoed you, a curve line is fit the data much more better).
 
