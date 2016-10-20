@@ -120,6 +120,122 @@ As I mentioned above, you can compute the partial derivatives yourselves (I high
 
 So now you know everything you need to know about Logistic Regression: the sigmoid function, the log-likelihood cost function and its gradient descent. Note that not only Linear Regression and Logistic Regreesion, knowing these three terms also help you understand and use any other Machine Learning algorithms as well (even those complicated algorithms such as Neural Network!). 
 
+### Decision Boundary
+
+I will be more than happy if you are still keeping my page open. I really appreciate your attitude and persistence, too. And we will do something more interesting right now: programming!
+
+But before getting our hands dirty. Let's consider the figure below:
+
+![3d](/images/tutorials/logistic-regression/3d.png)
+
+I have just prepared some data. This time we will work with two-feature dataset. In practice, it's normal that our data has a great deal of features (can be up to thousands in case of image data), so working with one-feature data makes it irritating when dealing with some real problems. On the other hand, working with many-feature data when learning (let say, data which has more than three features) will make you unable to visualize the result. So, it's a good idea to use data with two features (or three features) when learning.
+
+So as you saw in the figure above, our data has two features: \\(X_1\\) and \\(X_2\\) with the label \\(y=0\\) or \\(y=1\\). Since we are dealing with a classification problem, where our label can take a particular value only (in this case \\(0\\) of \\(1\\), we don't need to plot the label \\(y\\). It would be better if we just plot a graph of \\(X_1\\) and \\(X_2\\) only like below:
+
+![2d](/images/tutorials/logistic-regression/2d.png)
+
+So what about \\(y\\)? We can use colors to indicate different values of \\(y\\). Doing this way, we can have a better visualization of our data, and make it possible to visualize three-feature data as well.
+
+With the figure above, we can see that our data is linearly distributed, which means we can seperate them out by a straight line. In a classification problem, that straight line is called **Decision Boundary**. Imagine we have drawn a decision boundary to the graph above, then to every new point, if it lies above the decision boundary, then we will label it with blue triangle. Conversely, if the new point lies below the decision boundary, it will become a red circle. Simple, right? A picture is worth a thousand words!
+
+But what is exactly behind the decision boundary? Just to recall you, the value of the activation function \\(h_\theta(X)\\) is the probability that \\(y=1\\), we will now define a new variable to hold the prediction made by our Model like below:
+
+$$
+y^{(i)}_{predict} = \cases{ 1 & \text{if } h_\theta(X^{(i)}) \ge 0.5 \cr 0 & \text{if } h_\theta(X^{(i)}) \lt 0.5}
+$$
+
+But the activation function is a sigmoid function, which means that:
+
+$$
+\cases{ g(z) \ge 0.5 & \text{if } z \ge 0 \cr g(z) < 0.5 & \text{if } z \lt 0.5}
+$$
+
+So we can have the relation between the prediction \\(y_{predict}\\) and \\(\theta^TX\\) like this:
+
+$$
+y_{predict} = \cases{ 1  & \text{if } \theta^TX \ge 0 \cr 0 & \text{if } \theta^TX \lt 0.5}
+$$
+
+Now what's next? How the hell can all of this lead to a decision boundary we need? Well, let's consider the example below:
+
+Let's pick some random parameters for our activation function, like \\(\theta_0 = -1\\), \\(\theta_1 = 2\\) and \\(\theta_2 = 3\\). So we will have \\(z = -1 + 2X_1 + 3X_2\\). Let's compute the prediction \\(y_{predict}\\):
+
+$$
+\cases{y = 1 \; \text{if }  -1 + 2X_1 + 3X_2 \ge 0 \Rightarrow 2X_1 + 3X_2 \ge 1 \cr y = 0 \; \text{if }  -1 + 2X_1 + 3X_2 \lt 0 \Rightarrow 2X_1 + 3X_2 \lt 1}
+$$
+
+Let's visualize the result above:
+
+![boundary](/images/tutorials/logistic-regression/boundary.png)
+
+As you can see, with the constraint above, we can draw a straight line (in this case: \\(2X_1 + 3_2 - 1\\) line) and have it seperate our hyperplane into two parts. The area above the line, which have \\(2X_1 + 3_2 - 1 \ge 0\\) is where our prediction \\(y_{predict} = 1\\) and the other one is where \\(y_{predict} = 0\\).
+
+So I hope you now understand what decision boundary is. It is a very important concept in classification problems. In the near future, you will see that the decision boundary is not necessarily a straight line. Depending on the algorithm you use, you can achieve a curve decision boundary (as I already shoed you, a curve line is fit the data much more better).
+
+Now, we are ready to code! Let's first import all the necessary modules:
+
+{% highlight python %} 
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LogisticRegression
+{% endhighlight %}
+
+Next, we will create the data to be trained:
+
+{% highlight python %} 
+x1_1 = np.linspace(0, 2, 100)
+x1_2 = np.linspace(0, 2, 100)
+x2_1 = np.abs(np.random.rand(100)*4
+x2_2 = np.abs(np.random.rand(100)*4 + 4
+
+y1 = np.zeros(100)
+y2 = np.ones(100)
+
+x = np.ones((200, 2))
+x[:, 0] = np.append(x1_1, x1_2)
+x[:, 1] = np.append(x2_1, x2_2)
+
+y = np.append(y1, y2)
+{% endhighlight %}
+
+If you plot the data above, you will get a graph that looks nearly the same as the one above. Now let's train the Logistic Regression model:
+
+{% highlight python %} 
+clf = LogisticRegression()
+
+clf.fit(x, y)
+{% endhighlight %}
+
+It should take no longer than one second to complete training. Let's see how well our Model performs on the training dataset:
+
+{% highlight python %} 
+clf.score(x, y)
+
+0.944999999999999995
+{% endhighlight %}
+
+Note that your result may vary, since the values of \\(X_2\\) were randomly initialized. I will omit the overfitting problem in this tutorial for simplicity. And similar to Linear Regression, after finishing training, the Logistic Regression object now contains the final parameters in *coef_* and *intercept_* attributes, we will use them to draw our decision boundary:
+
+{% highlight python %}
+t = np.linspace(0, 2, 100)
+
+y_pred = (-clf.intercept_ - clf.coef_[0][0]*t) / clf.coef_[0][1]
+
+plt.plot(x1_1, x2_1, 'ro', x1_2, x2_2, 'b^', t, y_pred, 'g-')
+axes = plt.gca()
+axes.set_xlabel('X1')
+axes.set_ylabel('X2')
+axes.set_xlim([0, 2])
+
+plt.show()
+{% endhighlight %}
+
+We will obtain a decision boundary like below, note that your result may be different from mine:
+
+![fit](/images/tutorials/logistic-regression/fit.png)
+
+As you can see, the final decision boundary somehow can seperate the blue triangles and the red circles pretty well. And obviously, we see that there is much room for improvement, but I will leave it for the later post. After typing some codes and visualizing the result, I hope you now know how to implement your code to use the Logistic Regression algorithm.
+
 ### Summary
 
 So today, we have talked about Logistic Regression. We talked about the difference between a regression problem and a classification problem. We talked about the activation function, the cost function used in Logistic Regression and how to compute its gradient descent as well. In the next post, I will continue with **Regularization**, another very important technique that you must know to deal with Overfitting problem, as you will use that technique nearly in every Machine Learning problem you may face in the future! So stay updated, and I will be back with you soon!
