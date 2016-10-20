@@ -74,7 +74,7 @@ Next, let's initialize the Linear Regression model:
 model = LinearRegression()
 {% endhighlight %}
 
-Then we will train our Model, using the training data above. You can do that by simply calling the **fit** function, which takes feature matrix **X** and label vector **y** as parameters:
+Then we will train our Model, using the training data above. You can do that by simply calling the **fit** function, which takes feature matrix \\(X\\) and label vector \\(y\\) as parameters:
 
 {% highlight python %} 
 model.fit(X, y)
@@ -98,7 +98,7 @@ Next, let's compute the prediction vector *a*, using the obtained weight and bia
 a = model.coef_ * X + model.intercept_
 {% endhighlight %}
 
-Now let's draw all *X*, *y* and *a* on the same plot. Here we got a straight line, which fit the data better than what we did before (which is easy to understand, since we only went through 4 iterations).
+Now let's draw all \\(X\\), \\(y\\) and \\(a\\) on the same plot. Here we got a straight line, which fit the data better than what we did before (which is easy to understand, since we only went through 4 iterations).
 
 {% highlight python %} 
 plt.plot(X, y, 'ro', X, a)
@@ -127,7 +127,7 @@ And you can see that, our Model now has the accuracy of 85% over the training da
 Remember I told you about Features in the first [Post](https://chunml.github.io/ChunML.github.io/tutorial/Machine-Learning-Definition/)? Features are something we use to distinguish one object from others. So obviously, if we have more Features, then we will be likely to have a better fit model, since it can receive more necessary information for training. But how we can acquire more Features?
 
 #### Polynomial Features
-The easiest way to add more Features, is to computing *polynomial features* from the provided features. It means that if we have \\(X\\), then we can use \\(X^2\\), \\(X^3\\), etc as additional features. So let's use this approach and see if we can improve the current Model. First, we have to modify our **X** matrix by adding \\(X^2\\):
+The easiest way to add more Features, is to computing *polynomial features* from the provided features. It means that if we have \\(X\\), then we can use \\(X^2\\), \\(X^3\\), etc as additional features. So let's use this approach and see if we can improve the current Model. First, we have to modify our \\(X\\) matrix by adding \\(X^2\\):
 
 {% highlight python %} 
 X = np_c[X, X**2]
@@ -144,7 +144,7 @@ array([[   1,    1],
        [  10,  100]])
 {% endhighlight %}
 
-Similar to previous step, let's train our new Model, then compute the prediction vector *a*:
+Similar to previous step, let's train our new Model, then compute the prediction vector \\(a\\):
 
 {% highlight python %} 
 model.fit(X, y)
@@ -171,7 +171,7 @@ model.score(X, y)
 0.87215506914951546
 {% endhighlight %}
 
-You see that? Now we got a new accuracy of 87%, which is a huge improvement right? At this point, you may think that we can improve it a lot more by continuing to add more polynomial features to it. Well, don't guess. Let's just do it. This time we will use up to the 9th degree.
+You see that? Now we got a new accuracy of 87%, which is a huge improvement right? At this point, you may think that we can improve it a lot more by continuing to add more polynomial features to it. Well, don't guess. Let's just do it. This time we will add up to degree 9.
 
 {% highlight python %} 
 X = np.arange(1, 11)
@@ -225,7 +225,7 @@ plt.show()
 
 ![full_data](/images/tutorials/underfit-overfit/full_data.jpg)
 
-Let's see what happens if we use the Model obtained from 9th degree polynomial features:
+Let's see what happens if we use the Model obtained from degree 9 polynomial features:
 
 {% highlight python %} 
 plt.plot(X, y, 'ro', x[:, 0], a)
