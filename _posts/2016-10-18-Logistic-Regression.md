@@ -83,6 +83,10 @@ $$
 1 - h_\theta(X) = P(y=0|x;\theta)
 $$
 
+**The output of activation function is the probability that \\(y = 1\\).**
+
+Why did I emphasize that? Do you still remember that I left one mystery unrevealed in my very first post about [What is Machine Learning?](https://chunml.github.io/ChunML.github.io/tutorial/Machine-Learning-Definition/). I labeled two classes Dog and Not-a-dog, not Dog and Cat, or Dog and Bird either. And the reason is clear now, I think. In a classification problem, the output is usually interpreted as the probability that the tested object belongs to a particular class. Obviously, if one object is not a Dog, then I would rather say that it is Not-a-dog than say that it is a Cat or it is a Bird, right? Although in real world projects, let say we have ten classes, then each class will be labeled as a specific name, rather than an obscure name like *Not-something*, but that's OK in case you already had some basic understanding about Machine Learning (I will talk about multiclass classification later). And I thought that it would be better to name two classes Dog and Not-a-dog in the very first example on Machine Learning, so that you would make no misunderstanding about what is actually outputted from a Machine Learning Model. 
+
 So we have done with sigmoid function, the function which we chose as our Activation Function. To recall a little, sigmoid function is a great choice here because it can satisfy both conditions: restricting the output's values and ensuring there is no sharp changes in graph.
 
 ### Cost function
