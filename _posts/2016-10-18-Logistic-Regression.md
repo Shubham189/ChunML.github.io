@@ -186,7 +186,7 @@ Next, we will create the data to be trained:
 x1_1 = np.linspace(0, 2, 100)
 x1_2 = np.linspace(0, 2, 100)
 x2_1 = np.abs(np.random.rand(100)*4
-x2_2 = np.abs(np.random.rand(100)*4 + 4
+x2_2 = np.abs(np.random.rand(100))*4 + 4
 
 y1 = np.zeros(100)
 y2 = np.ones(100)
