@@ -17,7 +17,7 @@ So here we are again, in the second part of my Real time Object Recognition proj
 You can take a look at the first part here: [Real Time Object Recognition (Part 1)](https://chunml.github.io/ChunML.github.io/project/Real-Time-Object-Recognition-part-one/).
 The model performed pretty well, although I didn't even have to do any further pre-processing (such as object localization, or image enhancement, etc).
 
-In the next step, I will use the same model, to predict object from a continuous input, such as video file or input from a camera. If you have ever done some work with Computer Vision before, you will see find it extremely easy. Let say, just a slight improvement over the last one. Yeah, that's true!
+In the next step, I will use the same model, to predict object from a continuous input, such as video file or input from a camera. If you have ever done some work with Computer Vision before, you will see find it extremely easy. Let's say, just a slight improvement over the last one. Yeah, that's true!
 
 For ones who have no experience in Computer Vision, I'll explain a little bit here. So, if you have an image, and want to have it recognized. Here is what you do:
 
@@ -101,7 +101,7 @@ for image in video:
 
 Do you get the trick here? When implementing multi-threading, the codes which deal with recognition task is seperated from the output task. It will return the result each 2 seconds. On the other side, because the output won't have to wait for the recognition result, it just simply puts the last received result on, and updates when the new one is delivered.
 
-You make ask, so the recognition process is actually skipping everything between the 2-second periods, so what we see in the output may not be the exact result. For example, your camera was on a dog, and you passed the frame containing the dog to the recognition code, 2 seconds later, the Dog label was delivered, but you are now looking at a lion! What a shame on a real time recognition app! Well, it sounds like an interesting theory. But I think, no one moves their cameras that fast, let say, abruptly change the view each second. Am I right?
+You make ask, so the recognition process is actually skipping everything between the 2-second periods, so what we see in the output may not be the exact result. For example, your camera was on a dog, and you passed the frame containing the dog to the recognition code, 2 seconds later, the Dog label was delivered, but you are now looking at a lion! What a shame on a real time recognition app! Well, it sounds like an interesting theory. But I think, no one moves their cameras that fast, let's say, abruptly change the view each second. Am I right?
 
 So, you now know about the problem you may face working with real time object recognition, and I showed you how to deal with it by implementing multi-threading. But...
 If there's something I need you to know about me, it's that I am not a professional programmer, which means I prefer working on theoretical algorithms to spending hours on coding. To me, coding is simply a way to visualize the theory. Therefore, my code may seem like a mess to you guys. So feel free to tell me if you find something wrong or something which can be improved. I will definitely appreciate that.
