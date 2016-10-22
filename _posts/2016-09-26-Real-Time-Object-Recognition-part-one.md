@@ -69,7 +69,7 @@ image = image_utils.load_img(file, target_size=(224, 224))
 image = image_utils.img_to_array(image)
 {% endhighlight %}
 
-Keras provides us a method for loading image for training and testing purpose. Note that OpenCV and Keras treat the input image in different ways, so we cannot use image loaded by OpenCV's imread method for Keras. Concretely, let say we have a 3-channel image (a common color image). OpenCV's imread will produce an (width, height, 3) array, whereas Keras requires an (3, width, height) format.
+Keras provides us a method for loading image for training and testing purpose. Note that OpenCV and Keras treat the input image in different ways, so we cannot use image loaded by OpenCV's imread method for Keras. Concretely, let's say we have a 3-channel image (a common color image). OpenCV's imread will produce an (width, height, 3) array, whereas Keras requires an (3, width, height) format.
 Another way to solve this is to use Numpy's tranpose method:
 
 {% highlight python %}
@@ -81,7 +81,7 @@ image = image.transpose((2, 0, 1))
 
 I prefer the second approach, you will understand why when we come to the second part of this project.
 
-Next, we need to add one more dimension to the array obtained above. Why we have to do that? If you have experience with Neural Network, you may find the term *mini_batch* similar. The additional dimension will tell the Model the number of input arrays (for example, you have 70,000 data, so you need to pass an array with shape (70000, depth, width, height) for the Model to run on, let say SGD or RMSprop or something).
+Next, we need to add one more dimension to the array obtained above. Why we have to do that? If you have experience with Neural Network, you may find the term *mini_batch* similar. The additional dimension will tell the Model the number of input arrays (for example, you have 70,000 data, so you need to pass an array with shape (70000, depth, width, height) for the Model to run on, let's say SGD or RMSprop or something).
 
 If you don't have any idea about what I've just talked, you can ignore it for now. I'll talk about Neural Network in later posts, I promise.
 
