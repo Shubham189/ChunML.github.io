@@ -108,7 +108,7 @@ Before digging deeper into Gradient Descent. Let's look back our MSE function:
 
 $$J(\theta)=\frac{1}{2m}\sum_{i=1}^m(h_\theta(X^{(i)})-y^{(i)})^2=\frac{1}{2m}\sum_{i=1}^m(a^{(i)}-y^{(i)})^2$$
 
-Note that our cost function takes \\( \theta \\) as its variable, not \\( X^{(i)} \\). For the sake of simplicity, let say \\( \theta \\) contains only \\( \theta_1 \\). Then our cost function will look like below:
+Note that our cost function takes \\( \theta \\) as its variable, not \\( X^{(i)} \\). For the sake of simplicity, let's say \\( \theta \\) contains only \\( \theta_1 \\). Then our cost function will look like below:
 
 $$J(\theta)=\frac{1}{2m}[(\theta_1X_1^{(1)}-y^{(1)})^2+(\theta_1X_1^{(2)}-y^{(2)})^2+\dots]=A\theta_1^2+B\theta_1+C$$
 
@@ -122,7 +122,7 @@ As we can see in the figure above, our Cost Function is now a quadratic function
 
 ![Gradien Descent](/images/tutorials/linear-regression/4.jpg)
 
-You may remember that earlier in this post, we started by randomize the parameter \\( \theta \\). So with that randomized value, let say some value which is far from the minimum. How is it supposed to go down to the minimum? Oops, you already got it right. It just simply goes down, step by step. But mathematically, how can we force it to go down?
+You may remember that earlier in this post, we started by randomize the parameter \\( \theta \\). So with that randomized value, let's say some value which is far from the minimum. How is it supposed to go down to the minimum? Oops, you already got it right. It just simply goes down, step by step. But mathematically, how can we force it to go down?
 
 Look at the first arrow to the right a little bit. You may find it very familiar, there's something that is equal to the slope of the tangent line of the Cost Function of the starting point. I'll help you this time: that is Derivatives. To be more exact, when \\( J(\theta) \\) is the function of multiple variables, instead of saying Derivatives, we will use the term: Gradient. Gradient is actually a vector whose elements are Partial Derivatives. Find it hard to understand?
 
