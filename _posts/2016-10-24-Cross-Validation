@@ -1,0 +1,137 @@
+---
+title: "Machine Learning Part 7: Cross Validation"
+categories:
+  - Tutorial
+tags:
+  - machine-learning
+  - cross validation
+  - data splitting
+  - overfitting dianosic
+---
+
+Import the necessary modules and initialize input data
+{% highlight python %}
+from sklearn.linear_model import LinearRegression
+import numpy as np
+
+X1 = np.linspace(0, 5, 100)
+X2_1 = np.random.rand(100) * (15 - 3 * x1)
+X2_2 = np.random.rand(100) * 3 * x1 + 15 - 3 * x1
+
+X1 = np.append(x1, x1)
+X2 = np.append(x2_1, x2_2)
+X = np.concatenate((x1.reshape(len(x1), 1), x2.reshape(len(x2), 1)), axis=1)
+y = np.append(np.zeros(100), np.ones(100))
+{% endhighlight %}
+
+Manually split the data
+{% highlight python %}
+X_train = X[:150, :]
+X_test = X[150:, :]
+y_train = y[:150]
+y_test = y[150:]
+{% endhighlight %}
+
+Next, create Linear Regression object and train the model
+{% highlight python %}
+clf = LinearRegression()
+
+clf.fit(X_train, y_train)
+{% endhighlight %}
+
+See how well the model performs on training data
+{% highlight python %}
+clf.score(X_train, y_train)
+{% endhighlight %}
+
+And on testing data
+{% highlight python %}
+clf.score(X_test, y_test)
+{% endhighlight %}
+
+TRAGIC!
+
+### The need of randomly shuffling dataset
+
+sklearn provides method to split the dataset
+{% highlight python %}
+from sklearn.cross_validation import train_test_split
+{% endhighlight %}
+
+Use train_test_split to split the original dataset into training dataset and testing dataset
+{% highlight python %}
+X_train, X_test, y_train, y_test = train_test_split(x, y, random_state=42, test_size=0.3)
+{% endhighlight %}
+
+Check if data was randomly shuffled
+{% highlight python %}
+y_train
+{% endhighlight %}
+
+Then, training using the new data
+
+{% highlight python %}
+clf.fit(X_train, y_train)
+{% endhighlight %}
+
+Check the result again:
+
+{% highlight python %}
+clf.score(X_train, y_train)
+
+clf.score(X_test, y_test)
+{% endhighlight %}
+
+There's a problem. Result is likely to depend on how the data was shuffled
+
+{% highlight python %}
+X_train, X_test, y_train, y_test = train_test_split(x, y, random_state=2, test_size=0.3)
+{% endhighlight %}
+
+Check if data is different with the one above:
+
+{% highlight python %}
+y_train
+{% endhighlight %}
+
+Repeat all over again:
+
+{% highlight python %}
+clf.fit(X_train, y_train)
+clf.score(X_train, y_train)
+clf.score(X_test, y_test)
+{% endhighlight %}
+
+This way, we can have a better visualization of testing accuracy over the whole testing data. But the results do vary.
+
+### Is there some efficient way to shuffle the data?
+
+sklearn cross_val_score, StratifiedKFold
+
+{% highlight python %}
+from sklearn.cross_validation import cross_val_score
+from sklearn.cross_validation import StratifiedKFold
+{% endhighlight %}
+
+Let's see how our data is split using StratifiedKFold:
+{% highlight python %}
+k = StratifiedKFold(y, n_folds=10)
+
+for i, j in k:
+  print('Fold: {}'.format(y[j])
+
+{% endhighlight %}
+
+As you can see, using StratifiedKFold we got our data split into parts in which ...
+
+{% highlight python %}
+cross_val_score(clf, X, y, cv=4)
+{% endhighlight %}
+
+
+
+
+
+
+
+
