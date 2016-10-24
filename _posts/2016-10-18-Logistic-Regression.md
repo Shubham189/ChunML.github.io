@@ -242,5 +242,5 @@ As you can see, the final decision boundary somehow can seperate the blue triang
 
 ### Summary
 
-So today, we have talked about Logistic Regression. We talked about the difference between a regression problem and a classification problem. We talked about the activation function, the cost function used in Logistic Regression and how to compute its gradient descent as well. In the next post, I will continue with **Regularization**, another very important technique that you must know to deal with Overfitting problem, as you will use that technique nearly in every Machine Learning problem you may face in the future! So stay updated, and I will be back with you soon!
+So today, we have talked about Logistic Regression. We talked about the difference between a regression problem and a classification problem. We talked about the activation function, the cost function used in Logistic Regression and how to compute its gradient descent as well. In the next post, I will continue with **Cross Validation**, another very important technique that you must know to deal with Overfitting problem, as you will use that technique nearly in every Machine Learning problem you may face in the future! So stay updated, and I will be back with you soon!
 
