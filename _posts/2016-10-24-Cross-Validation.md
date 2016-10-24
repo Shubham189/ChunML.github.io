@@ -41,6 +41,8 @@ plt.scatter(X[:, 0], X[:, 1], c=y, cmap='rainbow')
 plt.show()
 {% endhighlight %}
 
+![Graph_1](/images/tutorials/cross-validation/graph_1.png)
+
 You can see that now we have data of two classes which are linearly seperated (which means you can seperate them by a straight line). I don't want to use any complicated data today, because I have just shown you two basic learning algorithms. Furthermore, the thing I want you to focus is **cross validation**, not how to create a sophisticated Model.
 
 Now with the data all set. Now what to do next? As I mentioned before, we will split our original dataset into two portions: one for training and one for testing. The standard splitting ratio is 70% for training data and 30% for test data (in other places, you can see they use another ratio such as 6:4, etc). So let's do it. Here I will use the first 140 elements as training data, and the rest as test data.
@@ -103,7 +105,7 @@ array([ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
         1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.])
 {% endhighlight %}
 
-I'd better show the training data, I think. As you can see, the training data above was split unequally between two classes. It means that one class has much more data than the other. What does it affect the learning process? The more data you provide, the better it learns. So our Model is likely to learn the \\(0\\) class better than the \\1\\) class. It is even worse that our test data contains only data of the \\(1\\) class, which resulted in a very bad predicting accuracy as you saw. So obviously, it's necessary to split the data equally between classes, or we will achive some Model that we cannot trust.
+I'd better show the training data, I think. As you can see, the training data above was split unequally between two classes. It means that one class has much more data than the other. What does it affect the learning process? The more data you provide, the better it learns. So our Model is likely to learn the \\(0\\) class better than the \\(1\\) class. It is even worse that our test data contains only data of the \\(1\\) class, which resulted in a very bad predicting accuracy as you saw. So obviously, it's necessary to split the data equally between classes, or we will achive some Model that we cannot trust.
 
 ### Randomly data shuffling
 
