@@ -7,6 +7,9 @@ tags:
   - cross validation
   - data splitting
   - overfitting dianosic
+  - stratifiedkfold
+  - cross_val_score
+  - train_test_split
 ---
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 Hello there, so I'm here again to bring you the 7th post on my Machine Learning tutorial series. Today I will talk about **Cross Validation**, a term that you must know and mostly apply in all Machine Learning problems.
