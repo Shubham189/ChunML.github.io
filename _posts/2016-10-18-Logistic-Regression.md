@@ -1,5 +1,7 @@
 ---
 title: "Machine Learning Part 6: Logistic Regression"
+header:
+  teaser: tutorials/logistic-regression/graph_3.png
 categories:
   - Tutorial
 tags:
