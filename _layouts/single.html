@@ -68,7 +68,9 @@ layout: default
       {% endif %}
       <div class="grid__wrapper">
         {% for post in site.posts limit:4 %}
-          {% include archive-single.html %}
+          {% unless post.title contains page.title %}
+            {% include archive-single.html %}
+          {% endunless %}
         {% endfor %}
       </div>
     </div>
