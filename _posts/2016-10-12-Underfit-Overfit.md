@@ -1,5 +1,7 @@
 ---
 title: "Machine Learning Part 5: Underfitting and Overfitting Problems"
+header:
+  teaser: tutorials/underfit-overfit/poly_2_test.jpg
 categories:
   - Tutorial
 tags:
