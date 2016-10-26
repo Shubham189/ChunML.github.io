@@ -115,7 +115,7 @@ X, y = make_classification(n_samples=100, n_features=2,
 {% endhighlight %}
 
 Let's plot the data we created to see what it looks like:
-![run_graph](/images/tutorials/decision-tree/run_graph.png)
+
 {% highlight python %} 
 X1_min, X1_max = X[:, 0].min() - 0.1, X[:, 0].max() + 0.1
 X2_min, X2_max = X[:, 1].min() - 0.1, X[:, 1].max() + 0.1
