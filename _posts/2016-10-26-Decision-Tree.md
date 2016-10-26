@@ -19,7 +19,7 @@ And before we get started, it's great to know that we have made it to the 8th po
 
 So, let's talk about *Decision Tree*. You are somehow a real Model of Decision Tree algorithm yourself! In your daily life, you make many decisions exactly the same way *Decision Tree* does, subconsciously (of course). For example, your friend Joe invited you to his party. You may asked him back: "Any girls tonight?". He said yes. You asked him again: "Will Miley join too?". "Of course, homie!", he replied. And you accepted his invitation. The example I have just showed you is one of many situations that you may face everyday, in which you have to make your own decision on something. For that example, I can express it using the graph below:
 
-![graph](images/tutorials/decision-tree/graph.png)
+![graph](/images/tutorials/decision-tree/graph.png)
 
 Simply enough, right? You may be wondering: Is this real that such simple algorithm can solve complicated classification problem? The answer is: Yes! To make it more clear to you, let's consider a bigger one:
 
@@ -80,11 +80,11 @@ Let's take a look at three new subsets above. The first two subsets are already 
 
 Up to now, all the nodes in the *clear* Weather subset are clear, since there's no any node in which the RUN column contains more than one value. We can now move on to the rest two subsets: the *shower* Weather subset and the *storm* Weather subset. By doing exactly the same way, we will get a result in the end, where all the subsets are clear. I have created a another graph for a better visualization:
 
-![run_graph](images/tutorials/decision-tree/run_graph.png)
+![run_graph](/images/tutorials/decision-tree/run_graph.png)
 
 Using the graph above, we can now predict the value of the RUN column for our last row above:
 
-![run_graph_pred](images/tutorials/decision-tree/run_graph_pred.png)
+![run_graph_pred](/images/tutorials/decision-tree/run_graph_pred.png)
 
 So, it's likely that I'm gonna stay at home with my PlayStation 4 that night, lol.
 
@@ -131,7 +131,7 @@ plt.show()
 
 In my case, the data looks like below. Note that your graph may be way different, since the *make_classification* method generates data in some unpredictable way.
 
-![data](images/tutorials/decision-tree/data.png)
+![data](/images/tutorials/decision-tree/data.png)
 
 As you might notice, I also included Logistic Regression. That is because I want to compare the performance of the two classification algorithms that we have known so far. From now on, you will learn some more algorithms, and it's always a good practice to compare between them, to see what algorithm work best for a particular problem.
 
