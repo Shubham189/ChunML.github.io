@@ -27,11 +27,12 @@ from sklearn.linear_model import LogisticRegression
 import numpy as np
 import matplotlib.pyplot as plt
 
-X1 = np.linspace(0, 5, 100)
-X2_1 = np.random.rand(100) * (15 - 3 * X1)
-X2_2 = np.random.rand(100) * 3 * X1 + 15 - 3 * X1
+X1_1 = np.linspace(0, 5, 100)
+X1_2 = np.linspace(0.2, 5.2, 100)
+X2_1 = np.random.rand(100) * (15 - 3 * X1_1)
+X2_2 = np.random.rand(100) * 3 * X1_2 + 15 - 3 * X1_2
 
-X1 = np.append(X1, X1)
+X1 = np.append(X1_1, X1_2)
 X2 = np.append(X2_1, X2_2)
 X = np.concatenate((X1.reshape(len(X1), 1), X2.reshape(len(X2), 1)), axis=1)
 y = np.append(np.zeros(100), np.ones(100))
@@ -44,7 +45,7 @@ plt.scatter(X[:, 0], X[:, 1], c=y, cmap='rainbow')
 plt.show()
 {% endhighlight %}
 
-![Graph_1](/images/tutorials/cross-validation/graph_1.png)
+![Graph_1](/images/tutorials/cross-validation/graph.png)
 
 You can see that now we have data of two classes which are linearly seperated (which means you can seperate them by a straight line). I don't want to use any complicated data today, because I have just shown you two basic learning algorithms. Furthermore, the thing I want you to focus is **cross validation**, not how to create a sophisticated Model.
 
@@ -78,7 +79,7 @@ So let's go on and grab the result on the test data:
 clf.score(X_test, y_test)
 {% endhighlight %}
 
-In my case, I got a result of 18.33%. That was a real **NIGHTMARE**, wasn't it. You may shout out loud. Why do we still get that frustrating result, despite the fact that we used cross validation? Well, let's calm down and figure out why.
+In my case, I got a result of 40%. That was a real **NIGHTMARE**, wasn't it. You may shout out loud. Why do we still get that frustrating result, despite the fact that we used cross validation? Well, let's calm down and figure out why.
 
 Obviously, our current Model performs unacceptably bad. In real life projects, that will be a headache that we must stay calm and find where the problem is (though it may not be easy). There are a lot of reasons which cause a bad performance over the test data, but the main reason is the data itself. So it's a good idea to take a look at the test data, maybe we will find something wrong with it.
 
@@ -130,10 +131,10 @@ Let's go ahead and make sure our data is now split equally between classes:
 
 {% highlight python %}
 len(np.where(y_test==0)[0])
-33
+32
 
 len(np.where(y_test==1)[0])
-27
+28
 {% endhighlight %}
 
 It's not necessary that the number of data of each class is exactly the same as the other's. So in my case, \\(33:27\\) is a reasonable ratio to me.If you find your data is not okay (let's say \\(35:25\\)), then just re-run the method to get a better split. Simple enough, right?
@@ -148,10 +149,10 @@ Check the result again:
 
 {% highlight python %}
 clf.score(X_train, y_train)
-0.8928571428571429
+0.9357142857142857
 
 clf.score(X_test, y_test)
-0.8833333333333333
+0.9166666666666663
 {% endhighlight %}
 
 Obviously, that's just the result that we longed for. You may now realize that, it's not just the algorithm which is important, the data itself does matter. With our dataset properly prepared, we can obtain a better result without tuning any learning parameters.
@@ -163,10 +164,10 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
 clf.fit(X_train, y_train)
 
 clf.score(X_train, y_train)
-0.88571428571428568
+0.94285714285714284
 
 clf.score(X_test, y_test)
-0.91666666666666663
+0.84999999999999999
 {% endhighlight %}
 
 The result varied a little bit. But it does make me concern. Is there any chance that we missed something? Because we randomly split our data, what if we have been lucky to have a "good" split? Obviously, we cannot tell anything unless we have some way to cover all the cases, which means that all the data was split into test data at least once.
@@ -182,7 +183,7 @@ for i in range(4):
 
 print(scores)
 
-[0.90000000000000002, 0.83333333333333337, 0.8833333333333333, 0.91666666666666663]
+[0.93333333333333335, 0.96666666666666667, 0.83333333333333337, 0.98333333333333328]
 {% endhighlight %}
 
 Doing this way, we can have a better visualization of testing accuracy over the whole testing data. Obviously, the results varied a little, but that was something we could predict. And since there's no significantly difference between those numbers, we can now feel relieved a little, right?
@@ -259,7 +260,7 @@ y = np.append(np.zeros(100), np.ones(100))
 scores = cross_val_score(clf, X, y, cv=4)
 
 print(scores)
-[ 0.84  0.9   0.96  0.82]
+[ 0.78  0.96   0.98  0.9]
 {% endhighlight %}
 
 The result we got here is not much different than the one above, since this is a two-class classification problem, using StratifiedKFold is not likely to improve that much. But it is recommended using StratifiedKFold (through the cross_val_score method), rather than use the train_test_split and then write the loop yourselves.
@@ -269,5 +270,3 @@ The result we got here is not much different than the one above, since this is a
 So, today I have told you about **cross validation**. Now you know the right way to split the data for training and testing purposes. You also know the need of shuffling the dataset before splitting. And after all, you know how to efficiently split the data using StratifiedKFold and use cross_val_score method to help us perform testing over the whole dataset.
 
 With that, you will know have a valuable tool to evaluate your trained Model, and can tell whether it tends to overfit or not. In future post, after I show you some more powerful algorithms, we will continue with some techniques to prevent overfitting. Until then, stay updated and I will be back soon! See you!
-
-
