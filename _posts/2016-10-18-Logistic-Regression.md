@@ -190,7 +190,7 @@ Next, we will create the data to be trained:
 
 {% highlight python %} 
 x1_1 = np.linspace(0, 2, 100)
-x1_2 = np.linspace(0, 2, 100)
+x1_2 = np.linspace(0.1, 2.1, 100)
 x2_1 = np.abs(np.random.rand(100))*4
 x2_2 = np.abs(np.random.rand(100))*4 + 4
 
@@ -217,7 +217,7 @@ It should take no longer than one second to complete training. Let's see how wel
 {% highlight python %} 
 clf.score(x, y)
 
-0.944999999999999995
+0.98
 {% endhighlight %}
 
 Note that your result may vary, since the values of \\(X_2\\) were randomly initialized. I will omit the overfitting problem in this tutorial for simplicity. And similar to Linear Regression, after finishing training, the Logistic Regression object now contains the final parameters in *coef_* and *intercept_* attributes, we will use them to draw our decision boundary:
@@ -227,11 +227,16 @@ t = np.linspace(0, 2, 100)
 
 y_pred = (-clf.intercept_ - clf.coef_[0][0]*t) / clf.coef_[0][1]
 
-plt.plot(x1_1, x2_1, 'ro', x1_2, x2_2, 'b^', t, y_pred, 'g-')
+X1_min, X1_max = X[:, 0].min(), X[:, 0].max()
+X2_min, X2_max = X[:, 1].min(), X[:, 1].max()
+
+plt.scatter(X[:, 0], X[:, 1], c=y, cmap='rainbow')
+plt.plot(t, y_pred, 'g-')
 axes = plt.gca()
 axes.set_xlabel('X1')
 axes.set_ylabel('X2')
-axes.set_xlim([0, 2])
+axes.set_xlim([X1_min, X1_max])
+axes.set_ylim([X2_min, X2_max])
 
 plt.show()
 {% endhighlight %}
