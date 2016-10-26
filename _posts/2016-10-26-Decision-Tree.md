@@ -90,7 +90,7 @@ So, it's likely that I'm gonna stay at home with my PlayStation 4 that night, lo
 
 So that's it. Just easy to understand like I said earlier, right? Of course, we have some kind of mathematical explanation for how Decision Tree actually does. For example, choosing which Feature to split in the beginning is not done randomly, but depends on some considerations. And each time we need to create new subsets from the parent subset, the process is repeated again. Why do we have to make things such complicated, you may ask. Technically say, Decision Tree is a greedy algorithm, which means that it's likely to fall into local-minimum rather than the desired global-minimum, which means we may get an ugly result if we run out of luck. I will give you a simple explanation for Decision Tree algorithm below for ones who concern. You can skip it to jump directly to the Python Implementation because the explanation is just optional.
 
-###Decision Tree Python
+### Decision Tree Python
 
 As I mentioned in the previous tutorials, the **scikit-learn** library comes bundled with everything you need to implement Machine Learning algorithms with ease. Furthermore, the library provides us many methods to generate data for learning purpose. And today I will use one of them to create a more complicated dataset, just to see how well Decision Tree can handle that.
 
