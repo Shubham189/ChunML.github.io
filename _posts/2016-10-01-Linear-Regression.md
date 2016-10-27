@@ -145,11 +145,11 @@ Note that bote \\( \theta \\) and \\( \nabla J(\theta) \\) are vectors, so I can
 
 $$\begin{bmatrix}\theta_0\\\theta_1\\\vdots\\\theta_n\end{bmatrix}=\begin{bmatrix}\theta_0\\\theta_1\\\vdots\\\theta_n\end{bmatrix}-\alpha\begin{bmatrix}\frac{\partial}{\partial\theta_0}J(\theta)\\\frac{\partial}{\partial\theta_1}J(\theta)\\\vdots\\\frac{\partial}{\partial\theta_n}J(\theta)\end{bmatrix}$$
 
-You may see the newcomer \\( \alpha \\). It's called *learning rate*, which indicates how fast the parameters are updated at each step. Simply, if we set \\( \alpha \\) to be large, then it will be likely to go down faster, and reach the desired minimum faster, and vice versa, if \\( \alpha \\) is too small, then it will take more time until it reach the minimum. So you may ask, why don't we just make \\( \alpha \\) large? Well, learning with large *learning rate* is always risky. Consider the figure below:
+You may see the newcomer \\( \alpha \\). It's called *learning rate*, which indicates how fast the parameters are updated at each step. Simply, if we set \\( \alpha \\) to be large, then it's likely to go down faster, and reach the desired minimum faster, and vice versa, if \\( \alpha \\) is too small, then it will take more time until it reach the minimum. So you may ask, why don't we just make \\( \alpha \\) large? Well, learning with large *learning rate* is always risky. Consider the figure below:
 
 ![Unreachable minumum](/images/tutorials/linear-regression/5.jpg)
 
-As you might see, if we set our *learning rate* too large, then it will behave unexpectedly, and be likely never reach the minimum. So my advice is, try to set \\( \alpha \\) to be small at first (but not too small), then see whether it worked or not. Then you can think about increasing \\( \alpha \\) gradually to improve the performance.
+As you might see, if we set our *learning rate* too large, then it will behave unexpectedly, and likely never reach the minimum. So my advice is, try to set \\( \alpha \\) to be small at first (but not too small), then see whether it worked or not. Then you can think about increasing \\( \alpha \\) gradually to improve the performance.
 
 After you know what the learning rate \\( \alpha \\) is. The last question (I hope) you may ask is: how do we compute the Gradient? That's pretty easy, since our MSE function is just a quadratic function. You can compute the Partial Derivatives using the [Chain Rule](https://en.wikipedia.org/wiki/Chain_rule). It may take some time to compute, so I show you the result right below. You can confirm it yourselves afterwards.
 
