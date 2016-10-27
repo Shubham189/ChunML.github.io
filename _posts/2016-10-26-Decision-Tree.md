@@ -96,27 +96,29 @@ So you decided to give Decision Tree's algorithm a look. I really appreciate tha
 
 So, how does ID3 algorithm work? To make it as simple as possible, I list out all the steps below:
 
-1. Call the current dataset \\(S\\). We will then compute the **Entropy** \\(H(S)\\) on S as follow:
+#### 1/ Call the current dataset \\(S\\). We will then compute the **Entropy** \\(H(S)\\) on S as follow:
 
 $$
 H(S)=-\sum_{j=1}^Kp(y_j)\log_2p(y_j)
 $$
-where \\(K\\) is the number of classes, \\(p(y_j)\\) is the proportion of number of elements of \\(y_j\\) class to the number of entire elements in output of \\(S\\):
+
+, where \\(K\\) is the number of classes, \\(p(y_j)\\) is the proportion of number of elements of \\(y_j\\) class to the number of entire elements in output of \\(S\\):
 
 \\(H(S)\\) tell us how uncertain our dataset is. It ranges from \\(0\\) to \\(1\\), which \\(0\\) is the case when the output contains only one class (pure), whereas \\(1\\) is the most uncertain case.
 
 And in case you may ask, yes, that's exactly the same as the entropy cost function that I showed you in Logistic Regression tutorial (except the \\(\frac{1}{m}\\) term). As you already knew, the smaller the entropy function, the better classification result we can achive.
 
-2. Next, we will compute the *Information Gain* \\(IG(A,S)\\). Information Gain is computed seperately on each feature of the current dataset \\(S\\), whose value indicates how much the uncertainty in S was reduced **after** splitting \\(S\\) using feature \\(A\\). We can see that it looks like some kind of derivative, where we take the difference of the Entropy before and after splitting:
+#### 2/ Next, we will compute the *Information Gain* \\(IG(A,S)\\). Information Gain is computed seperately on each feature of the current dataset \\(S\\), whose value indicates how much the uncertainty in S was reduced **after** splitting \\(S\\) using feature \\(A\\). We can see that it looks like some kind of derivative, where we take the difference of the Entropy before and after splitting:
 
 $$
 IG(A, S)=H(S)-\sum_{i=1}^np(t)H(t)
 $$
-where \\(A\\) is the feature used for splitting, \\(n\\) is the possible number of values of \\(A\\), \\(p(t)\\) is the proportion of number of elements whose values is \\(t\\) to the number of all elements of feature \\(A\\).
 
-3. After compute all the Information Gains of all features, we will then split the current dataset \\(S\\) using the feature which has the highest Information Gain.
+, where \\(A\\) is the feature used for splitting, \\(n\\) is the possible number of values of \\(A\\), \\(p(t)\\) is the proportion of number of elements whose values is \\(t\\) to the number of all elements of feature \\(A\\).
 
-4. Repeat from step 1 with the new current dataset until all nodes are clear.
+#### 3/ After compute all the Information Gains of all features, we will then split the current dataset \\(S\\) using the feature which has the highest Information Gain.
+
+#### 4/ Repeat from step 1 with the new current dataset until all nodes are clear.
 
 That's it. But just skimming through the algorithm may not make any sense about how the algorithm works, right? So, let's use the dataset above as an example.
 
@@ -135,13 +137,13 @@ $$
 We now can do similarly to the rest two values to obtain values like below:
 
 $$
-p(shower)=\frac{4}{11}
+p(shower)=\frac{4}{11}  
 $$
 $$
-H(shower)=-p(YES)\log_2p(YES)-p(NO)\log_2p(NO)=-\frac{3}{4}\log_2(\frac{3}{4})-\frac{1}{4}\log_2(\frac{1}{4})=0.8113
+H(shower)=-p(YES)\log_2p(YES)-p(NO)\log_2p(NO)=-\frac{3}{4}\log_2(\frac{3}{4})-\frac{1}{4}\log_2(\frac{1}{4})=0.8113  
 $$
 $$
-p(storm)=\frac{3}{11}
+p(storm)=\frac{3}{11}  
 $$
 $$
 H(storm)=0
@@ -160,11 +162,19 @@ $$
 Continue repeat this process with other features, you will likely end up with results like this:
 
 $$
-IG(Weather, S)=0.3557
-IG(Temperature, S)=0.1498
-IG(Humidity, S)=0.2093
-IG(Injure, S)=0.2093
-IG(Mood, S)=0.2275
+IG(Weather, S)=0.3557  
+$$
+$$
+IG(Temperature, S)=0.1498  
+$$
+$$
+IG(Humidity, S)=0.2093  
+$$
+$$
+IG(Injure, S)=0.2093  
+$$
+$$
+IG(Mood, S)=0.2275  
 $$
 
 From the results above, IG on Weather has the highest value, so use Weather as a splitting condition will have the highest chance to reduce the uncertainty of dataset \\(S\)), and may lead to a good classification in the end. 
