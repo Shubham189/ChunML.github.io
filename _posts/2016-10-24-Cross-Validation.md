@@ -246,7 +246,7 @@ Here's the first line of the output I got:
   4.  4.  4.  4.]
 {% endhighlight %}
 
-As you can see, using StratifiedKFold we got our data split equally between five classes. With the data well split, we can be sure that our Model will be likely to learn much better.
+As you can see, using StratifiedKFold we got our data split equally between five classes. With the data well split, we can be sure that our Model will likely learn much better.
 
 **scikit-learn** library also provides us a method called **cross_val_score**. What it does is first, splitting our Model using StratifiedKFold, and second, looping through all *k* folds then compute the corresponding accuracy score, which means that we don't have to write the loop ourselves anymore. So great, right?
 
