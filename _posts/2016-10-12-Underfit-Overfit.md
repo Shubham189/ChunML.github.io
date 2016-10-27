@@ -126,7 +126,7 @@ We cannot always evaluate something just by seeing it, right? We need something 
 
 And you can see that, our Model now has the accuracy of 85% over the training data. Commonly,  we demand a higher accuracy, let's say 90% or 95%. So by looking at the current accuracy, we can tell that our Model is not performing as we are expecting. So let's think about an improvement. But how can we do that?
 
-Remember I told you about Features in the first [Post](https://chunml.github.io/ChunML.github.io/tutorial/Machine-Learning-Definition/)? Features are something we use to distinguish one object from others. So obviously, if we have more Features, then we will be likely to have a better fit model, since it can receive more necessary information for training. But how we can acquire more Features?
+Remember I told you about Features in the first [Post](https://chunml.github.io/ChunML.github.io/tutorial/Machine-Learning-Definition/)? Features are something we use to distinguish one object from others. So obviously, if we have more Features, then we will likely have a better fit model, since it can receive more necessary information for training. But how we can acquire more Features?
 
 #### Polynomial Features
 The easiest way to add more Features, is to computing *polynomial features* from the provided features. It means that if we have \\(X\\), then we can use \\(X^2\\), \\(X^3\\), etc as additional features. So let's use this approach and see if we can improve the current Model. First, we have to modify our \\(X\\) matrix by adding \\(X^2\\):
@@ -244,7 +244,7 @@ As I told you before, in the first post, that we only provided a fixed set of tr
 
 In contrast, what will happen if we use just one feature like we did in the beginning (or we can say that we provided a set of data which is poorly informative)? You have already seen that it resulted in a very low accuracy, which is not what we expected, either. We call this problem **UNDERFITTING** (or High Bias).
 
-Overfitting & Underfitting, in both cases, are something that we try to avoid. And you will be likely to face these problems all the time you work with Machine Learning. Of course, there are many ways to deal with them, but I will leave all the details for a future post. This time I will tell you the simplest way, which can be seen as a "must-do" in the very first step of any Machine Learning problem.
+Overfitting & Underfitting, in both cases, are something that we try to avoid. And you will mostly face these problems all the time you work with Machine Learning. Of course, there are many ways to deal with them, but I will leave all the details for a future post. This time I will tell you the simplest way, which can be seen as a "must-do" in the very first step of any Machine Learning problem.
 
 ### Splitting dataset for training and testing
 
