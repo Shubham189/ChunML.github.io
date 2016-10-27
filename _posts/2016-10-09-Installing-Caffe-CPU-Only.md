@@ -131,7 +131,7 @@ make test
 make runtest
 {% endhighlight %}
 
-And these two should be working as well. And you will be likely to see the result like below:
+And these two should be working as well. And you will likely see the result like below:
 
 ![Success](/images/projects/installing-caffe-cpu-only/success.png)
 
@@ -228,6 +228,6 @@ It will take a while to finish the training (maybe long since we are using CPU).
 
 ![Training](/images/projects/installing-caffe-cpu-only/training.png)
 
-Your result may vary but we will be likely to accomplish an accurary value of approximately 99%. Congratulations again! Caffe is now working perfectly on your machine!
+Your result may vary but we will likely achieve an accurary value of approximately 99%. Congratulations again! Caffe is now working perfectly on your machine!
 
 After today's post, I hope that you all had Caffe installed successfully on you machines. But if you still had troubles installing Caffe, like some frustrating errors keep coming or something, then feel free to leave me a comment below, and I will try to help you figure out why. See you!
