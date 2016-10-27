@@ -90,6 +90,89 @@ So, it's likely that I'm gonna stay at home with my PlayStation 4 that night, lo
 
 So that's it. Just easy to understand like I said earlier, right? Of course, we have some kind of mathematical explanation for how Decision Tree actually does. For example, choosing which Feature to split in the beginning is not done randomly, but depends on some considerations. And each time we need to create new subsets from the parent subset, the process is repeated again. Why do we have to make things such complicated, you may ask. Technically say, Decision Tree is a greedy algorithm, which means that it's likely to fall into local-minimum rather than the desired global-minimum, which means we may get an ugly result if we run out of luck. I will give you a simple explanation for Decision Tree algorithm below for ones who concern. You can skip it to jump directly to the Python Implementation because the explanation is just optional.
 
+### Decision Tree: ID3 Algorithm
+
+So you decided to give Decision Tree's algorithm a look. I really appreciate that. Knowing what is behind the scenes in somehow unrejectable, right? I won't waste any other minute of your time. Let's go straight into the algorithm. Actually, since Decision Tree was introduced quite long ago, the original algorithm has been revised and improved so many times, which the successor became more complex and robust than its predecessor. Among those, ID3 may probably be the best well-known algorithm. I think once you understand ID3, you can understand all its successors without problems.
+
+So, how does ID3 algorithm work? To make it as simple as possible, I list out all the steps below:
+
+1. Call the current dataset \\(S\\). We will then compute the **Entropy** \\(H(S)\\) on S as follow:
+
+$$
+H(S)=-\sum_{j=1}^Kp(y_j)\log_2p(y_j)
+$$
+where \\(K\\) is the number of classes, \\(p(y_j)\\) is the proportion of number of elements of \\(y_j\\) class to the number of entire elements in output of \\(S\\):
+
+\\(H(S)\\) tell us how uncertain our dataset is. It ranges from \\(0\\) to \\(1\\), which \\(0\\) is the case when the output contains only one class (pure), whereas \\(1\\) is the most uncertain case.
+
+And in case you may ask, yes, that's exactly the same as the entropy cost function that I showed you in Logistic Regression tutorial (except the \\(\frac{1}{m}\\) term). As you already knew, the smaller the entropy function, the better classification result we can achive.
+
+2. Next, we will compute the *Information Gain* \\(IG(A,S)\\). Information Gain is computed seperately on each feature of the current dataset \\(S\\), whose value indicates how much the uncertainty in S was reduced **after** splitting \\(S\\) using feature \\(A\\). We can see that it looks like some kind of derivative, where we take the difference of the Entropy before and after splitting:
+
+$$
+IG(A, S)=H(S)-\sum_{i=1}^np(t)H(t)
+$$
+where \\(A\\) is the feature used for splitting, \\(n\\) is the possible number of values of \\(A\\), \\(p(t)\\) is the proportion of number of elements whose values is \\(t\\) to the number of all elements of feature \\(A\\).
+
+3. After compute all the Information Gains of all features, we will then split the current dataset \\(S\\) using the feature which has the highest Information Gain.
+
+4. Repeat from step 1 with the new current dataset until all nodes are clear.
+
+That's it. But just skimming through the algorithm may not make any sense about how the algorithm works, right? So, let's use the dataset above as an example.
+
+First, our current \\(S\\) would be the entire original table, right? We will compute its Entropy \\(H(S)\\). Look at the RUN column (which is our output), it has \\(4\\) YES and \\(7\\) NO over \\(11\\) examples, so its Entropy will be as follow:
+
+$$
+H(S)= -p(YES)\log_2p(YES)-p(NO)\log_2p(NO)=-\frac{4}{11}\log_2(\frac{4}{11})-\frac{7}{11}\log_2(\frac{7}{11})=0.9457
+$$
+
+Next, we will compute Information Gain on each feature. Let's first look at the Weather feature. It has three possible values: *clear*, *shower* and *storm*. *clear* Weather has \\(4\\) examples, so we have: \\(p(clear)=\frac{4}{11}\\). In those \\(4\\) examples, we have \\(1\\) YES and \\(3\\) NO, so the Entropy of *clear* Weather will be:
+
+$$
+H(clear)= -p(YES)\log_2p(YES)-p(NO)\log_2p(NO)=-\frac{1}{4}\log_2(\frac{1}{4})-\frac{3}{4}\log_2(\frac{3}{4})=0.8113
+$$
+
+We now can do similarly to the rest two values to obtain values like below:
+
+$$
+p(shower)=\frac{4}{11}
+$$
+$$
+H(shower)=-p(YES)\log_2p(YES)-p(NO)\log_2p(NO)=-\frac{3}{4}\log_2(\frac{3}{4})-\frac{1}{4}\log_2(\frac{1}{4})=0.8113
+$$
+$$
+p(storm)=\frac{3}{11}
+$$
+$$
+H(storm)=0
+$$
+
+Note that in the case of *storm* Weather, its output contains only *NO* value, so its Entropy will be \\(0\\), you don't need to compute it by hand (and even if you do, you'll soon realize that it is impossible because of the term \\(\log_2(0)\\!).
+
+And I would like to talk a little bit about the case when \\(H(t)=1\\), which I mentioned it as the most uncertain case. We can only obtain that value when the proportion of each class is equal to others'. In the case of our current dataset, if the number of YES is equal to the number of NO on the considered subset, then it's easy to see that there is a big chance that it can't be fully classified (that's why we call it the most uncertain case).
+
+So now we can compute the Information Gain on the Weather feature as follow:
+
+$$
+IG(Weather, S)=0.9457-\frac{4}{11}*0.8113-\frac{4}{11}*0.8113-\frac{3}{11}*0=0.3557
+$$
+
+Continue repeat this process with other features, you will likely end up with results like this:
+
+$$
+IG(Weather, S)=0.3557
+IG(Temperature, S)=0.1498
+IG(Humidity, S)=0.2093
+IG(Injure, S)=0.2093
+IG(Mood, S)=0.2275
+$$
+
+From the results above, IG on Weather has the highest value, so use Weather as a splitting condition will have the highest chance to reduce the uncertainty of dataset \\(S\)), and may lead to a good classification in the end. 
+
+So that's all I have to tell you about Decision Tree's ID3 algorithm. Hopely this explanation somehow can help you have a deeper understanding about what was actually done behind the scenes. You may want to read more about its successors such as C4.5 or C5.0 algorithms. And you will find them not so hard to understand at all!
+
+Now, let's jump to the implementation! Can't wait no more, can you?
+
 ### Decision Tree with scikit-learn
 
 As I mentioned in the previous tutorials, the **scikit-learn** library comes bundled with everything you need to implement Machine Learning algorithms with ease. Furthermore, the library provides us many methods to generate data for learning purpose. And today I will use one of them to create a more complicated dataset, just to see how well Decision Tree can handle that.
@@ -163,7 +246,7 @@ Logistic Regression: 0.935
 
 As you see in the result above, Decision Tree's performance is not any better (or even worse) than Logistic Regression's. Let's go ahead and try customizing the parameters of *make_classification* method (like increasing number of features, number of classes or number of samples, etc), you will likely realize that the two algorithms don't have any significant difference. That is because the data generated by *make_classification* is linear, which means that Logistic Regression shouldn't find any difficulty in fitting the data. Also note that we initialized both with default hyper-parameters (don't mess with our \\(\theta\\) parameters, I will have a post on tuning hyper-parameter soon!), which means that our algorithms can perform even better!
 
-So, let's try another dataset. This time I will create a non-linear dataset, and see if these two algorithms can handle as well as they did above. Just like *make_classification* method for generating data for classification problems, scikit-learn library provides us some more methods to generate some particular dataset. One of those is *make_circle* method, which helps generate data with circular distribution. So let's use it to create a new dataset, and see how it looks like:
+So, let's try another dataset. This time I will create a non-linear dataset, and see if these two algorithms can handle as well as they did above. Just like *make_classification* method for generating data for classification problems, scikit-learn library provides us some more methods to generate some particular dataset. One of those is *make_circles* method, which helps generate data with circular distribution. So let's use it to create a new dataset, and see how it looks like:
 
 {% highlight python %} 
 from sklearn.datasets import make_circles
