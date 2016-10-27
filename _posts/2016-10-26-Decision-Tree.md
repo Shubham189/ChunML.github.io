@@ -148,7 +148,7 @@ p(storm)=\frac{3}{11}\\
 H(storm)=0
 $$
 
-Note that in the case of *storm* Weather, its output contains only *NO* value, so its Entropy will be \\(0\\), you don't need to compute it by hand (and even if you do, you'll soon realize that it is impossible because of the term \\(\log_2(0)\\!).
+Note that in the case of *storm* Weather, its output contains only *NO* value, so its Entropy will be \\(0\\), you don't need to compute it by hand (and even if you do, you'll soon realize that it is impossible because of the term \\(\log_2(0)\\)!).
 
 And I would like to talk a little bit about the case when \\(H(t)=1\\), which I mentioned it as the most uncertain case. We can only obtain that value when the proportion of each class is equal to others'. In the case of our current dataset, if the number of YES is equal to the number of NO on the considered subset, then it's easy to see that there is a big chance that it can't be fully classified (that's why we call it the most uncertain case).
 
@@ -172,7 +172,7 @@ IG(Injure, S)=0.2093\\
 IG(Mood, S)=0.2275
 $$
 
-From the results above, IG on Weather has the highest value, so use Weather as a splitting condition will have the highest chance to reduce the uncertainty of dataset \\(S\)), and may lead to a good classification in the end. 
+From the results above, IG on Weather has the highest value, so use Weather as a splitting condition will have the highest chance to reduce the uncertainty of dataset \\(S\\), and may lead to a good classification in the end. 
 
 So that's all I have to tell you about Decision Tree's ID3 algorithm. Hopely this explanation somehow can help you have a deeper understanding about what was actually done behind the scenes. You may want to read more about its successors such as C4.5 or C5.0 algorithms. And you will find them not so hard to understand at all!
 
