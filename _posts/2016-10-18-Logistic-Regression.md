@@ -153,13 +153,13 @@ $$
 But the activation function is a sigmoid function, which means that:
 
 $$
-\cases{ g(z) \ge 0.5 & \text{if } z \ge 0 \cr g(z) < 0.5 & \text{if } z \lt 0.5}
+\cases{ g(z) \ge 0.5 & \text{if } z \ge 0 \cr g(z) < 0.5 & \text{if } z \lt 0}
 $$
 
 So we can have the relation between the prediction \\(y_{predict}\\) and \\(\theta^TX\\) like this:
 
 $$
-y_{predict} = \cases{ 1  & \text{if } \theta^TX \ge 0 \cr 0 & \text{if } \theta^TX \lt 0.5}
+y_{predict} = \cases{ 1  & \text{if } \theta^TX \ge 0 \cr 0 & \text{if } \theta^TX \lt 0}
 $$
 
 Now what's next? How the hell can all of this lead to a decision boundary we need? Well, let's consider the example below:
