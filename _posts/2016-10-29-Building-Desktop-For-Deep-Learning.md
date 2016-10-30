@@ -89,7 +89,7 @@ The rest was so simple: putting the RAMs, the PSU, and carefully plug them into 
 
 ![done_2](/images/projects/building-desktop-for-deep-learning/done_2.jpg)
 
-![done_3](/images/projects/building-desktop-for-deep-learning/done_3.jpg)
+![done_3](/images/projects/building-desktop-for-deep-learning/done_3.JPG)
 
 The moment I stood up to plug the PSU's cord, I realized that I was sitting for nearly 7 hours! My Saturday was just an extended Friday! But at least, it worked in the end. And I can draw a smile in my face now. I also realized that I just ate some noodles for breakfast, and I started to feel hungry now. Few more hours left for Saturday, and I've been thinking about curry for a while. So, I'll go get some beef right now. Thank you all for watching. If you need some experience on building your own machine for Deep Learning, feel free to contact me. I'll be glad to help! Goodbye and see you in the next tutorial!
 
