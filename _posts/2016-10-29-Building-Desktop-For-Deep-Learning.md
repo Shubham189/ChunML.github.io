@@ -1,7 +1,7 @@
 ---
 title: "Building up my own machine for Deep Learning"
 header:
-  teaser: prject/building-desktop-for-deep-learning/all.JPG
+  teaser: prjects/building-desktop-for-deep-learning/all.JPG
 categories:
   - Project
 tags:
