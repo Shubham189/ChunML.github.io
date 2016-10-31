@@ -23,7 +23,7 @@ When we hear the word **Regularization** without anything else related to Machin
 
 After knowing that Regularization is actually to regularize our parameters, then you may wonder: Why regularizing the parameters help prevent Overfitting? Let's consider the graph that I had prepared for this tutorial. A picture is worth a thousand words, right?
 
-![reg_graph](images/tutorials/regularization/reg_graph.png)
+![reg_graph](/images/tutorials/regularization/reg_graph.png)
 
 As you can see in the graph I have just shown you, we got two functions represented by a green curve and a blue curve respectively. Both curve fit those red points so well that we can consider they both incur zero loss. And if you followed all my previous tutorials, you would be able to point out that the green curve is likely to overfit the data. Yeah, you are totally right. But have you ever wondered why the green curve (or any curve which is similar to it) is overfitting the data?
 
