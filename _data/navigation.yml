@@ -15,7 +15,7 @@ main:
 posts:
   - title: Most Popular
     children:
-      - title: "Installing Caffe on Ubuntu 16.04"
+      - title: "* Installing Caffe on Ubuntu 16.04"
         url: /project/Installing-Caffe-Ubuntu/
         
       - title: "Installing OpenCV & Keras"
