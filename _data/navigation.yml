@@ -15,20 +15,20 @@ main:
 posts:
   - title: Most Popular
     children:
-      - title: "* Installing Caffe on Ubuntu 16.04"
+      - title: "■ Installing Caffe on Ubuntu 16.04"
         url: /project/Installing-Caffe-Ubuntu/
         
-      - title: "Installing OpenCV & Keras"
+      - title: "■ Installing OpenCV & Keras"
         url: /tutorial/Setting-Up-Python-Environment-For-Computer-Vision-And-Machine-Learning/
         
-      - title: "Real time Object Recognition"
+      - title: "■ Real time Object Recognition"
         url: /project/Real-Time-Object-Recognition-part-two/
         
-      - title: "Regularization"
+      - title: "■ Regularization"
         url: /tutorial/Regularization/
        
-      - title: "Cross Validation"
+      - title: "■ Cross Validation"
         url: /tutorial/Cross-Validation/
         
-      - title: "What is Machine Learning?"
+      - title: "■ What is Machine Learning?"
         url: /tutorial/Machine-Learning-Definition/
