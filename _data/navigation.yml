@@ -1,10 +1,10 @@
 # main links links
 main:
-  - title: "My Project Page"
-    url: https://chunml.github.io/portfolio
-
   - title: "Machine Learning Tutorials"
     url: https://chunml.github.io/tutorials
+    
+  - title: "My Project Page"
+    url: https://chunml.github.io/portfolio
     
   - title: "About"
     url: /about/
@@ -15,8 +15,8 @@ main:
 posts:
   - title: Most Popular
     children:
-      - title: "Installing Caffe on Ubuntu"
-        url: /project/Installing-Caffe-CPU-Only/
+      - title: "Installing Caffe on Ubuntu 16.04"
+        url: /project/Installing-Caffe-Ubuntu/
         
       - title: "Installing OpenCV & Keras"
         url: /tutorial/Setting-Up-Python-Environment-For-Computer-Vision-And-Machine-Learning/
@@ -24,8 +24,11 @@ posts:
       - title: "Real time Object Recognition"
         url: /project/Real-Time-Object-Recognition-part-two/
         
-      - title: "Linear Regression"
-        url: /tutorial/Linear-Regression/
+      - title: "Regularization"
+        url: /tutorial/Regularization/
+       
+      - title: "Cross Validation"
+        url: /tutorial/Cross-Validation/
         
       - title: "What is Machine Learning?"
         url: /tutorial/Machine-Learning-Definition/
