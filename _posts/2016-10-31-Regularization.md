@@ -60,7 +60,7 @@ $$
 I once introduced the MSE cost function before in [Logistic Regression](https://chunml.github.io/ChunML.github.io/tutorial/Linear-Regression/) tutorial. And as you know, the objective of learning is to minimize that MSE function. It means that our parameters can be updated in anyway, just to lower the MSE value. And as I told you above, the larger our parameters become, the higher chance our Model overfits the data. So the question is: can we not only minimize the cost function, but also restrict the parameters not to become too large? The answer is: we **CAN**, by adding the regularization term like below:
 
 $$
-J = \frac{1}{2m}\sum_{i=1}^m(h_\theta(X^{(i)})-y^{(i)})^2+\frac{\lambda}{2m}\sum_{j=1}^n(\theta_j^2)
+J = \frac{1}{2m}\sum_{i=1}^m(h_\theta(X^{(i)})-y^{(i)})^2+\frac{\lambda}{2m}\sum_{j=1}^n\theta_j^2
 $$
 
 , where \\(\lambda\\) is a constant to control the value of regularization term, \\(n\\) is the number of the features.
@@ -90,7 +90,7 @@ $$\frac{\partial}{\partial \theta_0}J(\theta) = \frac{1}{m}\sum_{i=1}^m(h_\theta
 Next, let's put things together to see how the parameters are updated after adding regularization term:
 
 $$
-\begin{bmatrix}\theta_0\\\theta_1\\\vdots\\\theta_n\end{bmatrix}=\begin{bmatrix}\theta_0\\\theta_1(1-\frac{\lambda}{m})\\\vdots\\\theta_n(1-\alpha\frac{\lambda}{m})\end{bmatrix}-\alpha\frac{\alpha}{m}\begin{bmatrix}\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)})\\\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)}).x_1^{(i)}\\\vdots\\\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)}).x_n^{(i)}\end{bmatrix} 
+\begin{bmatrix}\theta_0\\\theta_1\\\vdots\\\theta_n\end{bmatrix}=\begin{bmatrix}\theta_0\\\theta_1(1-\alpha\frac{\lambda}{m})\\\vdots\\\theta_n(1-\alpha\frac{\lambda}{m})\end{bmatrix}-\frac{\alpha}{m}\begin{bmatrix}\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)})\\\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)}).x_1^{(i)}\\\vdots\\\sum_{i=1}^m(h_\theta^{(i)}(x^{(i)})-y^{(i)}).x_n^{(i)}\end{bmatrix} 
 $$
 
 That's it. All we have to change is just adding the factor \\((1-\frac{\lambda}{m})\\) to the parameter when updating. You can prove the result above yourselves as an assignment. It's very easy, but I recommend you do it yourselves to become more familiar with those mathematical terms like the Chain Rule or partial derivatives, which you will use a lot in the next tutorials.
@@ -135,14 +135,14 @@ $$
 \theta_j = \theta_j-\alpha\frac{\lambda}{m}sign(\theta_j)-\frac{\alpha}{m}\sum_{i=1}^m(h_\theta(X^{(i)})-y^{(i)}).X_j^{(i)}
 $$
 
-When we use L1 Regularization, our parameters shrink in a different way. Because \\(\sign(\theta_j)\\) can only be either \\(-1\\) or \\(1\\), \\(\theta_j\\) now shrinks by a constant amount, and it tends to move toward zero. This makes the update process different from what we saw in L2 Regularization. Therefore, we can easily see that L1 Regularization tends to penalize small parameters more than L2 Regularization does. In short:
+When we use L1 Regularization, our parameters shrink in a different way. Because \\(sign(\theta_j)\\) can only be either \\(-1\\) or \\(1\\), \\(\theta_j\\) now shrinks by a constant amount, and it tends to move toward zero. This makes the update process different from what we saw in L2 Regularization. Therefore, we can easily see that L1 Regularization tends to penalize small parameters more than L2 Regularization does. In short:
 
-* If \\(\theta_j\\) is large, L2 Regularization shinks \\(theta_j\\) more than L1 Regularization does.
-* If \\(\theta_j\\) is small, L1 Regularization shinks \\(theta_j\\) more than L2 Regularization does.
+* If \\(\theta_j\\) is large, L2 Regularization shinks \\(\theta_j\\) more than L1 Regularization does.
+* If \\(\theta_j\\) is small, L1 Regularization shinks \\(\theta_j\\) more than L2 Regularization does.
 
 ### Last, but not least...
 
-Above I have just shown you two mostly applied forms of regularization, and how each of them affect the learning process. The last thing I want to tell you in this post is about the constant \\(\lambda\\). As I mentioned earlier, \\(lambda\\) controls how much we want to regularize our parameters. But what is really behind this? Let's consider the two scenarios below:
+Above I have just shown you two mostly applied forms of regularization, and how each of them affect the learning process. The last thing I want to tell you in this post is about the constant \\(\lambda\\). As I mentioned earlier, \\(\lambda\\) controls how much we want to regularize our parameters. But what is really behind this? Let's consider the two scenarios below:
 
 * \\(\lambda\\) is very small (nearly zero):
 
