@@ -230,7 +230,76 @@ python
 
 If it don't show any import error, then Congratulations, you have just successfully installed Caffe. The installation itself was confusing a little, but it didn't require any complicated modifications, so somehow we still made it till the end. We can finally exhale now, lol.
 
+### Comparing the performance between CPU and GPU
+
+So we have Caffe compiled, and with the support from CUDA & cuDNN, we can take avantage of our GPU to speed up the learning process significantly. But, that's just what we have been told so far. When we speak about the performance term, the words "good", "faster", "much faster" or even "significantly faster" are way too subtle and not much informative. In order to answer the question "How faster?", it's better to consider the difference in computing time between CPU Mode and GPU Mode. I will use two datasets which Caffe provided the trained models: MNIST and CIFAR-10 for comparing purpose. Note that in this post, I just consider the size of the dataset for simplicity, without considering the complexity of the Networks. I will dig more further about it on future posts on Neural Network.
+
+* MNIST Dataset
+
+First, make sure you are in the root folder of Caffe, and run the commands below to download the MNIST dataset:
+
+{% highlight Bash shell scripts %}
+cd $CAFFE_ROOT
+./data/mnist/get_mnist.sh
+./examples/mnist/create_mnist.sh
+{% endhighlight %}
+
+That's all we have to do to prepare the data. Let's see how much time the CPU need to run each iteration:
+
+{% highlight Bash shell scripts %}
+./build/tools/caffe time --model=examples/mnist/lenet_train_test.prototxt
+{% endhighlight %}
+
+And here's my result on my Intel Core i7-6700K CPU:
+
+![mnist_cpu](/images/projects/installing-caffe-ubuntu/mnist_cpu.png)
+
+As you can see, my CPU took approximately 55ms to run each iteration, in which 23ms for forward pass and 32ms for backward pass. Let's go ahead and see if the GPU can do better:
+
+{% highlight Bash shell scripts %}
+./build/tools/caffe time --model=examples/mnist/lenet_train_test.prototxt
+{% endhighlight %}
+
+And here's the result on my GTX 1070.
+
+![mnist_gpu](/images/projects/installing-caffe-ubuntu/mnist_gpu.png)
+
+The result came out nearly right after I hit Enter. I was really impressed, I admit. Each iteration took only 1.7ms to complete, in which 0.5ms for forward pass and 1.2ms for backpropagation. Let's do some calculation here: the computing time when using GPU is roughly 32 times faster than when using CPU. Hmm, not so bad, you may think. 
+
+Because MNIST dataset is pretty small in size, which each example is just a 28x28 grayscale image, and it contains only 70000 images in total, the CPU still can give us an acceptable performance. Also note that in order to make use of the power of GPU, our computer has to take some times to transfer data to the GPU, so with small dataset and simple Network, the difference between the two may not be easily seen.
+
+Let's go ahead and give them a more challenging one.
+
+* CIFAR-10 Dataset
+
+CIFAR-10 is way larger comparing to MNIST. It contains 60000 32x32 color images, which means CIFAR-10 is roughly three times larger than MNIST. That's a real challenge for both to overcome, right?
+
+Just like what we did with MNIST dataset, let's first see how much time it takes using CPU:
+
+{% highlight Bash shell scripts %}
+./build/tools/caffe time --model=examples/cifar10/cifar10_full_train_test.prototxt
+{% endhighlight %}
+
+And here's the result I got:
+
+![cifar_cpu](/images/projects/installing-caffe-ubuntu/cifar_cpu.png)
+
+As you can see, with a larger dataset (and a more complicated Network, of course), the computing speed was much slower comparing with MNIST dataset. It took approximately 526ms to complete one iteration: 238ms for forward pass and 288ms for backward pass. Let's go ahead and see how well the big guy can do:
+
+{% highlight Bash shell scripts %}
+./build/tools/caffe time --model=examples/cifar10/cifar10_full_train_test.prototxt --gpu 0
+{% endhighlight %}
+
+And the result I had with my GTX 1070:
+
+![cifar_gpu](/images/projects/installing-caffe-ubuntu/cifar_gpu.png)
+
+Look at the result above. Unlike a significantly decrease in performance on CPU, my GTX 1070 still brought me an impressive computing speed. It took only 11ms on one iteration, in which 3ms for forward pass and 8ms for backpropagation. So when running on CIFAR-10 dataset, the GPU really did outperform the CPU, which computed 48 times faster. Imagine you are working with some real large dataset in real life such as ImageNet, using GPU would save you a great deal of time (let's say days or even weeks) on training. The faster you obtain the result, the more you can spend on improving the Model. That's also the reason why Neural Network, especially Deep Neural Network, has become the biggest trend in Machine Learning after long time being ignored by the lack of computing power. Obviously not only nowadays, but Deep Neural Network will continue to grow in the future.
+
 ### Summary
 
-So in this post, I have just shown you how to install OpenCV and Caffe in GPU Mode with CUDA Toolkit and cuDNN. I really appreciate that you made it to the end with patience. I hope that this post can help you prepare the necessary environment for your Deep Learning projects. If you come across any compilation error, please kindly let me know. I'll try my best to help.
+So in this post, I have just shown you how to install OpenCV and Caffe in GPU Mode with CUDA Toolkit and cuDNN. I really appreciate that you made it to the end with patience. I hope that this post can help you prepare the necessary environment for your Deep Learning projects. 
 
+And I also did some comparison on performance between GPU and CPU using two most common datasets: MNIST and CIFAR-10. Through the results above, I think you can now see how using GPU on Deep Neural Network can bring up a big difference.
+
+Finally, if you come across any compilation error, please kindly let me know. I'll try my best to help. Can't wait to see you soon, in the upcoming post.
