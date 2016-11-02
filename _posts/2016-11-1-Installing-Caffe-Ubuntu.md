@@ -282,7 +282,7 @@ Just like what we did with MNIST dataset, let's first see how much time it takes
 
 And here's the result I got:
 
-![cifar_cpu](/images/projects/installing-caffe-ubuntu/cifar_cpu.png)
+![cifar_cpu](/images/projects/installing-caffe-ubuntu/cifar10_cpu.png)
 
 As you can see, with a larger dataset (and a more complicated Network, of course), the computing speed was much slower comparing with MNIST dataset. It took approximately 526ms to complete one iteration: 238ms for forward pass and 288ms for backward pass. Let's go ahead and see how well the big guy can do:
 
@@ -292,7 +292,7 @@ As you can see, with a larger dataset (and a more complicated Network, of course
 
 And the result I had with my GTX 1070:
 
-![cifar_gpu](/images/projects/installing-caffe-ubuntu/cifar_gpu.png)
+![cifar_gpu](/images/projects/installing-caffe-ubuntu/cifar10_gpu.png)
 
 Look at the result above. Unlike a significantly decrease in performance on CPU, my GTX 1070 still brought me an impressive computing speed. It took only 11ms on one iteration, in which 3ms for forward pass and 8ms for backpropagation. So when running on CIFAR-10 dataset, the GPU really did outperform the CPU, which computed 48 times faster. Imagine you are working with some real large dataset in real life such as ImageNet, using GPU would save you a great deal of time (let's say days or even weeks) on training. The faster you obtain the result, the more you can spend on improving the Model. That's also the reason why Neural Network, especially Deep Neural Network, has become the biggest trend in Machine Learning after long time being ignored by the lack of computing power. Obviously not only nowadays, but Deep Neural Network will continue to grow in the future.
 
