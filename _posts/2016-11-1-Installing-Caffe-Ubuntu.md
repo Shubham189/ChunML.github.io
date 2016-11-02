@@ -1,7 +1,7 @@
 ---
 title: "Installing Caffe on Ubuntu 16.04 (GPU Mode with CUDA)"
 header:
-  teaser: teaser.jpg
+  teaser: projects/building-desktop-for-deep-learning/gpu.JPG
 categories:
   - Project
 tags:
