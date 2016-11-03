@@ -1,5 +1,5 @@
 ---
-title: "Solving problem when running Faster R-CNN with GTX 1070"
+title: "Solving problem when running Faster R-CNN on GTX 1070"
 header:
   teaser: projects/problem-faster-rcnn-gpu/gpu_ok.png
 categories:
@@ -76,7 +76,7 @@ cd ..
 ./data/scripts/fetch_faster_rcnn_models.sh
 {% endhighlight %}
 
-It took some minutes to complete, since the model is quite large in size. Now, I got everything ready and couldn't way any longer to run the *demo*:
+It took some minutes to complete, since the model is quite large in size. Now, I got everything ready and couldn't wait any longer to run the *demo*:
 
 {% highlight python %}
 python ./tools/demo.py
