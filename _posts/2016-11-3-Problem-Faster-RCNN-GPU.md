@@ -1,7 +1,7 @@
 ---
 title: "Solving problem when running Faster R-CNN with GTX 1070"
 header:
-  teaser: teaser.jpg
+  teaser: projects/problem-faster-rcnn-gpu/gpu_ok.png
 categories:
   - Project
 tags:
