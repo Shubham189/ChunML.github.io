@@ -1,7 +1,7 @@
 ---
 title: "Machine Learning Part 10: Linear Support Vector Machine"
 header:
-  teaser: tutorials/support-vector-machine/graph.png
+  teaser: tutorials/support-vector-machine/maximum-margin.png
 categories:
   - Tutorial
 tags:
