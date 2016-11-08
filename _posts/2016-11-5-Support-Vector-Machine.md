@@ -54,17 +54,17 @@ Not let's consider the graph of each seperate part which I divided above:
 
 ![cost_1](/images/tutorials/support-vector-machine/cost_1.png)
 
-As you can see, the \\(cost_1(\theta^TX)\\) term will be very large when \\(\theta^TX\\) is close to zero, and decrease toward zero as the value of \\(theta^TX\\) increases. What does this mean? Before answering that question, let's consider the other one:
+As you can see, the \\(cost_1(\theta^TX)\\) term will be very large when \\(\theta^TX\\) is close to zero, and decrease toward zero as the value of \\(\theta^TX\\) increases. What does this mean? Before answering that question, let's consider the other one:
 
 * \\(cost_0(\theta^TX)\\)
 
 ![cost_0](/images/tutorials/support-vector-machine/cost_0.png)
 
-Similar to the \\(cost_1(\theta^TX)\\) above, the \\(cost_0(\theta^TX)\\) term will be extremely large when \\(\theta^TX\\) is close to zero, but this time decrease toward zero as \\(theta^TX\\) goes toward to the left.
+Similar to the \\(cost_1(\theta^TX)\\) above, the \\(cost_0(\theta^TX)\\) term will be extremely large when \\(\theta^TX\\) is close to zero, but this time decrease toward zero as \\(\theta^TX\\) goes toward to the left.
 
 The two terms above were divided from our cost function, which means that their values will be accumulated to the cost function. And our target is to minimize the cost function, you remember that? So, the smaller the two terms are, the smaller the cost function becomes. The smaller the cost function is, the closer our Predictions are comparing to the Label \\(y\\).
 
-Now, let's consider the \\(cost_1(\theta^TX)\\) term. We compute this term only when the corresponding label \\(y=1\\). As we saw in the graph above, when \\(theta^TX\approx0\\), \\(cost_1(\theta^TX)\\) becomes very large. That is because we now have the probability that our Model predict the label \\(y=1\\) is very small, and may be even worse if it predict the label to be \\(0\\). As the result, the cost function will become large as a penalty. In contrast, if \\(theta^TX\\) is much greater than \\(0\\), then the probability that \\(y=1\\) will be higher. And as the probability becomes nearly \\(1\\), we will have a nearly \\(0\\) cost value.
+Now, let's consider the \\(cost_1(\theta^TX)\\) term. We compute this term only when the corresponding label \\(y=1\\). As we saw in the graph above, when \\(\theta^TX\approx0\\), \\(cost_1(\theta^TX)\\) becomes very large. That is because we now have the probability that our Model predict the label \\(y=1\\) is very small, and may be even worse if it predict the label to be \\(0\\). As the result, the cost function will become large as a penalty. In contrast, if \\(\theta^TX\\) is much greater than \\(0\\), then the probability that \\(y=1\\) will be higher. And as the probability becomes nearly \\(1\\), we will have a nearly \\(0\\) cost value.
 
 You can explain the \\(cost_0(\theta^TX)\\) term in the same way. As a conclusion, we will have a result like this:
 
