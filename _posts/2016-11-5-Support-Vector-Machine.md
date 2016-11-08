@@ -92,7 +92,7 @@ Now, the new cost function looks like above. We can see that it has the form of:
 
 * [Machine Learning Part 9: Regularization](https://chunml.github.io/ChunML.github.io/tutorial/Regularization/)
 
-Now how about saying we want to put more weight on the actual cost value? The answer may be: just decrease \\(\lambda\)). It's a little bit confusing to someone, so instead of using the form of \\(\mathbf{A}+\lambda\mathbf{B}\\), many people prefer the \\(\mathbf{C}\mathrm{A}+\mathrm{B}\\) form. So now we can say, if we want to emphasize on the actual cost value, we can do it by increasing \\(mathbf{C}\\). And that way of expression is also the standard which the scikit-learn library are using. For example, here's the full description when initializing Logistic Regression I grabbed on scikit-learn's homepage:
+Now how about saying we want to put more weight on the actual cost value? The answer may be: just decrease \\(\lambda\\). It's a little bit confusing to someone, so instead of using the form of \\(\mathbf{A}+\lambda\mathbf{B}\\), many people prefer the \\(\mathbf{C}\mathrm{A}+\mathrm{B}\\) form. So now we can say, if we want to emphasize on the actual cost value, we can do it by increasing \\(mathbf{C}\\). And that way of expression is also the standard which the scikit-learn library are using. For example, here's the full description when initializing Logistic Regression I grabbed on scikit-learn's homepage:
 
 ![sklearn_reg_c](/images/tutorials/support-vector-machine/sklearn_reg_c.png)
 
