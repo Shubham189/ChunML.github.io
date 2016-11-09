@@ -1,0 +1,115 @@
+---
+title: "Training Your Own Dataset on Caffe"
+header:
+  teaser: projects/training-your-own-data-on-caffe/gpu.JPG
+categories:
+  - Project
+tags:
+  - machine-learning
+  - deep-learning
+  - caffe
+  - installation
+  - gpu
+  - training
+  - fine-tuning
+  - own data
+  - essential
+---
+Hi, everyone! Welcome back to my Machine Learning page today. I have been playing around with Caffe for a while, and as you already knew, I made a couple of posts on my experience in installing Caffe and making use of its state-of-the-art pre-trained Models for your own Machine Learning projects. Yeah, it's really great that Caffe came bundled with many cool stuff inside which leaves developers like us nothing to mess with the Networks. But of course, there comes sometime that you want to set up your own Network, using your own dataset for training and evaluating. And it turns out that using all the things which Caffe provides us doesn't help Caffe look less like a *blackbox*, and it's pretty hard to figure things out from the beginning. And that's why I decided to make this post, to give you a helping hand to literally make use of Caffe.
+
+Before getting into the details, for ones that missed my old posts on Caffe, you can check it out anytime, through the links below:
+
+* [Installing Caffe on Ubuntu (CPU_ONLY)](https://chunml.github.io/ChunML.github.io/project/Installing-Caffe-CPU-Only/)
+
+* [Installing Caffe on Ubuntu (GPU)](https://chunml.github.io/ChunML.github.io/project/Installing-Caffe-Ubuntu/)
+
+Now, let's get down to business. In today's post, I will mainly tell you about three points below:
+
+* Downloading and preparing your own data for your Network
+
+* Training your Network from scratch
+
+* Fine-tuning the pre-trained Model
+
+So, I will go straight to each part right below.
+
+### Downloading and preparing your own data
+
+**1. Downloading your data**  
+I think there's a lot of ways which everyone of you managed to get your own dataset. If your dataset has been already placed on your hard disk, then you can skip the **Downloading** section and jump right into the **Preparing** section. Here I'm assuming that you do not have any dataset of your own, and you're intending to use some dataset from free sources like ImageNet or Flickr or Kaggle. Then it's likely that: you can directly download the dataset (from sources like Kaggle), or you will be provided a text file which contains URLs of all the images (from sources like Flickr or ImageNet). The latter seems to be harder, but don't worry, it won't be that hard.
+
+* Directly downloading from source:
+
+This kind of download is quite easy. Here I will use the **Dogs vs. Cats** dataset from Kaggle for example. You can access the dataset from the Download page: [Dogs vs. Cats](https://www.kaggle.com/c/dogs-vs-cats). All you have to do is just register an account, then you can download the whole dataset. There are two of them, one for training purpose, which was named *train*, and one for evaluating, which was named *test1* respectively. I suggest that you should download the training set only. I will explain why when we come to the **Preparing** section. The file size is quite large so it should take a while to finish. And that's it. You have the dataset stored on your hard disk!
+
+* Downloading from URLs
+
+As you could see above, it's great if every dataset was zipped and provided directly to developers. But in fact, due to the copyright of the images (as well as other data types), providing data that way isn't simple, especially when we talk about an extremely large dataset like ImageNet. So data providers have another way, which is providing you the URLs only, and you will have to access to the image hosts yourself to download the data. I will use a very famous site for example, which is ImageNet, the site which holds the annual ILSVRC. You can read more about ILSVRC [here](http://www.image-net.org/challenges/LSVRC/).
+
+First, let's go to the ImageNet's URLs download page: [Download Image URLs](http://image-net.org/download-imageurls). All you need to know to get the URLs is something called **WordNet ID** (or **wnid**). You can read more about ImageNet's dataset and WordNet to grab some more details because this post will be too long if I explain it here. To make it simple right now, ImageNet uses WordNet's synset, such as *n02084071*, *n02121620* which represents *dogs* and *cats* respectively, to name its classes. To find out what the synset of a particular noun, just access [Noun to Synset](http://www.image-net.org/synset?wnid), then search for any noun you want, then you will see the corresponding synset. 
+
+Once you knew the synset, you can download the URLs by going to this page:  
+http://www.image-net.org/api/text/imagenet.synset.geturls?wnid=[wnid], which *[wnid]* is the synset of the object you want to download data for. For example, let's use two synsets above, to download the URLs of the Dogs and Cats images of ImageNet:
+
+Dogs: http://www.image-net.org/api/text/imagenet.synset.geturls?wnid=n02084071
+
+Cats: http://www.image-net.org/api/text/imagenet.synset.geturls?wnid=n02121620
+
+If you access the links above, you will see something like this:
+
+![urls](/images/projects/training-your-own-data-on-caffe/urls.png)
+
+So, the next thing to do is just simple, you have to copy those URLs and paste somewhere, let's say a text file or something. With ones who are familiar with Linux commands, you can see that we can use *wget* to grab all the images with ease. But there's some problem here: using *wget* is hard to rename the images as *wget* will use the name right in each URL to name each image. Training your own data with CNN on Caffe may not require any naming rules, but if you have intention to use your own data in other places, for example, the state-of-the-art Faster R-CNN, then the naming convention does matter! And as far as I know, we can manually rename all the images while downloading using *wget*, but it requires some experience in Linux commands, and to be honest, I tried and failed. But don't worry, I found the solution for that!
+
+You know that Caffe provides us so many useful tools, to help us do all the heavy things so that we can use all the pre-trained Models without worrying about the data preparation, which means that, if you want to play with MNIST, Caffe provides you the script to download MNIST, if you want to play with CIFAR-10, Caffe got a script to download CIFAR-10 too. So, we can make use of the tools Caffe provides, and modify a little to make it work with our data. Not so bad, right?
+
+All you have to do, is to make use of the tool which Caffe uses to download Flickr's images for fine-tuning (I will tell you about fine-tuning in the second part, so don't care about that term). Open your terminal, and type the commands below (make sure that you are in the root folder of Caffe):
+
+{% highlight Bash shell scripts %}
+cd data
+mkdir DogsCats
+
+cd ../examples
+mkdir DogsCats
+sudo cp finetune_flickr_style/* DogsCats/*
+{% endhighlight %}
+
+What we just did, is to create the neccessary folders for storing the script (*./examples/DogsCats*) and the images (*./data/DogsCats), then we copied the script to download Flickr's images to our new folder. Obviously, we have to make some changes in order to make it work properly, just some minor changes.
+
+First, let's go to *./examples/DogsCats* folder, unzip the *flickr_style.csv.gz* to get a CSV file named *flickr_style.csv*. Open it up, take a look at the file. There are five columns but just three of them are actually used: *image_url*, *label* and *_split*. The *image_url* column stores all the URLs to all the images, the *label* column stores the label values, and the *_split* column tells whether each image is used for training or evaluating purpose.
+
+As I mentioned earlier, we are not only downloading the images, but also renaming it, so we will use an additional column to store the name associating with each image URL, which I chose column *A* for that task. Before making any changes, let's deleting all the records, except the first row. Then, let's name cell A1 *image_name*. Next, in the *image_url* column, paste all the URLs of each class. Note that we won't paste all the URLs of all classes at once, since we have to labeling them. After pasting all the URLs of one class, let's say the Dogs class with *n02084071* synset, we will fill the *image_name* column. Start from cell A2, let's fill that it will *n02084071_0* then drag until you see the last URL in *image_url* column. Don't forget to add the *.jpg* extension when you finish (just use the CONCATENATE function).
+
+Next, we will label the images we have just added URLs for. In the *label* column, let's fill with *0* until the last row containing URL. Since all URLs we pasted belong to Dogs, so they will have the same label. And lastly, let's fill in the *_split* column. In case of the Dogs' images, we have 1603 images in total, so let's fill *train* for the first 1200 images and *test* for the rest (here the train:test ratio I chose is 0.75:0.25). After all, your CSV should look similar to this:
+
+![csv](/images/projects/training-your-own-data-on-caffe/csv.png)
+
+And we can continue with other classes' images, don't forget to increase the value of *label* column each time you add another class's URLs.
+
+So, we have done with the CSV file, let's go ahead and modify the Python script (make sure that you are in the root folder of Caffe):
+
+{% highlight Bash shell scripts %}
+cd examples/DogsCats
+sudo vim assemble_data.py
+{% endhighlight %}
+
+First, let's replace all the phrase *data/finetune_flickr_style* with *data/DogsCats. That value tells where to store the downloaded images, so we have to point to our new created folder. Next, make some changes like below:
+
+{% highlight vim %}
+# Line 63
+df = pd.read_csv(csv_filename, index_col=None, compression='gzip')
+
+# Line 77
+os.path.join(images_dirname, value) for value in df['image_name']
+{% endhighlight %}
+
+That's it. And now we are ready to download the images, and have them renamed the way we wanted:
+
+{% highlight Bash shell scripts %}
+python assemble_data.py
+{% endhighlight %}
+
+It will take a while for the script to run. Note that many of the URLs are inaccessible at the time of writing, since many of them were added quite so long ago. So if you notice that the number of downloaded images is not equal to the number of URLs, don't be confused.
+
+
+
