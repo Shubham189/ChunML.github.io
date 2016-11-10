@@ -15,6 +15,7 @@ tags:
   - own data
   - essential
 ---
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 Hi, everyone! Welcome back to my Machine Learning page today. I have been playing around with Caffe for a while, and as you already knew, I made a couple of posts on my experience in installing Caffe and making use of its state-of-the-art pre-trained Models for your own Machine Learning projects. Yeah, it's really great that Caffe came bundled with many cool stuff inside which leaves developers like us nothing to mess with the Networks. But of course, there comes sometime that you want to set up your own Network, using your own dataset for training and evaluating. And it turns out that using all the things which Caffe provides us doesn't help Caffe look less like a *blackbox*, and it's pretty hard to figure things out from the beginning. And that's why I decided to make this post, to give you a helping hand to literally make use of Caffe.
 
 Before getting into the details, for ones that missed my old posts on Caffe, you can check it out anytime, through the links below:
@@ -110,6 +111,138 @@ python assemble_data.py
 {% endhighlight %}
 
 It will take a while for the script to run. Note that many of the URLs are inaccessible at the time of writing, since many of them were added quite so long ago. So if you notice that the number of downloaded images is not equal to the number of URLs, don't be confused.
+
+As soon as the script finished running, then your images are all stored on your drive. So now your dataset is ready for the next stage!
+
+**2. Preparing the data before training**  
+So we just managed to have the desired dataset stored on your hard disk. And believe me or not, we have just completed the most time-consuming task! Before we can train our Network using the data we have just downloaded, there's some things we need to do. First, we need to convert the downloaded images into the format that the Networks can read. In fact, the Networks in Caffe accepts not just one kind of input data. As far as I know, there are three different ways to prepare our images so that the Networks can read them, and I'm gonna tell you about two of them: normal format and LMDB format. And second, we need to provide one special image called *the mean image*. Okay, let's get into each of them.
+
+* Creating the train.txt and test.txt files
+
+Let's first talk about the data conversion. As I said above, we have two choices. You can choose whether to use the normal format (leave the images untouched after downloaded), or to convert them to LMDB format. In both cases, you have to create two files called *train.txt* and *text.txt*. What the two files do is to tell our Network where to look for each image and its corresponding class. To understand better, let's go and create them.
+
+I'm gonna use the *Dogs vs Cats* dataset which we downloaded from Kaggle (because we haven't touched it yet, have we?). Let's create two similar folders just like we did above with ImageNet's images, one for storing the images, and one for storing the necessary scripts:
+
+{% highlight Bash shell scripts %}
+cd examples
+mkdir DogsCatsKaggle
+cd ../data
+mkdir DogsCatsKaggle
+{% endhighlight %}
+
+Then, let's place the zip file which we downloaded from Kaggle into *./data/DogsCatsKaggle* folder and upzip it. After unzipped, all of the images will be stored into the subfolder called *train*. Next, we're gonna create the *train.txt* and *test.txt* files. Let's go into the *./examples/DogsCatsKaggle* folder and create a Python file, name it *create_kaggle_txt.py* and fill the codes below:
+
+{% highlight vim %}
+import numpy as np
+import os
+ 
+CURRENT_DIR = os.path.abspath(os.path.dirname(__file__))
+DATA_DIR = os.path.abspath(os.path.join(CURRENT_DIR, '../../data/DogsCatsKaggle/train'))
+TXT_DIR = os.path.abspath(os.path.join(CURRENT_DIR, '../../data/DogsCatsKaggle'))
+ 
+dog_images = [image for image in os.listdir(DATA_DIR) if 'dog' in image]
+cat_images = [image for image in os.listdir(DATA_DIR) if 'cat' in image]
+ 
+dog_train = dog_images[:int(len(dog_images)*0.7)]
+dog_test = dog_images[int(len(dog_images)*0.7):]
+ 
+cat_train = cat_images[:int(len(cat_images)*0.7)]
+cat_test = cat_images[int(len(cat_images)*0.7):]
+ 
+with open('{}/train.txt'.format(TXT_DIR), 'w') as f:
+    for image in dog_train:
+        f.write('{} 0\n'.format(image))
+    for image in cat_train:
+        f.write('{} 1\n'.format(image))
+    f.close()
+ 
+with open('{}/text.txt'.format(TXT_DIR), 'w') as f:
+    for image in dog_test:
+        f.write('{} 0\n'.format(image))
+    for image in cat_test:
+        f.write('{} 1\n'.format(image))
+    f.close()
+{% endhighlight %}
+
+Then, all you have to do is to execute the Python script you have just created above:
+
+{% highlight Bash shell scripts %}
+python examples/DogsCatsKaggle/create_kaggle_txt.py
+{% endhighlight %}
+
+Now let's jump into *./data/DogsCatsKaggle*, you will see *train.txt* and *test.txt* has been created. And that's just it. We have finished creating the two mapping files for *Dogs vs Cats* dataset from Kaggle!
+
+So, what about the Dogs and Cats images from ImageNet? Well, you may want to take a look at *./data/DogsCats*. Voila! When were the two files created? - You may ask. They were created when you ran the script to download the images! So with ImageNet's dataset, you don't have to create the mapping files yourself. That was great, right? Now we got the images, the mapping text files ready, there's only one step left to deal with the data: create the *mean image*.
+
+* The need of computing the mean image
+
+Why do we need the mean image anyway? First, that's just one type of *Data Normalization*, a technique to process our data before training. As I told you in previous post, the final goal of the learning process is finding the global minimum of the cost function. There's many factors that affect the learning process, one of which is how well our data was pre-processed. The better it is pre-processed, the more likely our Model will learn faster and better.
+
+The goal of computing the mean image is to make our data have zero mean. What does that mean? For example, we have a set of training data like this: \\(x^{(1)}, x^{(2)}, \ndots, x^{(m)}\\). Let's call \\(x_\mu\\) the mean value, which means:
+
+$$
+x_\mu=\frac{x^{(1)}+x^{(2)}+\dots+x^{(m)}}{m}=\frac{1}{m}\sum_{i=1}^mx^{(i)}
+$$
+
+Next, a new set of data will be created, where each \\(x_{new}^{(i)}=x^{(i)}-x_\mu\\). It's easy to see that the mean value of the new dataset is zero:
+
+$$
+\sum_{i=1}^mx_{new}^{(i)}=\sum_{i=1}^mx^{(i)}-mx_\mu=\sum_{i=1}^mx^{(i)}-m\frac{1}{m}\sum_{i=1}^mx^{(i)}=0
+$$
+
+So, above I just showed you a short explanation about one type for Data Normalization, which subtracting by the mean value to get a new dataset with zero mean. I will talk more about Data Normalization in future post. Now, how do we compute the mean image? As you may guess, of course Caffe provides some script to deal with some particular dataset. And we're gonna make use of it with some modifications! But before we can compute the mean image, we must convert our images into *LMDB* format first.
+
+* Converting data into LMDB format
+
+Let's first copy all the necessary scripts that we will make use of. I will use *Dogs vs Cats* dataset from Kaggle for example.
+
+{% highlight Bash shell scripts %}
+sudo cp examples/imagenet/create_imagenet.sh examples/DogsCatsKaggle/
+sudo cp examples/imagenet/make_imagenet_mean.sh examples/DogsCatsKaggle/
+{% endhighlight %}
+
+To convert the downloaded *Dogs vs Cats* dataset to LMDB format using the script above, we will have to make some changes. But it's not a big deal at all because all we have to change is just the correct path to our images and the mapping text files. Below is the lines which I have applied changes for your reference:
+
+{% highlight vim %}
+EXAMPLE=examples/DogsCatsKaggle
+DATA=data/DogsCatsKaggle
+TOOLS=build/tools
+ 
+TRAIN_DATA_ROOT=data/DogsCatsKaggle/train/
+VAL_DATA_ROOT=data/DogsCatsKaggle/train/
+
+...
+
+RESIZE=true
+
+...
+
+GLOG_logtostderr=1 $TOOLS/convert_imageset \
+
+...
+
+    $EXAMPLE/dogscatskaggle_train_lmdb
+ 
+echo "Creating val lmdb..."
+ 
+GLOG_logtostderr=1 $TOOLS/convert_imageset \
+
+...
+
+    $DATA/text.txt \
+    $EXAMPLE/dogscatskaggle_val_lmdb
+ 
+echo "Done."
+{% endhighlight %}
+
+Next, let's go ahead and run the script above:
+
+{% highlight Bash shell scripts %}
+./examples/DogsCatsKaggle/create_imagenet.sh 
+{% endhighlight %}
+
+It will take a while for the conversion to complete. After the process completes, take a look at *./examples/DogsCatsKaggle* folder, you will see two new folders which are named *dogscatskaggle_train_lmdb* and *dogscatskaggle_val_lmdb*, and new LMDB files were placed inside each folder, created from the training data and test data respectively.
+
 
 
 
