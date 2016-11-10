@@ -1,5 +1,5 @@
 ---
-title: "Training Your Own Dataset on Caffe"
+title: "Training Your Own Dataset on Caffe (Part One)"
 header:
   teaser: projects/training-your-own-data-on-caffe/gpu.JPG
 categories:
@@ -24,17 +24,13 @@ Before getting into the details, for ones that missed my old posts on Caffe, you
 
 * [Installing Caffe on Ubuntu (GPU)](https://chunml.github.io/ChunML.github.io/project/Installing-Caffe-Ubuntu/)
 
-Now, let's get down to business. In today's post, I will mainly tell you about three points below:
+Now, let's get down to business. In today's post, I will mainly tell you about two points below:
 
-* Downloading and preparing your own data for your Network
+* Downloading your own dataset
 
-* Training your Network from scratch
-
-* Fine-tuning the pre-trained Model
+* Preparing your data before training
 
 So, I will go straight to each part right below.
-
-### Downloading and preparing your own data
 
 **1. Downloading your data**  
 I think there's a lot of ways which everyone of you managed to get your own dataset. If your dataset has been already placed on your hard disk, then you can skip the **Downloading** section and jump right into the **Preparing** section. Here I'm assuming that you do not have any dataset of your own, and you're intending to use some dataset from free sources like ImageNet or Flickr or Kaggle. Then it's likely that: you can directly download the dataset (from sources like Kaggle), or you will be provided a text file which contains URLs of all the images (from sources like Flickr or ImageNet). The latter seems to be harder, but don't worry, it won't be that hard.
@@ -198,7 +194,6 @@ Let's first copy all the necessary scripts that we will make use of. I will use 
 
 {% highlight Bash shell scripts %}
 sudo cp examples/imagenet/create_imagenet.sh examples/DogsCatsKaggle/
-sudo cp examples/imagenet/make_imagenet_mean.sh examples/DogsCatsKaggle/
 {% endhighlight %}
 
 To convert the downloaded *Dogs vs Cats* dataset to LMDB format using the script above, we will have to make some changes. But it's not a big deal at all because all we have to change is just the correct path to our images and the mapping text files. Below is the lines which I have applied changes for your reference:
@@ -243,6 +238,29 @@ Next, let's go ahead and run the script above:
 
 It will take a while for the conversion to complete. After the process completes, take a look at *./examples/DogsCatsKaggle* folder, you will see two new folders which are named *dogscatskaggle_train_lmdb* and *dogscatskaggle_val_lmdb*, and new LMDB files were placed inside each folder, created from the training data and test data respectively.
 
+* Making the mean image
 
+After creating LMDB files, making the mean image is no other than one last simple task to complete. All we have to do is to copy and apply some tiny changes into the script which computes the mean image.
 
+{% highlight Bash shell scripts %}
+sudo cp examples/imagenet/make_imagenet_mean.sh examples/DogsCatsKaggle/
+{% endhighlight %}
 
+And here's what it looks after modified:
+
+{% highlight vim %}
+EXAMPLE=examples/DogsCatsKaggle
+DATA=data/DogsCatsKaggle
+TOOLS=build/tools
+ 
+$TOOLS/compute_image_mean $EXAMPLE/dogscatskaggle_train_lmdb \
+  $DATA/dogscatskaggle_mean.binaryproto
+{% endhighlight %}
+
+And, only one last command to execute:
+
+{% highlight Bash shell scripts %}
+./examples/DogsCatsKaggle/make_imagenet_mean.sh 
+{% endhighlight %}
+
+And that's it. Let's go into *./data/DogsCatsKaggle* folder, you will see one new file called *dogscatskaggle_mean.binaryproto*, which means that the mean image was created successfully!
