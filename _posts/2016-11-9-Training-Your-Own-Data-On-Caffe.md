@@ -1,7 +1,7 @@
 ---
 title: "Training Your Own Dataset on Caffe (Part One)"
 header:
-  teaser: projects/training-your-own-data-on-caffe/gpu.JPG
+  teaser: teaser.jpg
 categories:
   - Project
 tags:
