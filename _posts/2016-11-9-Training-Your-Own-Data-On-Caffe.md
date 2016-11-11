@@ -176,7 +176,7 @@ So, what about the Dogs and Cats images from ImageNet? Well, you may want to tak
 
 Why do we need the mean image anyway? First, that's just one type of *Data Normalization*, a technique to process our data before training. As I told you in previous post, the final goal of the learning process is finding the global minimum of the cost function. There's many factors that affect the learning process, one of which is how well our data was pre-processed. The better it is pre-processed, the more likely our Model will learn faster and better.
 
-The goal of computing the mean image is to make our data have zero mean. What does that mean? For example, we have a set of training data like this: \\(x^{(1)}, x^{(2)}, \ndots, x^{(m)}\\). Let's call \\(x_\mu\\) the mean value, which means:
+The goal of computing the mean image is to make our data have zero mean. What does that mean? For example, we have a set of training data like this: \\(x^{(1)}, x^{(2)}, \dots, x^{(m)}\\). Let's call \\(x_\mu\\) the mean value, which means:
 
 $$
 x_\mu=\frac{x^{(1)}+x^{(2)}+\dots+x^{(m)}}{m}=\frac{1}{m}\sum_{i=1}^mx^{(i)}
