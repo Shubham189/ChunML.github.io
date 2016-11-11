@@ -1,5 +1,5 @@
 ---
-title: "Training Your Own Dataset on Caffe"
+title: "Training With Your Own Dataset on Caffe"
 header:
   teaser: teaser.jpg
 categories:
