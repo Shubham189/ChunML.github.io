@@ -1,0 +1,116 @@
+---
+title: "Creating A Text Generator Using Recurrent Neural Network"
+header:
+  teaser: teaser.jpg
+categories:
+  - Project
+tags:
+  - machine-learning
+  - deep-learning
+  - keras
+  - recurrent neural network
+  - gpu
+  - training
+  - RNN
+  - LSTM
+  - GRU
+  - text generator
+---
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+### Introduction about RNN, the need of RNN
+
+Common NN -> just understand one timestep
+can't solve sequence -> not the way human understand things
+
+### Vanilla RNN
+
+Hidden state
+
+$$
+h_t=f(W_{xh}x_t+W_{hh}h_{t-1})
+$$
+
+Output
+
+$$
+y_t=softmax(W_{hy}h_t)
+$$
+
+Long term dependencies problem
+
+=> LSTM
+
+### LSTM
+
+Forget gate layer
+
+$$
+f_t=\sigma(W_f.\left[h_{t-1}, x_t\right]+b_f)
+$$
+
+Input gate layer
+
+$$
+i_t=\sigma(W_i.[h_{t-1}, x_t]+b_i)
+$$
+
+New candidate
+
+$$
+\tilde{C}_t=tanh(W_C.[h_{t-1},x_t]+b_C)
+$$
+
+Update old cell state to new cell state
+
+$$
+C_t=f_t*C_{t-1}+i_t*\tilde{C}_t
+$$
+
+Compute output
+
+$$
+o_t=\sigma(W_o[h_{t-1},x_t]+b_O)
+$$
+
+Hidden state
+
+$$
+h_t=o_t*tanh(C_t)
+$$
+
+Real output 
+
+$$
+y_t=softmax(W_{hy}h_t)
+$$
+
+### Another form: GRU
+
+$$
+z_t=\sigma(W_z.[h_{t-1},x_t]+b_z)
+$$
+
+$$
+r_t=\sigma(W_r.[h_{t-1},x_t]+b_r)
+$$
+
+$$
+\tilde{h}_t=tanh(W_h[r*h_{t-1},x_t]+b_h)
+$$
+
+$$
+h_t=(1-z_t)*h_{t-1}+z_t*\tilde{h}_t
+$$
+
+### Implementation
+
+Theano of WildML
+Torch/Lua of Andrej Karpathy
+
+-> Hurt so bad, need time to master Theano or Torch
+=> An easy approach: using Keras
+
+1. Preparing the training data
+2. Create the Network
+3. Train the Network
+4. Generate text
