@@ -1,7 +1,7 @@
 ---
 title: "Creating A Text Generator Using Recurrent Neural Network"
 header:
-  teaser: teaser.jpg
+  teaser: /images/projects/creating-text-generator-using-recurrent-neural-network/LSTM.png
 categories:
   - Project
 tags:
@@ -29,15 +29,17 @@ Despite the outstanding performance that Neural Networks have shown us over the 
 
 The explanation of Recurrent Neural Networks such as what they are, how they work, or something like that is quite long and not the main purpose of this post, which I mainly want to guide you to create your own text generator. In fact, there are many guys out there who made some excellent posts on how Recurrent Neural Networks work. You can refer to their post through the links below. Some of them provides their codes too, but they used Theano or Torch for their work, which may hurt a lot if you don't have experience with those frameworks. To make it easy for you, I tried to re-implement the code using a more relaxing framework called Keras. You can check it out in the Implementation section below.
 
-* [Denny Britz]()
+* [Recurrent Neural Networks tutorial by Denny Britz](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/)
 
-* [Colah]()
+* [Understanding LSTMs by Colah](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
 
-* [Andrej Karpathy]()
+* [The Unreasonable Effectiveness of Recurrent Neural Networks by Andrej Karpathy](http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
 
 And because the fact that there are already many great posts on Recurrent Neural Networks, I will only talk briefly about some points which confused me, and may confuse you too, I think.
 
 ### Vanilla RNN
+
+![vanilla_RNN](/images/projects/creating-text-generator-using-recurrent-neural-network/vanilla_RNN.png)
 
 The very first basic idea of RNN is to stack one or more hidden layers of previous timesteps, each hidden layer depends on the corresponding input at that timestep and the previous timestep, like below:
 
@@ -54,6 +56,8 @@ $$
 So, with hidden layers of different timesteps, obviously the new tyep of Network can now have ability to "remember". But it can't not remember over a long timestep due to a problem called **vanishing gradient** (I will talk about it in future post), and it can't decide which information of some timestep is valuable (which it should keep) and which information is not valuable (which it should forget). So an improvement was required. And Long Short-term Memory, or LSTM came out as a potential successor.
 
 ### Long Short-term Memory Networks
+
+![LSTM](/images/projects/creating-text-generator-using-recurrent-neural-network/LSTM.png)
 
 Having seen the limitation of vanilla RNN, now let's take a look at its successor, the LSTM Networks. The explanations of LSTM in the links above are pretty awesome, but honestly, they confused me a little. Personally I think it would be easier to understand if we begin from what RNNs could accomplish:
 
@@ -98,6 +102,8 @@ So after all, we now have the hidden state for the current timestep. The rest is
 $$
 y_t=softmax(W_{hy}h_t)
 $$
+
+That's all I want to tell you about RNNs and LSTMs. I suggest that you read the three articles above for better understanding about how they work. And now let's jump into the most interesting part (I think so): the Implementation section!
 
 ### Implementation
 
@@ -223,6 +229,11 @@ def generate_text(model, length):
     return ('').join(y_char)
 {% endhighlight %}
 
-**5. Result**
+### Summary
 
+So we have come a long way to finish today's post, and I hope you all now obtain some interesting results for your own. We have walked through a brief introduction about the need of Recurrent Neural Networks o solve the limitation of common Neural Networks and figured out how LSTMs even improved the state-of-the-art vanilla RNNs.
+
+And we also implemented our own Networks to create a simple text generator, which we can use to generate some sample texts in the style of what they learned from! Note that this is just a fast and dirty implementation, and obviously there are a lot of rooms for improvement, which I will leave them for you to improvise by yourself.
+
+That's it for today. I will be back with you guys in the coming post, with even more interesting stuff. So just stay updated!
 
