@@ -107,7 +107,7 @@ That's all I want to tell you about RNNs and LSTMs. I suggest that you read the 
 
 ### Implementation
 
-As I mentioned earlier in this post, there are quite a lot of excellent posts on how Recurrent Neural Networks work, and those guys also included the implementations for demonstration. Actually, bcause they wrote code for teaching purpose, reading the codes does help understanding the tutorials a lot. But I must say that it may hurt, especially if you don't have any experience in Theano or Torch (Denny wrote his code in Theano and Andrej used Torch). I want to make it easy for you, so I will show you how to implement RNN using Keras, an excellent work from François Chollet, which I had a chance to introduced to you in my previous posts.
+As I mentioned earlier in this post, there are quite a lot of excellent posts on how Recurrent Neural Networks work, and those guys also included the implementations for demonstration. Actually, because they wrote code for teaching purpose, reading the codes does help understanding the tutorials a lot. But I must say that it may hurt, especially if you don't have any experience in Theano or Torch (Denny wrote his code in Theano and Andrej used Torch). I want to make it easy for you, so I will show you how to implement RNN using Keras, an excellent work from François Chollet, which I had a chance to introduced to you in my previous posts.
 
 If you don't have Keras installed on your machine, just give the link below a click. The installation only takes 20 minutes (max):
 
