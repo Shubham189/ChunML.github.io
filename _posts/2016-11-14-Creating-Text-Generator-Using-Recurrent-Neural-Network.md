@@ -1,7 +1,7 @@
 ---
 title: "Creating A Text Generator Using Recurrent Neural Network"
 header:
-  teaser: /images/projects/creating-text-generator-using-recurrent-neural-network/LSTM.png
+  teaser: projects/creating-text-generator-using-recurrent-neural-network/LSTM.png
 categories:
   - Project
 tags:
@@ -73,13 +73,13 @@ $$
 f_t=\sigma(W_f.\left[h_{t-1}, x_t\right]+b_f)
 $$
 
-In contrast to forget gate layer, to tell the Model whether to update the current state using the previous state, we need to add *Input Gate Layer* accordingly.
+In contrast to forget gate layer, to tell the Model whether to update the current state using the previous state, we need to add **Input Gate Layer** accordingly.
 
 $$
 i_t=\sigma(W_i.[h_{t-1}, x_t]+b_i)
 $$
 
-Next, we will compute the temporal cell state for the current timestep. It looks just like the output of RNN above, except that *tanh* activation function is used:
+Next, we will compute the temporal cell state for the current timestep. It looks just like the output of RNN above, except that **tanh** activation function is used:
 
 $$
 \tilde{C}_t=tanh(W_C.[h_{t-1},x_t]+b_C)
@@ -113,13 +113,13 @@ If you don't have Keras installed on your machine, just give the link below a cl
 
 * [Installing OpenCV & Keras](https://chunml.github.io/ChunML.github.io/tutorial/Setting-Up-Python-Environment-For-Computer-Vision-And-Machine-Learning/)
 
-Now, let's get down to business. For sake of simplicity, I will divide the code into four parts and dig into each part one at a time. Of course I will omit some lines used for importing or argument parsing, etc. You can find the full source file in my GitHub here: [](). Now let's go into the first part: preparing the data.
+Now, let's get down to business. For sake of simplicity, I will divide the code into four parts and dig into each part one at a time. Of course I will omit some lines used for importing or argument parsing, etc. You can find the full source file in my GitHub here: [Text Generator](https://github.com/ChunML/text-generator). Now let's go into the first part: preparing the data.
 
 **1. Prepare the training data**
 
 I always try to deal with the most tedious part in the beginning, which is data preparation. Not only because a good data preparation can result in a well learned Model, but this step is also some kind of tricky, which we likely spend a lot of time until it works (especially if you are working with different frameworks).
 
-We are gonna work with text in this post, so obviously we have to prepare a text file to train our Model. You can go on the internet to grab anything you want such as free text novels [here](), and I recommend the file size is at least 2MB for an acceptable result. In my case, I used the famous Harry Potter series for training (of course I can't share it here for copyright privacy).
+We are gonna work with text in this post, so obviously we have to prepare a text file to train our Model. You can go on the internet to grab anything you want such as free text novels [here](http://cs.stanford.edu/people/karpathy/char-rnn/), and I recommend the file size is at least 2MB for an acceptable result. In my case, I used the famous Harry Potter series for training (of course I can't share it here for copyright privacy).
 
 {% highlight python %} 
 data = open(DATA_DIR, 'r').read()
@@ -133,11 +133,17 @@ First, we will read the text file, then split the content into an array which ea
 
 Then the *data* array will look like this:
 
-> ['I',' ', 'h', 'a', 'v', 'e', ' ', 'a', ' ', 'd', 'r', 'e', 'a', 'm', '.']
+{% highlight python %} 
+data
+['I',' ', 'h', 'a', 'v', 'e', ' ', 'a', ' ', 'd', 'r', 'e', 'a', 'm', '.']
+{% endhighlight %}
 
 And the *chars* array will look like this:
 
-> ['I',' ', 'h', 'a', 'v', 'e', 'd', 'r', 'm', '.']
+{% highlight python %} 
+chars
+['I',' ', 'h', 'a', 'v', 'e', 'd', 'r', 'm', '.']
+{% endhighlight %}
 
 As you could see, every element in *char* array only appears once. So the *data* array contains all the examples, and the *chars* array acts like a features holder, which we then create two dictionaries to map between indexes and characters:
 
@@ -189,11 +195,11 @@ model.compile(loss="categorical_crossentropy", optimizer="rmsprop")
 
 You should have no problem in understand the code above, right? There are only few points that I want to make clear:
 
-* return_sequences=True parameter:
+* **return_sequences=True** parameter:
 
 We want to have a sequence for the output, not just a single vector as we did with normal Neural Networks, so it's necessary that we set the *return_sequences* to True. Concretely, let's say we have an input with shape *(num_seq, seq_len, num_feature)*. If we don't set return_sequences=True, our output will have the shape *(num_seq, num_feature)*, but if we do, we will obtain the output with shape *(num_seq, seq_len, num_feature)*.
 
-* TimeDistributed wrapper layer:
+* **TimeDistributed** wrapper layer:
 
 Since we set return_sequences=True in the LSTM layers, the output is now a three-dimension vector. If we input that into the Dense layer, it will raise an error because the Dense layer only accepts two-dimension input. In order to input a three-dimension vector, we need to use a wrapper layer called *TimeDistributed*. This layer will help us maintain output's shape, so that we can achieve a sequence as output in the end.
 
