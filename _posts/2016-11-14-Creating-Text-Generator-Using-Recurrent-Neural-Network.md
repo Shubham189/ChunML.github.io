@@ -248,11 +248,11 @@ I created the Network with three LSTM layers, each layer has 700 hidden states, 
 
 > "Albus Dumbledore, I should, do you? But he doesn't want to adding the thing that you are at Hogwarts, so we can run and get more than one else, you see you, Harry."
 
-"I know I don't think I'll be here in my bed!" said Ron, looking up at the owners of the Dursleys.
+> "I know I don't think I'll be here in my bed!" said Ron, looking up at the owners of the Dursleys.
 
-"Well, you can't be the baby way?" said Harry. "He was a great Beater, he didn't want to ask for more time."
+> "Well, you can't be the baby way?" said Harry. "He was a great Beater, he didn't want to ask for more time."
 
-"What about this thing, you shouldn't," Harry said to Ron and Hermione.  "I have no furious test," said Hermione in a small voice.
+> "What about this thing, you shouldn't," Harry said to Ron and Hermione.  "I have no furious test," said Hermione in a small voice.
 
 To be honest, I was impressed by what the Model can generate. After leaving it a while for learning, as you could see, not only it can generate nearly perfect English words, but it also learned the structures, which means it capitalizes the first letter after period, it knows how to use the quotation marks, etc. And if I don't tell you anything about RNNs, you may think (even I do too!) that the paragraphs above were written by somebody. So, it's now your turn to train your own Network using the dataset of your own choice, and see what you achieve. And if you find the result interesting, please let me know by dropping me a line below!
 
