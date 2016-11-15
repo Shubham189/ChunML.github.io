@@ -25,101 +25,81 @@ Many of you may know about Recurrent Neural Networks, and many may not, but I'm 
 
 As you could see in the picture above, the main reason why Neural Network can out-perform other learning algorithms is because of the **hidden layers**. What the hidden layers do is to create a more complicated set of features, which results in a better predicting accuracy. I also mentioned about this in my previous posts: the more complicated and informative the features become, the more likely your Model can learn better and give more precise predictions.
 
-With what we have seen in the last decade, we all might think that it's no longer until the human's brains are completely defeated by artificial intelligence. Yeah, that day will come, but luckily, it's still far away.  
+Despite the outstanding performance that Neural Networks have shown us over the last decade, they still have a big big limitation: they can't understand the sequence, in which the current state is affected by its previous states. And Recurrent Neural Networks came out as a promising solution for that.
 
-You may ask why I'm so confident about that. Let's take a look at the picture below and guess what it is about:
+The explanation of Recurrent Neural Networks such as what they are, how they work, or something like that is quite long and not the main purpose of this post, which I mainly want to guide you to create your own text generator. In fact, there are many guys out there who made some excellent posts on how Recurrent Neural Networks work. You can refer to their post through the links below. Some of them provides their codes too, but they used Theano or Torch for their work, which may hurt a lot if you don't have experience with those frameworks. To make it easy for you, I tried to re-implement the code using a more relaxing framework called Keras. You can check it out in the Implementation section below.
 
-![picture_t](/images/projects/creating-text-generator-using-recurrent-neural-network/picture_t.png)
+* [Denny Britz]()
 
-Now you all have your own guess. Let's continue with the picture below. What if I tell you that what you see in the 2nd picture happened before the 1st picture?
+* [Colah]()
 
-![picture_t-1](/images/projects/creating-text-generator-using-recurrent-neural-network/picture_t-1.png)
+* [Andrej Karpathy]()
 
-I think you got it now. The way we understand things depends on ....
-
-So now you could the limitation of Neural Networks and understand why they still cannot reach our brains' level (at least at this time). And of course, 
+And because the fact that there are already many great posts on Recurrent Neural Networks, I will only talk briefly about some points which confused me, and may confuse you too, I think.
 
 ### Vanilla RNN
 
-Hidden state
+The very first basic idea of RNN is to stack one or more hidden layers of previous timesteps, each hidden layer depends on the corresponding input at that timestep and the previous timestep, like below:
 
 $$
 h_t=f(W_{xh}x_t+W_{hh}h_{t-1})
 $$
 
-Output
+The output, on the other hand, is computed using only the associating hidden layer:
 
 $$
 y_t=softmax(W_{hy}h_t)
 $$
 
-Long term dependencies problem
+So, with hidden layers of different timesteps, obviously the new tyep of Network can now have ability to "remember". But it can't not remember over a long timestep due to a problem called **vanishing gradient** (I will talk about it in future post), and it can't decide which information of some timestep is valuable (which it should keep) and which information is not valuable (which it should forget). So an improvement was required. And Long Short-term Memory, or LSTM came out as a potential successor.
 
-=> LSTM
+### Long Short-term Memory Networks
 
-### LSTM
-
-Forget gate layer
-
-$$
-f_t=\sigma(W_f.\left[h_{t-1}, x_t\right]+b_f)
-$$
-
-Input gate layer
-
-$$
-i_t=\sigma(W_i.[h_{t-1}, x_t]+b_i)
-$$
-
-New candidate
-
-$$
-\tilde{C}_t=tanh(W_C.[h_{t-1},x_t]+b_C)
-$$
-
-Update old cell state to new cell state
-
-$$
-C_t=f_t*C_{t-1}+i_t*\tilde{C}_t
-$$
-
-Compute output
+Having seen the limitation of vanilla RNN, now let's take a look at its successor, the LSTM Networks. The explanations of LSTM in the links above are pretty awesome, but honestly, they confused me a little. Personally I think it would be easier to understand if we begin from what RNNs could accomplish:
 
 $$
 o_t=\sigma(W_o[h_{t-1},x_t]+b_O)
 $$
 
-Hidden state
+Comparing to RNN, the equation above is exactly the same with RNN to compute the hidden state at timestep \\(t\\). But it's not the *actual* hidden state in terms of LSTM, so we name it differently, let's say \\(o_t\\). So from here, we will see how LSTM was improved from RNN.
+
+First, LSTM is given the ability to "forget", which mean it can decide whether to forget the previous hidden state. All is done by adding **Forget Gate Layer**:
+
+$$
+f_t=\sigma(W_f.\left[h_{t-1}, x_t\right]+b_f)
+$$
+
+In contrast to forget gate layer, to tell the Model whether to update the current state using the previous state, we need to add *Input Gate Layer* accordingly.
+
+$$
+i_t=\sigma(W_i.[h_{t-1}, x_t]+b_i)
+$$
+
+Next, we will compute the temporal cell state for the current timestep. It looks just like the output of RNN above, except that *tanh* activation function is used:
+
+$$
+\tilde{C}_t=tanh(W_C.[h_{t-1},x_t]+b_C)
+$$
+
+And now, we will compute the *actual* cell state for current timestep, using the forget gate and input gate above. Intuitively, doing so makes LSTM be able to keep only the necessary information and forget the unnecessary one.
+
+$$
+C_t=f_t*C_{t-1}+i_t*\tilde{C}_t
+$$
+
+After we computed the current cell state, we will use it to compute the current hidden state like below:
 
 $$
 h_t=o_t*tanh(C_t)
 $$
 
-Real output 
+So after all, we now have the hidden state for the current timestep. The rest is similar to vanilla RNN, which is computing the *actual* output \\(y_t\\):
 
 $$
 y_t=softmax(W_{hy}h_t)
 $$
 
-### Another form: GRU
-
-$$
-z_t=\sigma(W_z.[h_{t-1},x_t]+b_z)
-$$
-
-$$
-r_t=\sigma(W_r.[h_{t-1},x_t]+b_r)
-$$
-
-$$
-\tilde{h}_t=tanh(W_h[r*h_{t-1},x_t]+b_h)
-$$
-
-$$
-h_t=(1-z_t)*h_{t-1}+z_t*\tilde{h}_t
-$$
-
-### Implementation a Text Generator using RNN
+### Implementation
 
 As I mentioned earlier in this post, there are quite a lot of excellent posts on how Recurrent Neural Networks work, and those guys also included the implementations for demonstration. Actually, bcause they wrote code for teaching purpose, reading the codes does help understanding the tutorials a lot. But I must say that it may hurt, especially if you don't have any experience in Theano or Torch (Denny wrote his code in Theano and Andrej used Torch). I want to make it easy for you, so I will show you how to implement RNN using Keras, an excellent work from François Chollet, which I had a chance to introduced to you in my previous posts.
 
@@ -127,28 +107,69 @@ If you don't have Keras installed on your machine, just give the link below a cl
 
 * [Installing OpenCV & Keras](https://chunml.github.io/ChunML.github.io/tutorial/Setting-Up-Python-Environment-For-Computer-Vision-And-Machine-Learning/)
 
-Now, let's get down to business
+Now, let's get down to business. For sake of simplicity, I will divide the code into four parts and dig into each part one at a time. Of course I will omit some lines used for importing or argument parsing, etc. You can find the full source file in my GitHub here: [](). Now let's go into the first part: preparing the data.
 
-1. Prepare the training data
+**1. Prepare the training data**
+
+I always try to deal with the most tedious part in the beginning, which is data preparation. Not only because a good data preparation can result in a well learned Model, but this step is also some kind of tricky, which we likely spend a lot of time until it works (especially if you are working with different frameworks).
+
+We are gonna work with text in this post, so obviously we have to prepare a text file to train our Model. You can go on the internet to grab anything you want such as free text novels [here](), and I recommend the file size is at least 2MB for an acceptable result. In my case, I used the famous Harry Potter series for training (of course I can't share it here for copyright privacy).
 
 {% highlight python %} 
-data = open('data/Harry Potter.txt', 'r').read()
+data = open(DATA_DIR, 'r').read()
 chars = list(set(data))
+VOCAB_SIZE = len(chars)
+{% endhighlight %}
 
+First, we will read the text file, then split the content into an array which each element is a character, and store it into *data* variable. Next, we will create a new array called *chars* to store the unique values in *data*. For example, your text file contains only the following sentence:
+
+> I have a dream.
+
+Then the *data* array will look like this:
+
+> ['I',' ', 'h', 'a', 'v', 'e', ' ', 'a', ' ', 'd', 'r', 'e', 'a', 'm', '.']
+
+And the *chars* array will look like this:
+
+> ['I',' ', 'h', 'a', 'v', 'e', 'd', 'r', 'm', '.']
+
+As you could see, every element in *char* array only appears once. So the *data* array contains all the examples, and the *chars* array acts like a features holder, which we then create two dictionaries to map between indexes and characters:
+
+{% highlight python %} 
 ix_to_char = {ix:char for ix, char in enumerate(chars)}
 char_to_ix = {char:ix for ix, char in enumerate(chars)}
 {% endhighlight %}
 
-2. Create the Network
+Why do we have to do the mapping anyway? Because it's better to input numeric training data into the Networks (as well as other learning algorithms). And we also need a different dictionary to convert the numbers back to the original characters. That's why we created the two dictionaries above.
+
+After we've done the file reading, we will create the actual input for the Network. We're gonna use Keras to create and train our Network, so we must convert the data into this form: **(number_of_sequences, length_of_sequence, number_of_features)**. The last dimension is the number of the features, in this case the length of the *chars* array above. Next, the length of sequence means how long you want your Model to learn at a time. It's also the total timesteps of our Networks which I showed you above. The first dimension is the number of sequences, which is easy to achieve by dividing the length of our data by the length of each sequence. Of course we also need to convert each character into the corresponding index number. 
+
+And what about the target sequences? In this post, we only make a simple text generator, so we just need to set the target by shifting the corresponding input sequence by one character. Obviously our target sequence will have the same length with the input sequence. About model that can output target sequences with different length, I will leave for the next post.
 
 {% highlight python %} 
-BATCH_SIZE = args['batch_size']
-HIDDEN_DIM = args['hidden_dim']
-SEQ_LENGTH = args['seq_length']
-VOCAB_SIZE = len(chars)
-GENERATE_LENGTH = args['generate_length']
-LAYER_NUM = args['layer_num']
+X = np.zeros((len(data)/SEQ_LENGTH, SEQ_LENGTH, VOCAB_SIZE))
+y = np.zeros((len(data)/SEQ_LENGTH, SEQ_LENGTH, VOCAB_SIZE))
+for i in range(0, len(data)/SEQ_LENGTH):
+    X_sequence = data[i*SEQ_LENGTH:(i+1)*SEQ_LENGTH]
+    X_sequence_ix = [char_to_ix[value] for value in X_sequence]
+    input_sequence = np.zeros((SEQ_LENGTH, VOCAB_SIZE))
+    for j in range(SEQ_LENGTH):
+        input_sequence[j][X_sequence_ix[j]] = 1.
+    X[i] = input_sequence
+
+    y_sequence = data[i*SEQ_LENGTH+1:(i+1)*SEQ_LENGTH+1]
+    y_sequence_ix = [char_to_ix[value] for value in y_sequence]
+    target_sequence = np.zeros((SEQ_LENGTH, VOCAB_SIZE))
+    for j in range(SEQ_LENGTH):
+        target_sequence[j][y_sequence_ix[j]] = 1.
+    y[i] = target_sequence
 {% endhighlight %}
+
+The code is not difficult to understand at all, but make sure you take a look before moving on.
+
+**2. Create the Network**
+
+So we have done with the data preparation. The rest is some kind of relaxing since we can make use of Keras to help us handle the hardest part: create the Network. We're gonna use LSTM for its ability to deal with long sequences, you can experiment other Model by changing LSTM to SimpleRNN or GRU. The choice is yours!
 
 {% highlight python %} 
 model = Sequential()
@@ -160,39 +181,34 @@ model.add(Activation('softmax'))
 model.compile(loss="categorical_crossentropy", optimizer="rmsprop")
 {% endhighlight %}
 
-3. Train the Network
+You should have no problem in understand the code above, right? There are only few points that I want to make clear:
 
+* return_sequences=True parameter:
+
+We want to have a sequence for the output, not just a single vector as we did with normal Neural Networks, so it's necessary that we set the *return_sequences* to True. Concretely, let's say we have an input with shape *(num_seq, seq_len, num_feature)*. If we don't set return_sequences=True, our output will have the shape *(num_seq, num_feature)*, but if we do, we will obtain the output with shape *(num_seq, seq_len, num_feature)*.
+
+* TimeDistributed wrapper layer:
+
+Since we set return_sequences=True in the LSTM layers, the output is now a three-dimension vector. If we input that into the Dense layer, it will raise an error because the Dense layer only accepts two-dimension input. In order to input a three-dimension vector, we need to use a wrapper layer called *TimeDistributed*. This layer will help us maintain output's shape, so that we can achieve a sequence as output in the end.
+
+**3. Train the Network**
+
+In the next step, we will train our Network using the data we prepared above. Here we want the Model to generate some texts after each epoch, so we set *nb_epoch=1* and put the training into a while loop. We also save the weights after each 10 epochs in order to load it back later, without training the Network again!
 
 {% highlight python %} 
-nb_epoch = 40
+nb_epoch = 0
 while True:
-        X = np.zeros((len(data)/SEQ_LENGTH, SEQ_LENGTH, VOCAB_SIZE))
-	y = np.zeros((len(data)/SEQ_LENGTH, SEQ_LENGTH, VOCAB_SIZE))
-
-	for i in range(0, len(data)/SEQ_LENGTH):
-
-		X_sequence = data[i*SEQ_LENGTH:(i+1)*SEQ_LENGTH]
-		X_sequence_ix = [char_to_ix[value] for value in X_sequence]
-		input_sequence = np.zeros((SEQ_LENGTH, VOCAB_SIZE))
-		for j in range(SEQ_LENGTH):
-			input_sequence[j][X_sequence_ix[j]] = 1
-		X[i] = input_sequence
-
-		y_sequence = data[i*SEQ_LENGTH+1:(i+1)*SEQ_LENGTH+1]
-		y_sequence_ix = [char_to_ix[value] for value in y_sequence]
-		target_sequence = np.zeros((SEQ_LENGTH, VOCAB_SIZE))
-		for j in range(SEQ_LENGTH):
-			target_sequence[j][y_sequence_ix[j]] = 1.
-		y[i] = target_sequence
-
-        model.fit(X, y, batch_size=BATCH_SIZE, verbose=1, nb_epoch=1)
-        nb_epoch += 1
-        generate_text(model, GENERATE_LENGTH)
-        if nb_epoch % 10 == 0:
-            model.save_weights('checkpoint_{}_epoch_{}.hdf5'.format(HIDDEN_DIM, nb_epoch))
+    print('\n\n')
+    model.fit(X, y, batch_size=BATCH_SIZE, verbose=1, nb_epoch=1)
+    nb_epoch += 1
+    generate_text(model, GENERATE_LENGTH)
+    if nb_epoch % 10 == 0:
+        model.save_weights('checkpoint_{}_epoch_{}.hdf5'.format(HIDDEN_DIM, nb_epoch))
 {% endhighlight %}
 
-4. Generate text
+**4. Generate text**
+
+Last but not least, I want to talk a little about the method to generate text. We begin with some random character and use the trained Model to predict the next one. Then we append the predicted character into the input, and have the Model predict the next one, which is the third character. We continue the process until we obtain a sequence with the length we want (500 characters by default). It's just that simple!
 
 {% highlight python %} 
 def generate_text(model, length):
@@ -206,3 +222,7 @@ def generate_text(model, length):
         y_char.append(ix_to_char[ix[-1]])
     return ('').join(y_char)
 {% endhighlight %}
+
+**5. Result**
+
+
