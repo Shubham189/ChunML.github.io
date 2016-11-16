@@ -238,6 +238,8 @@ defaults:
       layout: single
       author_profile: false
       share: true
+      sidebar:
+        nav: "docs"      
 
 
 # Sass/SCSS
