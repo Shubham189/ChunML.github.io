@@ -18,7 +18,7 @@ Remember this? To recall a little bit, I called 'X' Features, 'y' Labels, and 'a
 
 So after collecting a great deal of training data (X, y), we have them learned by the computer. Then we show the data which the computer has never seen before, which contains only X this time, and the computer will give us a prediction, called 'a'.
 
-I just helped you to recall about what Machine Learning is. But I think it would be better if you have a further look about Machine Learning on my first post here: [Whate  is Machine Learning?](https://chunml.github.io/ChunML.github.io/tutorial/Machine-Learning-Definition/)
+I just helped you to recall about what Machine Learning is. But I think it would be better if you have a further look about Machine Learning on my first post here: [Whate  is Machine Learning?](https://chunml.github.io/ChunML.github.io/tutorial/Machine-Learning-Definition/){:target="_blank"}
 
 So from the image above, the first thing coming to our minds is, how the computer can compute *y* from *X* during the learning process, and how it can compute prediction *a* from *X*?
 
@@ -118,7 +118,7 @@ As you can see, our cost function now becomes a quadratic function with \\( \the
 
 A picture's worth a thousands word, right? Our learning objective is to find the parameter \\( \theta \\) so that we can draw a straight line which can almost go through all the points in the coordinate plane. In order to accomplish that, we compute a Cost Function (in this case we use the MSE function). We want the value of the Cost Function to be as small as possible.  
 
-As we can see in the figure above, our Cost Function is now a quadratic function \\( A\theta^2+B\theta+C \\). Because we have \\( A>0 \\), so that our Cost Function is a [convex function](https://en.wikipedia.org/wiki/Convex_function). You can think of a convex function as some function which has one or many minima. In the case of quadratic function with one variable, our Cost Function only has one minimum. Obviously, all we have to do now, is to find that minimum's value. But how will we do that? Let's consider the next figure:
+As we can see in the figure above, our Cost Function is now a quadratic function \\( A\theta^2+B\theta+C \\). Because we have \\( A>0 \\), so that our Cost Function is a [convex function](https://en.wikipedia.org/wiki/Convex_function){:target="_blank"}. You can think of a convex function as some function which has one or many minima. In the case of quadratic function with one variable, our Cost Function only has one minimum. Obviously, all we have to do now, is to find that minimum's value. But how will we do that? Let's consider the next figure:
 
 ![Gradien Descent](/images/tutorials/linear-regression/4.jpg)
 
@@ -151,7 +151,7 @@ You may see the newcomer \\( \alpha \\). It's called *learning rate*, which indi
 
 As you might see, if we set our *learning rate* too large, then it will behave unexpectedly, and likely never reach the minimum. So my advice is, try to set \\( \alpha \\) to be small at first (but not too small), then see whether it worked or not. Then you can think about increasing \\( \alpha \\) gradually to improve the performance.
 
-After you know what the learning rate \\( \alpha \\) is. The last question (I hope) you may ask is: how do we compute the Gradient? That's pretty easy, since our MSE function is just a quadratic function. You can compute the Partial Derivatives using the [Chain Rule](https://en.wikipedia.org/wiki/Chain_rule). It may take some time to compute, so I show you the result right below. You can confirm it yourselves afterwards.
+After you know what the learning rate \\( \alpha \\) is. The last question (I hope) you may ask is: how do we compute the Gradient? That's pretty easy, since our MSE function is just a quadratic function. You can compute the Partial Derivatives using the [Chain Rule](https://en.wikipedia.org/wiki/Chain_rule){:target="_blank"}. It may take some time to compute, so I show you the result right below. You can confirm it yourselves afterwards.
 
 * For weights (\\( \theta_1, \ldots, \theta_n\\))
 
