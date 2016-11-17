@@ -34,11 +34,11 @@ Despite the outstanding performance that Neural Networks have shown us over the 
 
 The explanation of Recurrent Neural Networks such as what they are, how they work, or something like that is quite long and not the main purpose of this post, which I mainly want to guide you to create your own text generator. In fact, there are many guys out there who made some excellent posts on how Recurrent Neural Networks work. You can refer to their post through the links below. Some of them provides their codes too, but they used Theano or Torch for their work, which may hurt a lot if you don't have experience with those frameworks. To make it easy for you, I tried to re-implement the code using a more relaxing framework called Keras. You can check it out in the Implementation section below.
 
-* [Recurrent Neural Networks tutorial by Denny Britz](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/)
+* [Recurrent Neural Networks tutorial by Denny Britz](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/){:target="_blank"}
 
-* [Understanding LSTMs by Colah](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+* [Understanding LSTMs by Colah](http://colah.github.io/posts/2015-08-Understanding-LSTMs/){:target="_blank"}
 
-* [The Unreasonable Effectiveness of Recurrent Neural Networks by Andrej Karpathy](http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
+* [The Unreasonable Effectiveness of Recurrent Neural Networks by Andrej Karpathy](http://karpathy.github.io/2015/05/21/rnn-effectiveness/){:target="_blank"}
 
 And because the fact that there are already many great posts on Recurrent Neural Networks, I will only talk briefly about some points which confused me, and may confuse you too, I think.
 
@@ -116,15 +116,15 @@ As I mentioned earlier in this post, there are quite a lot of excellent posts on
 
 If you don't have Keras installed on your machine, just give the link below a click. The installation only takes 20 minutes (max):
 
-* [Installing OpenCV & Keras](https://chunml.github.io/ChunML.github.io/tutorial/Setting-Up-Python-Environment-For-Computer-Vision-And-Machine-Learning/)
+* [Installing OpenCV & Keras](https://chunml.github.io/ChunML.github.io/tutorial/Setting-Up-Python-Environment-For-Computer-Vision-And-Machine-Learning/){:target="_blank"}
 
-Now, let's get down to business. For sake of simplicity, I will divide the code into four parts and dig into each part one at a time. Of course I will omit some lines used for importing or argument parsing, etc. You can find the full source file in my GitHub here: [Text Generator](https://github.com/ChunML/text-generator). Now let's go into the first part: preparing the data.
+Now, let's get down to business. For sake of simplicity, I will divide the code into four parts and dig into each part one at a time. Of course I will omit some lines used for importing or argument parsing, etc. You can find the full source file in my GitHub here: [Text Generator](https://github.com/ChunML/text-generator){:target="_blank"}. Now let's go into the first part: preparing the data.
 
 **1. Prepare the training data**
 
 I always try to deal with the most tedious part in the beginning, which is data preparation. Not only because a good data preparation can result in a well learned Model, but this step is also some kind of tricky, which we likely spend a lot of time until it works (especially if you are working with different frameworks).
 
-We are gonna work with text in this post, so obviously we have to prepare a text file to train our Model. You can go on the internet to grab anything you want such as free text novels [here](http://cs.stanford.edu/people/karpathy/char-rnn/), and I recommend the file size is at least 2MB for an acceptable result. In my case, I used the famous Harry Potter series for training (of course I can't share it here for copyright privacy).
+We are gonna work with text in this post, so obviously we have to prepare a text file to train our Model. You can go on the internet to grab anything you want such as free text novels [here](http://cs.stanford.edu/people/karpathy/char-rnn/){:target="_blank"}, and I recommend the file size is at least 2MB for an acceptable result. In my case, I used the famous Harry Potter series for training (of course I can't share it here for copyright privacy).
 
 {% highlight python %} 
 data = open(DATA_DIR, 'r').read()
