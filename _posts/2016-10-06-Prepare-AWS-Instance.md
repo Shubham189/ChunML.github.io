@@ -11,7 +11,7 @@ tags:
 
 Hello there, it's been a while since my previous Real time Object Recognition project. I currently have some cool stuff ongoing and I'll share it to you when it's ready (it won't be long).
 
-At the moment, I'm struggling with a frustrating performing problem. As I told you before in the previous [Project](https://chunml.github.io/ChunML.github.io/project/Real-Time-Object-Recognition-part-one/), the training process requires a powerful desktop which you have to spend a lot of money on, and may take a lot of time and resources. But this headache can be solved with a pre-trained model, like the one I used. And luckily, because using that model for recognizing object is not a big deal (as it took approximately 1.5 ~ 2 seconds per image on my PC), I still somehow felt satisfied.
+At the moment, I'm struggling with a frustrating performing problem. As I told you before in the previous [Project](https://chunml.github.io/ChunML.github.io/project/Real-Time-Object-Recognition-part-one/){:target="_blank"}, the training process requires a powerful desktop which you have to spend a lot of money on, and may take a lot of time and resources. But this headache can be solved with a pre-trained model, like the one I used. And luckily, because using that model for recognizing object is not a big deal (as it took approximately 1.5 ~ 2 seconds per image on my PC), I still somehow felt satisfied.
 
 But life is not that easy. Things get tougher as you keep moving on. Now instead of 2 seconds, I have to wait for minutes for each image to be 100% processed, which is simply unacceptable! Of course, I can just throw $2000 on Amazon for a giant desktop with everything set up, rather than complaining to you on my blog (which may be boring you, I'm sorry). Yeah, I wish I had that money, dude!
 
@@ -21,7 +21,7 @@ You can simply think of AWS as a place which offers desktop for rent. Of course,
 
 And this post is for ones who consider to use AWS for running their own Machine Learning projects, just like me. Setting things up in AWS won't be hard, but takes some time.
 
-Firstly, you have to register for AWS. You can do it by access to [AWS Home Page](https://aws.amazon.com/), then choose "Sign In to the Console", you will be redirected to the page like this:
+Firstly, you have to register for AWS. You can do it by access to [AWS Home Page](https://aws.amazon.com/){:target="_blank"}, then choose "Sign In to the Console", you will be redirected to the page like this:
 
 ![Register page](/images/projects/prepare-aws-instance/register.jpg)
 
@@ -86,7 +86,7 @@ chmod 600 PEM_FILE
 
 Note that you must be in the folder where you placed you PEM_FILE.
 
-After that, you will now be able to log in and use the GPU instance everytime you want. Just don't forget to **Stop** it when you finished your work, or your credit card bill payments will shock you till death. And note that there's two different options: **Stop** and **Terminate**. **Stop** means to *Shut down*, while **Terminate** means to *Delete* the instance. You can read more [here](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingInstanceInitiatedShutdownBehavior) if you want to change the initiated Shutdown behavior, or [here](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingDisableAPITermination) to disable the **Terminate** option.
+After that, you will now be able to log in and use the GPU instance everytime you want. Just don't forget to **Stop** it when you finished your work, or your credit card bill payments will shock you till death. And note that there's two different options: **Stop** and **Terminate**. **Stop** means to *Shut down*, while **Terminate** means to *Delete* the instance. You can read more [here](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingInstanceInitiatedShutdownBehavior){:target="_blank"} if you want to change the initiated Shutdown behavior, or [here](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingDisableAPITermination){:target="_blank"} to disable the **Terminate** option.
 
 If you encounter any error during working with your instance, try to *Terminate* and start it all over again. Then everything should work just fine.
 
