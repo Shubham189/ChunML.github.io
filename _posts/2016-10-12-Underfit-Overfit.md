@@ -17,7 +17,7 @@ Here we are again, in the fifth post of Machine Learning tutorial series. Today 
 
 Of course I remember promising you in the previous post, that today I will dig deeper into Linear Regression, and together we will do some coding. Actually, I intended to name today's post "Implementing Linear Regression" or something, but I soon realized that it would be inappropriate. Good news is today's post will mainly focus on implementation of Linear Regression, and what we can do to improve the quality of the Model. By doing that, I am actually leading you to go into some concept which is more general, and can be applied not only in Linear Regression, but every spot which Machine Learning takes place.
 
-That is enough of talking. First, let's get our hands dirty. If you went through my previous post, you would now have everything set up. But if you didn't, you might want to take a look at it here: [Setting Up Python Environment](https://chunml.github.io/ChunML.github.io/tutorial/Setting-Up-Python-Environment-For-Computer-Vision-And-Machine-Learning/).
+That is enough of talking. First, let's get our hands dirty. If you went through my previous post, you would now have everything set up. But if you didn't, you might want to take a look at it here: [Setting Up Python Environment](https://chunml.github.io/ChunML.github.io/tutorial/Setting-Up-Python-Environment-For-Computer-Vision-And-Machine-Learning/){:target="_blank"}.
 
 ### Implementing Linear Regression
 
@@ -126,7 +126,7 @@ We cannot always evaluate something just by seeing it, right? We need something 
 
 And you can see that, our Model now has the accuracy of 85% over the training data. Commonly,  we demand a higher accuracy, let's say 90% or 95%. So by looking at the current accuracy, we can tell that our Model is not performing as we are expecting. So let's think about an improvement. But how can we do that?
 
-Remember I told you about Features in the first [Post](https://chunml.github.io/ChunML.github.io/tutorial/Machine-Learning-Definition/)? Features are something we use to distinguish one object from others. So obviously, if we have more Features, then we will likely have a better fit model, since it can receive more necessary information for training. But how we can acquire more Features?
+Remember I told you about Features in the first [Post](https://chunml.github.io/ChunML.github.io/tutorial/Machine-Learning-Definition/){:target="_blank"}? Features are something we use to distinguish one object from others. So obviously, if we have more Features, then we will likely have a better fit model, since it can receive more necessary information for training. But how we can acquire more Features?
 
 #### Polynomial Features
 The easiest way to add more Features, is to computing *polynomial features* from the provided features. It means that if we have \\(X\\), then we can use \\(X^2\\), \\(X^3\\), etc as additional features. So let's use this approach and see if we can improve the current Model. First, we have to modify our \\(X\\) matrix by adding \\(X^2\\):
