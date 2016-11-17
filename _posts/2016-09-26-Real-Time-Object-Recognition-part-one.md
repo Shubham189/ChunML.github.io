@@ -29,11 +29,11 @@ Writing it all in one post may hurt, so I separate this project into two parts l
 * Part 1: Go through the folder containing the images, recognize object in each.
 * Part 2: Real time object recognition through input from camera
 
-Before I begin, let's talk a little bit about how Machine Learning works. I had post about what Machine Learning exactly is, and how it exactly works here: [What is Machine Learning?](https://chunml.github.io/tutorial/Machine-Learning-Definition/)
+Before I begin, let's talk a little bit about how Machine Learning works. I had post about what Machine Learning exactly is, and how it exactly works here: [What is Machine Learning?](https://chunml.github.io/tutorial/Machine-Learning-Definition/){:target="_blank"}
 
 The main part of any Machine Learning system, is the Model. It contains the algorithms and all the associated parameters. A good Model will produce a good prediction. Because of that, the training process (i.e. the process which produces the Model) can be heavily computational and take a lot of resources (you know, RAM and memories to store the parameters).
 
-Fortunately, a great work from [François Chollet](https://github.com/fchollet) helps make this problem become much more relaxing than ever. I mean that you won't have to spend a great deal of money on a giant computer (with powerful CPU and GPUs), you won't have to spend time on training the data yourself, thanks to François Chollet for providing us the pretrained Model on the most outstanding CNN architectures. Sounds cool, right? Among those, I will use the VGG16 Model for this project.
+Fortunately, a great work from [François Chollet](https://github.com/fchollet){:target="_blank"} helps make this problem become much more relaxing than ever. I mean that you won't have to spend a great deal of money on a giant computer (with powerful CPU and GPUs), you won't have to spend time on training the data yourself, thanks to François Chollet for providing us the pretrained Model on the most outstanding CNN architectures. Sounds cool, right? Among those, I will use the VGG16 Model for this project.
 
 So, let's get down to business.
 
@@ -50,7 +50,7 @@ random.shuffle(files)
 
 As written in the code above, I passed the folder name, then got the list of file names stored in *files* variable. I shuffled the list for demonstration purpose (you don't want the same order everytime, right?)
 
-Next, I initiate the VGG16 Model, provided by François Chollet. You will have to clone his repository first, from [here](https://github.com/fchollet/deep-learning-models)
+Next, I initiate the VGG16 Model, provided by François Chollet. You will have to clone his repository first, from [here](https://github.com/fchollet/deep-learning-models){:target="_blank"}
 
 {% highlight python %}
 from vgg16 import VGG16
@@ -102,7 +102,7 @@ preds = model.predict(image)
 (inID, label) = decode_predictions(preds)[0]
 {% endhighlight %}
 
-Let's talk a little bit about ImageNet's image database (the database on which VGG16 was trained). It was organized according to WordNet hierarchy (you can find more details [here](http://wordnet.princeton.edu/)). But the predicting result is always numerical (Neural Network only works with numerical labels), so we have to map between the numerical result, and the noun provided by WordNet.
+Let's talk a little bit about ImageNet's image database (the database on which VGG16 was trained). It was organized according to WordNet hierarchy (you can find more details [here](http://wordnet.princeton.edu/){:target="_blank"}). But the predicting result is always numerical (Neural Network only works with numerical labels), so we have to map between the numerical result, and the noun provided by WordNet.
 
 Once again, François Chollet provided a method to do that: decode_predictions method. It simply map the predicted result with a JSON file, and return the associated noun instead. Here's what the JSON file looks like:
 
