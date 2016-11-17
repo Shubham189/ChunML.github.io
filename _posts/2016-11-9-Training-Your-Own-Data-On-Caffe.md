@@ -20,9 +20,9 @@ Hi, everyone! Welcome back to my Machine Learning page today. I have been playin
 
 Before getting into the details, for ones that missed my old posts on Caffe, you can check it out anytime, through the links below:
 
-* [Installing Caffe on Ubuntu (CPU_ONLY)](https://chunml.github.io/ChunML.github.io/project/Installing-Caffe-CPU-Only/)
+* [Installing Caffe on Ubuntu (CPU_ONLY)](https://chunml.github.io/ChunML.github.io/project/Installing-Caffe-CPU-Only/){:target="_blank"}
 
-* [Installing Caffe on Ubuntu (GPU)](https://chunml.github.io/ChunML.github.io/project/Installing-Caffe-Ubuntu/)
+* [Installing Caffe on Ubuntu (GPU)](https://chunml.github.io/ChunML.github.io/project/Installing-Caffe-Ubuntu/){:target="_blank"}
 
 Now, let's get down to business. In today's post, I will mainly tell you about two points below:
 
@@ -43,9 +43,9 @@ This kind of download is quite easy. Here I will use the **Dogs vs. Cats** datas
 
 * Downloading from URLs
 
-As you could see above, it's great if every dataset was zipped and provided directly to developers. But in fact, due to the copyright of the images (as well as other data types), providing data that way isn't simple, especially when we talk about an extremely large dataset like ImageNet. So data providers have another way, which is providing you the URLs only, and you will have to access to the image hosts yourself to download the data. I will use a very famous site for example, which is ImageNet, the site which holds the annual ILSVRC. You can read more about ILSVRC [here](http://www.image-net.org/challenges/LSVRC/).
+As you could see above, it's great if every dataset was zipped and provided directly to developers. But in fact, due to the copyright of the images (as well as other data types), providing data that way isn't simple, especially when we talk about an extremely large dataset like ImageNet. So data providers have another way, which is providing you the URLs only, and you will have to access to the image hosts yourself to download the data. I will use a very famous site for example, which is ImageNet, the site which holds the annual ILSVRC. You can read more about ILSVRC [here](http://www.image-net.org/challenges/LSVRC/){:target="_blank"}.
 
-First, let's go to the ImageNet's URLs download page: [Download Image URLs](http://image-net.org/download-imageurls). All you need to know to get the URLs is something called **WordNet ID** (or **wnid**). You can read more about ImageNet's dataset and WordNet to grab some more details because this post will be too long if I explain it here. To make it simple right now, ImageNet uses WordNet's synset, such as *n02084071*, *n02121620* which represents *dogs* and *cats* respectively, to name its classes. To find out what the synset of a particular noun, just access [Noun to Synset](http://www.image-net.org/synset?wnid), then search for any noun you want, then you will see the corresponding synset. 
+First, let's go to the ImageNet's URLs download page: [Download Image URLs](http://image-net.org/download-imageurls){:target="_blank"}. All you need to know to get the URLs is something called **WordNet ID** (or **wnid**). You can read more about ImageNet's dataset and WordNet to grab some more details because this post will be too long if I explain it here. To make it simple right now, ImageNet uses WordNet's synset, such as *n02084071*, *n02121620* which represents *dogs* and *cats* respectively, to name its classes. To find out what the synset of a particular noun, just access [Noun to Synset](http://www.image-net.org/synset?wnid){:target="_blank"}, then search for any noun you want, then you will see the corresponding synset. 
 
 Once you knew the synset, you can download the URLs by going to this page:  
 http://www.image-net.org/api/text/imagenet.synset.geturls?wnid=[wnid], which *[wnid]* is the synset of the object you want to download data for. For example, let's use two synsets above, to download the URLs of the Dogs and Cats images of ImageNet:
@@ -263,7 +263,7 @@ And, only one last command to execute:
 And that's it. Let's go into *./data/DogsCatsKaggle* folder, you will see one new file called *dogscatskaggle_mean.binaryproto*, which means that the mean image was created successfully!
 
 **3. Training with your prepared data**  
-So now you nearly got everything ready to train the Network with the data prepared by yourself. The last thing is, of course, the Network! At this time, you may want to create a Network of your own, and train it using the data above (of your own, too!). But I recommend you try some available Networks which is provided by Caffe, some of which are very famous such as VGG16 or AlexNet. Let's pick AlexNet for now since it's quite simpler than VGG16, which will make it train faster. We need to create one new folder and copy the necessary files for Network definition. And for your information, Caffe uses the *protobuf* format to define the Networks, which you can read for details here: [Protocol Buffers](https://developers.google.com/protocol-buffers/).
+So now you nearly got everything ready to train the Network with the data prepared by yourself. The last thing is, of course, the Network! At this time, you may want to create a Network of your own, and train it using the data above (of your own, too!). But I recommend you try some available Networks which is provided by Caffe, some of which are very famous such as VGG16 or AlexNet. Let's pick AlexNet for now since it's quite simpler than VGG16, which will make it train faster. We need to create one new folder and copy the necessary files for Network definition. And for your information, Caffe uses the *protobuf* format to define the Networks, which you can read for details here: [Protocol Buffers](https://developers.google.com/protocol-buffers/){:target="_blank"}.
 
 {% highlight Bash shell scripts %}
 cd models
@@ -280,7 +280,7 @@ net: "models/dogscatskaggle_alexnet/train_val.prototxt"
 snapshot_prefix: "models/dogscatskaggle_alexnet/caffe_alexnet_train"
 {% endhighlight %}
 
-Next, we will make change to the Network definition file, which is the *train_val.prototxt* file. In fact, it was nearly set up and we only need to modify a little bit. First, we have to tell it where to look for your prepared data. And second, we must change the output layer, since our dataset only contains two classes (change this accordingly if you have a different dataset with me). Now open up the file, you will see the first two layers are the data layers, which provide the input to the Network. Stanford University has an excelent tutorial on defining the Network in Caffe at here: [Caffe Tutorial](http://vision.stanford.edu/teaching/cs231n/slides/caffe_tutorial.pdf). 
+Next, we will make change to the Network definition file, which is the *train_val.prototxt* file. In fact, it was nearly set up and we only need to modify a little bit. First, we have to tell it where to look for your prepared data. And second, we must change the output layer, since our dataset only contains two classes (change this accordingly if you have a different dataset with me). Now open up the file, you will see the first two layers are the data layers, which provide the input to the Network. Stanford University has an excelent tutorial on defining the Network in Caffe at here: [Caffe Tutorial](http://vision.stanford.edu/teaching/cs231n/slides/caffe_tutorial.pdf){:target="_blank"}. 
 
 Let's change the path to the mean image and two LMDB folders which we created above:
 
