@@ -1,0 +1,34 @@
+---
+title: "Sequence To Sequence"
+header:
+  teaser: projects/sequence-to-sequence/
+categories:
+  - Project
+tags:
+  - machine-learning
+  - deep-learning
+  - keras
+  - recurrent neural network
+  - gpu
+  - training
+  - RNN
+  - LSTM
+  - GRU
+  - seq2seq
+  - translator model
+---
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+Hello guys. It's been quite a long while since my last tutorial blogpost. It may sound like an excuse, but I've been struggling with finding a new place to live. And I had to say, it's a real problem for a foreigner to find a reasonable apartment in Japan. Luckily, I somehow managed to find one, and I have just moved in for nearly a week. Anyway, the hardest time has gone, and now I can get back to work, to bring to you guys new interesting (and maybe boring as usual) blog posts on Deep Learning.
+
+So, in the last post, I told you about how to create a simple text generator by training a Recurrent Neural Networks. What RNNs differ from normal Neural Networks is, instead of computing the output prediction on each input independently, RNNs compute the output of timestep \\(t\\) using not only the input of timestep \\(t\\), but also involving the input of previous timesteps (say, timestep \\(t-1\\), \\(t-2\\), \\(\dots\\)). 
+
+As you already saw in my previous post, inputs are sequences of characters, and each output was simply the corresponding input shifted by one character to the right. Obviously, you can see that each pair of input sequence and output sequence has the same length. Then, the network was trained using the famous Harry Potter as training dataset and as a result, the trained model could generate some great J.K. Rowling-alike paragraphs. If you haven't read my previous post yet, please refer to it at the link below (make sure you do before moving on):
+
+[Creating A Text Generator Using Recurrent Neural Network](https://chunml.github.io/ChunML.github.io/project/Creating-Text-Generator-Using-Recurrent-Neural-Network/)
+
+But here comes a big question: What if input sequence and output sequence have different lengths?
+
+You know, there are many types of Machine Learning problems out there where input and output sequences don't necessarily have the exact same lengths. And in terms of Natural Language Processing (or NLP for short), you are more likely to face the problems where the lengths are totally different, not only between each pair of input and output sequence, but also between input sequences themselves! For example, in building a language translation model, each pair of input and output sequence are in different languages, so there's a big chance that they don't have the same length. Moreover, I can bet my life that there is no known language where we can create all sentences with the exact same length! Obviously, that is a really big big problem, because the model I showed you in the last post required all the input and output sequences have the same length. Sounds impossible, huh?
+
+The answer is: NO. Big problems only got smart people attracted, and as a result, solved by not only one, but many solutions. Let's go back to our problem. A lot of attempts were made, each of them has its own advantages and disadvantages when compared to others. And in today's post, I will introduce to you one approach which received great attention from NLP community: The Sequence To Sequence Networks, great work by Ilya Sutskever, Oriol Vinyals, Quoc V. Le from Google.
+
