@@ -1,5 +1,5 @@
 ---
-title: "Sequence To Sequence"
+title: "Creating A Sequence To Sequence Learning Model"
 header:
   teaser: projects/sequence-to-sequence/
 categories:
@@ -63,19 +63,49 @@ We are half way there! We now know all we need to know about the-state-of-the-ar
 
 ### Implementation
 
-- Read data and split to array of sequences
+So, now we are here, finally, right in the Implementation section. Working with NLP problems is literally abstract (than what we did in Computer Vision problems, which we could at least have some visualization). Even worse, deep neural network in common is kind of abstract itself, so it seems that thing's gonna get more complicated here. That's the reason why I decided not to dig into details in the previous section, but to explain it along with the corresponding part in the code instead so that you won't find it difficult to understand the abstract terms (at least I think so). And now, let's get your hands dirty!
+
+As usual, we will start with the most tedious (and boring) but important task, which is **Data Preparation**. As you already saw in my previous post, it is a little bit more complicated to prepare language data rather than image data. You will understand why soon.
+
+Before doing any complicated processing, first we need to read the training data from file. I defined *X_data* and *y_data* variables to store the input text and the output text, respectively. They are all raw string objects, which means that we must split them into sentences:
+
 {% highlight python %}
 X = [text_to_word_sequence(x)[::-1] for x, y in zip(X_data.split('\n'), y_data.split('\n')) if len(x) > 0 and len(y) > 0 and len(x) <= max_len and len(y) <= max_len]
 y = [text_to_word_sequence(y) for x, y in zip(X_data.split('\n'), y_data.split('\n')) if len(x) > 0 and len(y) > 0 and len(x) <= max_len and len(y) <= max_len]
 {% endhighlight %}
 
-- Create vocabulary
+Let's break it down for a better understanding. I will use the three sentences above as our *X_data*, here's what happened after *X_data.split('\n')*
+
+![split_sentences](/images/projects/sequence-to-sequence/split_sentences.png)
+
+The easiest way to split a raw text into sentences is looking for the line break. Of course, there are many other better ways, but let's make it simple this time. So, from a raw text we now obtained an array of sentences.
+
+Next, for each sentence in the array, we must then split it into an array of words, or say it in a more proper way, a sequence of words. We will do this by using Keras' predefined method called **text_to_word_sentence**, as illustrated below:
+
+![split_words](/images/projects/sequence-to-sequence/split_words.png)
+
+Splitting a sentence into a sequence of words is harder than splitting text into sentences, since there are many ways to seperate words in a sentence, e.g. spaces, commas and so on. So we should not self-implement it but make use of predefined method instead. **text_to_word_sentence** also helps us remove all the sentence ending marks such as periods or exclamation marks. Quite helpful, isn't it?
+
+So, here's what we received, an array of sequences of words:
+
+![sequences](/images/projects/sequence-to-sequence/sequences.png)
+
+Seems like we're done, right? But sadly, we are only half way there before we can actually have the network train our data. As computers can only understand the gray scale values of pixels in an image, inputting sequences of raw human-alike words will make no sense to computers. For that reason, we need to take a further step, which is converting the raw words into some kind of numeric values. To do that, we need a dictionary to map from a word to its corresponding index value, and another dictionary for the same purpose, but in reverse direction.
+
+But first, what we need is a vocaburaly set. You can think of vocabulary set as an array which stores all the words in the raw text, but each word only appears once.
+
 {% highlight python %}
 dist = FreqDist(np.hstack(X))
 X_vocab = dist.most_common(vocab_size-1)
 dist = FreqDist(np.hstack(y))
 y_vocab = dist.most_common(vocab_size-1)
 {% endhighlight %}
+
+In real deep learning projects, especially when we're dealing with NLP problems, our training data is pretty large in size, which the number of vocabularies may be up to millions. Obviously, that's too much for our computers to handle. Furthermore, words which appear only a few times (typically once or twice) in the whole text may not have a significant impact on the learning of our network. So, what we do first is to count the frequency which a word appears in the text, then we create the vocabulary set using only 10000 words with highest frequencies (you can change to 20000 or more, but make sure that your machine can handle it).
+
+The result may look like below:
+
+![vocab](/images/projects/sequence-to-sequence/vocab.png)
 
 - Convert words to indexes
 {% highlight python %}
@@ -145,7 +175,3 @@ for k in range(1, NB_EPOCH+1):
         model.fit(X[i:i_end], y_sequences, batch_size=BATCH_SIZE, nb_epoch=1, verbose=2)
     model.save_weights('checkpoint_epoch_{}.hdf5'.format(k))
 {% endhighlight %}
-
-### Reference
-
-* Ilya Sutskever, Oriol Vinyals and Quoc V. Le. [Sequence to Sequence Learning with Neural Networks](https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf)
