@@ -51,7 +51,7 @@ The mystery was revealed! Concretely, what the Encoder actually did is creating 
 
 So we now know about how to output a sequence from an input of different length. But what about the lengths of input sequences? As I mentioned above, the input sequences themselves don't necessarily have the exact same length, either! Sounds like an other headache, doesn't it? Fortunately, it's far more relaxing than the problem above. In fact, all we need to do is just something called: **Zero Padding**. To make it easier for you to understand, let's see the image below:
 
-![three_sentences](/images/projects/sequence-to-sequence/three_sentences.png)
+![five_sentences](/images/projects/sequence-to-sequence/five_sentences.png)
 
 Here I prepared three sentences and let's imagine that they will be the input sequences to our network. As you could see, three sentences are not equal in length. To make them all equal in length, let's take the length of the longest sentence as the common length, and we only need to add one same word some times to the end of the other two, until they have the same length as the longest one. The added word must not resemble any words in the sentences, since it will cause their meaning to change. I will use the word "ZERO", and here's the result I received:
 
@@ -90,6 +90,19 @@ So, here's what we received, an array of sequences of words:
 
 ![sequences](/images/projects/sequence-to-sequence/sequences.png)
 
+But wait! There's one minor change which needs to be made to the input sequences, as mentioned from the paper as follow:
+
+> We found
+it extremely valuable to reverse the order of the words of the input sentence. So for example, instead
+of mapping the sentence a, b, c to the sentence α, β, γ, the LSTM is asked to map c, b, a to α, β, γ,
+where α, β, γ is the translation of a, b, c. This way, a is in close proximity to α, b is fairly close to
+β, and so on, a fact that makes it easy for SGD to “establish communication” between the input and
+the output. We found this simple data transformation to greatly boost the performance of the LSTM.
+
+If you noticed the graph I drew above, you would have some doubt about the order of the input sequence. Yeah, as you might guess, the order of the input sequence is reversed before going into the network. And that's the reason why I added **[::-1]** to reverse the sequence split from the raw text. So, the final input sequences look like below:
+
+![reverse_sequences](/images/projects/sequence-to-sequence/reverse_sequences.png)
+
 Seems like we're done, right? But sadly, we are only half way there before we can actually have the network train our data. As computers can only understand the gray scale values of pixels in an image, inputting sequences of raw human-alike words will make no sense to computers. For that reason, we need to take a further step, which is converting the raw words into some kind of numeric values. To do that, we need a dictionary to map from a word to its corresponding index value, and another dictionary for the same purpose, but in reverse direction.
 
 But first, what we need is a vocaburaly set. You can think of vocabulary set as an array which stores all the words in the raw text, but each word only appears once.
@@ -105,14 +118,31 @@ In real deep learning projects, especially when we're dealing with NLP problems,
 
 The result may look like below:
 
-![vocab](/images/projects/sequence-to-sequence/vocab.png)
+![vocab_set](/images/projects/sequence-to-sequence/vocab_set.png)
 
-- Convert words to indexes
+So we just have created the vocabulary set from the input text. In the next step, we will create two dictionaries to map between each word and its index in the vocabulary set, and vice versa.
+
 {% highlight python %}
+# Create an array of words from the vocabulary set, we will use this array as index-to-word dictionary
 X_ix_to_word = [word[0] for word in X_vocab]
+# Add the special word 'ZERO' to the beginning of the array
 X_ix_to_word.insert(0, 'ZERO')
+# Add the special word 'UNK' to the end of the array (stands for UNKNOWN word)
 X_ix_to_word.append('UNK')
+
+![ix_to_word](/images/projects/sequence-to-sequence/ix_to_word.png)
+
+# Create the word-to-index dictionary from the array created above
 X_word_to_ix = {word:ix for ix, word in enumerate(X_ix_to_word)}
+{% endhighlight %}
+
+![word_to_ix](/images/projects/sequence-to-sequence/word_to_ix.png)
+
+Add some more explanation here
+
+So now we got the two dictionaries ready. The next step is pretty simple: we will loop through the sequences and replace every word in each sequence by its corresponding index number. And also remember that we're only putting 10000 words with highest frequencies into the vocabulary set, which also means that our network will actually learn words from that vocabulary set only. So here comes the question: What happens to the other words and how can we converse them to numeric values? That's where the word **UNK** makes sense. It stands for "Unknown words", or it's sometimes called **OOV**, which means "Out Of Vocabulary". So, for words which are not in the vocabulary set, we will simply assign them as "UNK". And as you may guess, they will all have the same index value.
+
+{% highlight python %}
 for i, sentence in enumerate(X):
     for j, word in enumerate(sentence):
         if word in X_word_to_ix:
@@ -121,6 +151,16 @@ for i, sentence in enumerate(X):
             X[i][j] = X_word_to_ix['UNK']
 {% endhighlight %}
 
+![index_sequence](/images/projects/sequence-to-sequence/index_sequence.png)
+
+- Zero padding
+{% highlight python %}
+X = pad_sequences(X, maxlen=X_max_len, dtype='uint8')
+y = pad_sequences(y, maxlen=y_max_len, dtype='uint8')
+{% endhighlight %}
+
+![zero_pad_index_sequence](/images/projects/sequence-to-sequence/zero_pad_index_sequence.png)
+
 - Vectorization
 {% highlight python %}
 sequences = np.zeros((len(word_sentences), max_len, len(word_to_ix)))
@@ -128,6 +168,8 @@ for i, sentence in enumerate(word_sentences):
     for j, word in enumerate(sentence):
         sequences[i, j, word] = 1.
 {% endhighlight %}
+
+![vectorization](/images/projects/sequence-to-sequence/vectorization.png)
 
 - Create encoder network
 {% highlight python %}
@@ -146,15 +188,6 @@ model.add(Activation('softmax'))
 model.compile(loss='categorical_crossentropy',
             optimizer='rmsprop',
             metrics=['accuracy'])
-{% endhighlight %}
-
-- Zero padding
-{% highlight python %}
-X_max_len = max([len(sentence) for sentence in X])
-y_max_len = max([len(sentence) for sentence in y])
-
-X = pad_sequences(X, maxlen=X_max_len, dtype='uint8')
-y = pad_sequences(y, maxlen=y_max_len, dtype='uint8')
 {% endhighlight %}
 
 - Traing the seq2seq
