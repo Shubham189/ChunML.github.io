@@ -129,16 +129,28 @@ X_ix_to_word = [word[0] for word in X_vocab]
 X_ix_to_word.insert(0, 'ZERO')
 # Add the special word 'UNK' to the end of the array (stands for UNKNOWN word)
 X_ix_to_word.append('UNK')
+{% endhighlight %}
+
+With the vocabulary set we created above, it's pretty easy to create an array to store only the words, and eliminate their frequencies of occurrence (we don't need that information after all). But you may wonder, we were supposed to create some kind of dictionary here in order to convert each index to its associated word, and now what I told you to create is an array. Well, since we want to create the index-to-word dictionary, and we can access any element of an array through its index, it's better just to create a simple array instead of a dictionary where keys are all indexes! I'm sure you get that now.
+
+Next, we will need to add two special words. As I mentioned earlier, we need a word called **ZERO** in order to make all sequences have the exact same length, and another word called **UNK**, which stands for **unknown words** or **out of vocabulary** in order to represent words which are not in the vocabulary set. There's nothing special with the word "UNK", which we can just append it to the end of the index-to-word array. But I want you to pay attention to the word "ZERO", **it must be the element of index 0**! You will understand why as we move on to the next steps.
+
+So here's what the index-to-word array looks like:
 
 ![ix_to_word](/images/projects/sequence-to-sequence/ix_to_word.png)
 
+As I told you above, don't forget to confirm that the word "ZERO" always be the first element before moving to the next step!
+
+Our next step is pretty simple which is creating the word-to-index dictionary from the array above, so all we need is just a single line of code!
+
+{% highlight python %}
 # Create the word-to-index dictionary from the array created above
 X_word_to_ix = {word:ix for ix, word in enumerate(X_ix_to_word)}
 {% endhighlight %}
 
-![word_to_ix](/images/projects/sequence-to-sequence/word_to_ix.png)
+Let's confirm the dictionary we have just created. Once again, make sure the word "ZERO" is associated with the index 0! After that, we can move on to the next step.
 
-Add some more explanation here
+![word_to_ix](/images/projects/sequence-to-sequence/word_to_ix.png)
 
 So now we got the two dictionaries ready. The next step is pretty simple: we will loop through the sequences and replace every word in each sequence by its corresponding index number. And also remember that we're only putting 10000 words with highest frequencies into the vocabulary set, which also means that our network will actually learn words from that vocabulary set only. So here comes the question: What happens to the other words and how can we converse them to numeric values? That's where the word **UNK** makes sense. It stands for "Unknown words", or it's sometimes called **OOV**, which means "Out Of Vocabulary". So, for words which are not in the vocabulary set, we will simply assign them as "UNK". And as you may guess, they will all have the same index value.
 
@@ -151,17 +163,25 @@ for i, sentence in enumerate(X):
             X[i][j] = X_word_to_ix['UNK']
 {% endhighlight %}
 
+And here's what we obtained. Obviously, our sequences don't contain any "ZERO", so the converted sequences only contain numbers from \\(1\\) (which are the associated indexes of words in the sequences).
+
 ![index_sequence](/images/projects/sequence-to-sequence/index_sequence.png)
 
-- Zero padding
+And now we got an array of sequences which all elements are numeric values instead of raw words. In the next step, we will use Keras' **pad_sequences** method to pad zeros into our sequences, so as all the sequences will have a same length. I told you about zero padding above, so there's not much left to talk here, I think.
+
 {% highlight python %}
-X = pad_sequences(X, maxlen=X_max_len, dtype='uint8')
-y = pad_sequences(y, maxlen=y_max_len, dtype='uint8')
+X = pad_sequences(X, maxlen=X_max_len, dtype='int32')
+y = pad_sequences(y, maxlen=y_max_len, dtype='int32')
 {% endhighlight %}
+
+And here's what our sequences looks like, after zero padded.
 
 ![zero_pad_index_sequence](/images/projects/sequence-to-sequence/zero_pad_index_sequence.png)
 
-- Vectorization
+As you could see from the image above, what **pad_sequences** method did is just add additional \\(0\\) to each sequence, to make all the sequences have a same length with the longest one. So it's very important that the original sequences don't contain any \\(0\\). That's the reason why we must add the word **ZERO** to the beginning of the index-to-word array, so that the index of every word in the vocabulary set is not \\(0\\). If we don't, and have some word with index \\(0\\) instead, then our network won't be able to decide whether that \\(0\\) is padded zero, or index of a particular word. And it will definitely lead to a really bad learning.
+
+So we now got a new array of sequences which all the lengths are the same. But it still can't be understand by the network. Concretely, we have to do a final processing step called vectorization:
+
 {% highlight python %}
 sequences = np.zeros((len(word_sentences), max_len, len(word_to_ix)))
 for i, sentence in enumerate(word_sentences):
@@ -169,16 +189,24 @@ for i, sentence in enumerate(word_sentences):
         sequences[i, j, word] = 1.
 {% endhighlight %}
 
+Explaining the process of vectorization (especially in terms of NLP) is kind of tedious, so I think it's better help you guys have a visualization of it. I'm quite sure you will get it just by having a look at the image below. A picture is worth a thousand words!
+
 ![vectorization](/images/projects/sequence-to-sequence/vectorization.png)
 
-- Create encoder network
+So, we have finished the toughest part and got our training data ready. Phew! You'd better take a break, we all deserve it!
+
+In the next step, we will create the **encoder** network. Since we need to compute only a single vector from the input sequences, the **encoder** network is pretty simple, just a network with a single hidden layer is far from enough.
+
+But wait! What the heck is **Embedding**, you may probably ask. In fact, we are supposed to input directly the vectorized array from above step into some kind of recurrent neural network like LSTM or vanilla RNN. But what we're gonna do is slightly different. We will vectorize only the output sequences, and leaving the zero padded input sequences unchanged. Then, we will put that input sequences into a special layer called **Embedding** first. Remember that you don't necessarily use that **Embedding** layer, instead you can just vectorize the input sequences and put it directly to the LSTM layer. Talking further into Word Embedding is beyond the scope of this post. The reason I use that layer is just to obtain a better result, from the fact that the size of vocabulary set is pretty small. I will definitely talk about Word Embedding in the coming post, I promise. For now, you have two choices, and it's all on you.
+
 {% highlight python %}
 model = Sequential()
 model.add(Embedding(X_vocab_len, 1000, input_length=X_max_len, mask_zero=True))
 model.add(LSTM(hidden_size))
 {% endhighlight %}
 
-- Create decoder network
+Next, we will create the **decoder** network, which does the main job. First, we need to repeat the single vector outputted from the **encoder** network to obtain a sequence which has the same length with the output sequences. The rest is similar to the **encoder** network, except that the **decoder** will be more complicated, which we will have two or more hidden layers stacked up. For ones who are not familiar with Recurrent Neural Networks and how to create them using Keras, please refer to my previous post from the link in the beginning of this post.
+
 {% highlight python %}
 model.add(RepeatVector(y_max_len))
 for _ in range(num_layers):
@@ -190,9 +218,10 @@ model.compile(loss='categorical_crossentropy',
             metrics=['accuracy'])
 {% endhighlight %}
 
-- Traing the seq2seq
+Now we have everything ready. Let's go ahead and train our models. Due to some limitations of memory, I was able to train 1000 sequences, which means 1 batch at a time (with batch size 1000). I still can't find another better solution to this probem. If you guys have some ideas about it, please kindly let me know :)
+
 {% highlight python %}
-for k in range(1, NB_EPOCH+1):
+for k in range(k_start, NB_EPOCH+1):
     indices = np.arange(len(X))
     np.random.shuffle(indices)
     X = X[indices]
