@@ -18,17 +18,17 @@ tags:
   - translator model
 ---
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-Hello guys. It's been quite a long while since my last tutorial blogpost. It may sound like an excuse, but I've been struggling with finding a new place to live. And I had to say, it's a real problem for a foreigner to find a reasonable apartment in Japan. Luckily, I somehow managed to find one, and I have just moved in for nearly a week. Anyway, the hardest time has gone, and now I can get back to work, to bring to you guys new interesting (and maybe boring as usual) blog posts on Deep Learning.
+Hello guys. It's been quite a long while since my last blog post. It may sound like an excuse, but I've been struggling with finding a new place to move into. And I had to say, it's a real problem for a foreigner to find a reasonable apartment in Japan. Luckily, I somehow managed to find one, and I have just moved in for nearly two weeks. Anyway, the toughest time has gone, and now I can get myself back to work, to bring to you guys new interesting (and maybe boring as usual) blog posts on Deep Learning.
 
-So, in the last post, I told you about how to create a simple text generator by training a Recurrent Neural Networks. What RNNs differ from normal Neural Networks is, instead of computing the output prediction on each input independently, RNNs compute the output of timestep \\(t\\) using not only the input of timestep \\(t\\), but also involving the input of previous timesteps (say, timestep \\(t-1\\), \\(t-2\\), \\(\dots\\)). 
+So, in my previous blog post, I told you about how to create a simple text generator by training a Recurrent Neural Network model. What RNNs differ from normal Neural Networks is, instead of computing the output prediction on each input independently, RNNs compute the output of timestep \\(t\\) using not only the input of timestep \\(t\\), but also involving the input of previous timesteps (say, timestep \\(t-1\\), \\(t-2\\), \\(\dots\\)). 
 
-As you already saw in my previous post, inputs are sequences of characters, and each output was simply the corresponding input shifted by one character to the right. Obviously, you can see that each pair of input sequence and output sequence has the same length. Then, the network was trained using the famous Harry Potter as training dataset and as a result, the trained model could generate some great J.K. Rowling-alike paragraphs. If you haven't read my previous post yet, please refer to it at the link below (make sure you do before moving on):
+As you already saw in my previous post, inputs are actually sequences of characters, and each output was simply the corresponding input shifted by one character to the right. Obviously, you can see that each pair of input sequence and output sequence has the same length. Then, the network was trained using the famous Harry Potter as training dataset and as a result, the trained model could generate some great J.K. Rowling-style paragraphs. If you haven't read my previous post yet, please take a look at it by the link below (make sure you do before moving on):
 
 [Creating A Text Generator Using Recurrent Neural Network](https://chunml.github.io/ChunML.github.io/project/Creating-Text-Generator-Using-Recurrent-Neural-Network/)
 
 But here comes a big question: What if input sequence and output sequence have different lengths?
 
-You know, there are many types of Machine Learning problems out there where input and output sequences don't necessarily have the exact same lengths. And in terms of Natural Language Processing (or NLP for short), you are more likely to face the problems where the lengths are totally different, not only between each pair of input and output sequence, but also between input sequences themselves! For example, in building a language translation model, each pair of input and output sequence are in different languages, so there's a big chance that they don't have the same length. Moreover, I can bet my life that there is no known language where we can create all sentences with the exact same length! Obviously, that is a really big big problem, because the model I showed you in the last post required all the input and output sequences have the same length. Sounds impossible, huh?
+You know, there are many types of Machine Learning problems out there where input and output sequences don't necessarily have the exact same length. And in terms of Natural Language Processing (or NLP for short), you are more likely to face problems where their lengths are totally different, not only between each pair of input and output sequence, but also between input sequences themselves! For example, in building a language translation model, each pair of input and output sequence are in different languages, so there's a big chance that they don't have the same length. Moreover, I can bet my life that there is no known language where we can create all sentences with the exact same length! Obviously, that is a really big big problem, because the model I showed you in the last post required all the input and output sequences have the same length. Sounds impossible, huh?
 
 The answer is: NO. Big problems only got smart people attracted, and as a result, solved by not only one, but many solutions. Let's go back to our problem. A lot of attempts were made, each of them has its own advantages and disadvantages when compared to others. And in today's post, I will introduce to you one approach which received great attention from NLP community: The Sequence To Sequence Networks (or seq2seq for short), great work by Ilya Sutskever, Oriol Vinyals, Quoc V. Le from Google.
 
@@ -123,11 +123,11 @@ The result may look like below:
 So we just have created the vocabulary set from the input text. In the next step, we will create two dictionaries to map between each word and its index in the vocabulary set, and vice versa.
 
 {% highlight python %}
-# Create an array of words from the vocabulary set, we will use this array as index-to-word dictionary
+# Creating an array of words from the vocabulary set, we will use this array as index-to-word dictionary
 X_ix_to_word = [word[0] for word in X_vocab]
-# Add the special word 'ZERO' to the beginning of the array
+# Adding the word "ZERO" to the beginning of the array
 X_ix_to_word.insert(0, 'ZERO')
-# Add the special word 'UNK' to the end of the array (stands for UNKNOWN word)
+# Adding the word 'UNK' to the end of the array (stands for UNKNOWN words)
 X_ix_to_word.append('UNK')
 {% endhighlight %}
 
@@ -155,6 +155,7 @@ Let's confirm the dictionary we have just created. Once again, make sure the wor
 So now we got the two dictionaries ready. The next step is pretty simple: we will loop through the sequences and replace every word in each sequence by its corresponding index number. And also remember that we're only putting 10000 words with highest frequencies into the vocabulary set, which also means that our network will actually learn words from that vocabulary set only. So here comes the question: What happens to the other words and how can we converse them to numeric values? That's where the word **UNK** makes sense. It stands for "Unknown words", or it's sometimes called **OOV**, which means "Out Of Vocabulary". So, for words which are not in the vocabulary set, we will simply assign them as "UNK". And as you may guess, they will all have the same index value.
 
 {% highlight python %}
+# Converting each word to its index value
 for i, sentence in enumerate(X):
     for j, word in enumerate(sentence):
         if word in X_word_to_ix:
@@ -218,7 +219,7 @@ model.compile(loss='categorical_crossentropy',
             metrics=['accuracy'])
 {% endhighlight %}
 
-Now we have everything ready. Let's go ahead and train our models. Due to some limitations of memory, I was able to train 1000 sequences, which means 1 batch at a time (with batch size 1000). I still can't find another better solution to this probem. If you guys have some ideas about it, please kindly let me know :)
+So we finally got everything ready. Let's go ahead and train our models. Due to some limitations of memory, I was able to train 1000 sequences, which means 1 batch at a time (with batch size 1000). I still can't find another better solution to this probem. If you guys have some ideas about it, please kindly let me know :)
 
 {% highlight python %}
 for k in range(k_start, NB_EPOCH+1):
