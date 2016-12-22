@@ -1,5 +1,5 @@
 ---
-title: "Creating A Sequence To Sequence Learning Model"
+title: "Creating A Language Translation Model Using Sequence To Sequence Learning Approach"
 header:
   teaser: projects/sequence-to-sequence/
 categories:
@@ -53,7 +53,7 @@ So we now know about how to output a sequence from an input of different length.
 
 ![five_sentences](/images/projects/sequence-to-sequence/five_sentences.png)
 
-Here I prepared three sentences and let's imagine that they will be the input sequences to our network. As you could see, three sentences are not equal in length. To make them all equal in length, let's take the length of the longest sentence as the common length, and we only need to add one same word some times to the end of the other two, until they have the same length as the longest one. The added word must not resemble any words in the sentences, since it will cause their meaning to change. I will use the word "ZERO", and here's the result I received:
+Here I prepared three sentences and let's imagine that they will be the input sequences to our network. As you could see, three sentences are not equal in length. To make them all equal in length, let's take the length of the longest sentence as the common length, and we only need to add one same word some times to the end of the other two, until they have the same length as the longest one. The added word must not resemble any words in the sentences, since it will cause their meaning to change. I will use the word **ZERO**, and here's the result I received:
 
 ![ZERO_added](/images/projects/sequence-to-sequence/ZERO_added.png)
 
@@ -62,6 +62,8 @@ You might get this now. And that's why it is called **zero padding**. In fact, w
 We are half way there! We now know all we need to know about the-state-of-the-art Sequence to Sequence Learning. I can't help jumping right into Implementation section. Neither can you, right?
 
 ### Implementation
+
+(You can find the whole source files on my GitHub repository here: [seq2seq](https://github.com/ChunML/seq2seq))
 
 So, now we are here, finally, right in the Implementation section. Working with NLP problems is literally abstract (than what we did in Computer Vision problems, which we could at least have some visualization). Even worse, deep neural network in common is kind of abstract itself, so it seems that thing's gonna get more complicated here. That's the reason why I decided not to dig into details in the previous section, but to explain it along with the corresponding part in the code instead so that you won't find it difficult to understand the abstract terms (at least I think so). And now, let's get your hands dirty!
 
@@ -139,7 +141,7 @@ So here's what the index-to-word array looks like:
 
 ![ix_to_word](/images/projects/sequence-to-sequence/ix_to_word.png)
 
-As I told you above, don't forget to confirm that the word "ZERO" always be the first element before moving to the next step!
+As I told you above, don't forget to confirm that the word **ZERO** always be the first element before moving to the next step!
 
 Our next step is pretty simple which is creating the word-to-index dictionary from the array above, so all we need is just a single line of code!
 
@@ -148,11 +150,11 @@ Our next step is pretty simple which is creating the word-to-index dictionary fr
 X_word_to_ix = {word:ix for ix, word in enumerate(X_ix_to_word)}
 {% endhighlight %}
 
-Let's confirm the dictionary we have just created. Once again, make sure the word "ZERO" is associated with the index 0! After that, we can move on to the next step.
+Let's confirm the dictionary we have just created. Once again, make sure the word **ZERO** is associated with the index 0! After that, we can move on to the next step.
 
 ![word_to_ix](/images/projects/sequence-to-sequence/word_to_ix.png)
 
-So now we got the two dictionaries ready. The next step is pretty simple: we will loop through the sequences and replace every word in each sequence by its corresponding index number. And also remember that we're only putting 10000 words with highest frequencies into the vocabulary set, which also means that our network will actually learn words from that vocabulary set only. So here comes the question: What happens to the other words and how can we converse them to numeric values? That's where the word **UNK** makes sense. It stands for "Unknown words", or it's sometimes called **OOV**, which means "Out Of Vocabulary". So, for words which are not in the vocabulary set, we will simply assign them as "UNK". And as you may guess, they will all have the same index value.
+So now we got the two dictionaries ready. The next step is pretty simple: we will loop through the sequences and replace every word in each sequence by its corresponding index number. And also remember that we're only putting 10000 words with highest frequencies into the vocabulary set, which also means that our network will actually learn words from that vocabulary set only. So here comes the question: What happens to the other words and how can we converse them to numeric values? That's where the word **UNK** makes sense. It stands for "Unknown words", or it's sometimes called **OOV**, which means "Out Of Vocabulary". So, for words which are not in the vocabulary set, we will simply assign them as **UNK**. And as you may guess, they will all have the same index value.
 
 {% highlight python %}
 # Converting each word to its index value
@@ -164,7 +166,7 @@ for i, sentence in enumerate(X):
             X[i][j] = X_word_to_ix['UNK']
 {% endhighlight %}
 
-And here's what we obtained. Obviously, our sequences don't contain any "ZERO", so the converted sequences only contain numbers from \\(1\\) (which are the associated indexes of words in the sequences).
+And here's what we obtained. Obviously, our sequences don't contain any **ZERO**, so the converted sequences only contain numbers from \\(1\\) (which are the associated indexes of words in the sequences).
 
 ![index_sequence](/images/projects/sequence-to-sequence/index_sequence.png)
 
@@ -238,3 +240,16 @@ for k in range(k_start, NB_EPOCH+1):
         model.fit(X[i:i_end], y_sequences, batch_size=BATCH_SIZE, nb_epoch=1, verbose=2)
     model.save_weights('checkpoint_epoch_{}.hdf5'.format(k))
 {% endhighlight %}
+
+At the time of writing, the model is on its third day of learning and everything seems promising. I will continue to update the result, maybe after letting it learn for two or three days!
+
+### Summary
+
+So, in today's blog post, I have talked about the incapability of normal RNN networks to deal with complicated NLP problems, where sequences differ in length. And through a project of creating an English-Finnish Language Translating Model, I also introduced to you a solution to this big problem by using Sequence To Sequence Learning Approach. It's just a simple experiment, so obviously, there are many places that you can improve. Feel free to play with the model and modify it for your own purposes.
+
+After all, language modeling is a quite complicated problem, I think, and so is Sequence To Sequence Approach. For that reason, I don't expect you to fully understand the idea behind it just by reading this blog post (I myself can't say that I fully understand it, either!). So I recommend you to take not just one look at the paper, but to read it many times to grab a better understanding. And just don't forget that we can always discuss here to help each other learn better. Hope you all enjoy my post, and I'm gonna see you guys soon, on my next post.
+
+### Reference
+
+* Ilya Sutskever, Oriol Vinyals and Quoc V. Le. [Sequence to Sequence Learning with Neural Networks](https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf)
+* Keras Addition RNN (Sequence to Sequence Learning based implementation) [addition_rnn](https://github.com/fchollet/keras/blob/master/examples/addition_rnn.py)
