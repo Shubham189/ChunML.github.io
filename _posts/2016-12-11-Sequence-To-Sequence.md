@@ -1,7 +1,7 @@
 ---
 title: "Creating A Language Translation Model Using Sequence To Sequence Learning Approach"
 header:
-  teaser: projects/sequence-to-sequence/
+  teaser: projects/sequence-to-sequence/repeated_vector.png
 categories:
   - Project
 tags:
@@ -24,7 +24,7 @@ So, in my previous blog post, I told you about how to create a simple text gener
 
 As you already saw in my previous post, inputs are actually sequences of characters, and each output was simply the corresponding input shifted by one character to the right. Obviously, you can see that each pair of input sequence and output sequence has the same length. Then, the network was trained using the famous Harry Potter as training dataset and as a result, the trained model could generate some great J.K. Rowling-style paragraphs. If you haven't read my previous post yet, please take a look at it by the link below (make sure you do before moving on):
 
-[Creating A Text Generator Using Recurrent Neural Network](https://chunml.github.io/ChunML.github.io/project/Creating-Text-Generator-Using-Recurrent-Neural-Network/)
+* [Creating A Text Generator Using Recurrent Neural Network](https://chunml.github.io/ChunML.github.io/project/Creating-Text-Generator-Using-Recurrent-Neural-Network/)
 
 But here comes a big question: What if input sequence and output sequence have different lengths?
 
