@@ -53,7 +53,7 @@ So we now know about how to output a sequence from an input of different length.
 
 ![five_sentences](/images/projects/sequence-to-sequence/five_sentences.png)
 
-Here I prepared three sentences and let's imagine that they will be the input sequences to our network. As you could see, three sentences are not equal in length. To make them all equal in length, let's take the length of the longest sentence as the common length, and we only need to add one same word some times to the end of the other two, until they have the same length as the longest one. The added word must not resemble any words in the sentences, since it will cause their meaning to change. I will use the word **ZERO**, and here's the result I received:
+Here I prepared five sentences (they were actually from a great song of Twenty One Pilots, link provided at Reference) and let's imagine that they will be the input sequences to our network. As you could see, three sentences are not equal in length. To make them all equal in length, let's take the length of the longest sentence as the common length, and we only need to add one same word some times to the end of the other two, until they have the same length as the longest one. The added word must not resemble any words in the sentences, since it will cause their meaning to change. I will use the word **ZERO**, and here's the result I received:
 
 ![ZERO_added](/images/projects/sequence-to-sequence/ZERO_added.png)
 
@@ -253,3 +253,4 @@ After all, language modeling is a quite complicated problem, I think, and so is 
 
 * Ilya Sutskever, Oriol Vinyals and Quoc V. Le. [Sequence to Sequence Learning with Neural Networks](https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf)
 * Keras Addition RNN (Sequence to Sequence Learning based implementation) [addition_rnn](https://github.com/fchollet/keras/blob/master/examples/addition_rnn.py)
+* The sentences above were from Heathens, an addicting song of Twenty One Pilots which I kept repeating recently. Watch it here: [Heathens](https://www.youtube.com/watch?v=UprcpdwuwCg)
