@@ -241,7 +241,7 @@ for k in range(k_start, NB_EPOCH+1):
     model.save_weights('checkpoint_epoch_{}.hdf5'.format(k))
 {% endhighlight %}
 
-At the time of writing, the model is on its third day of learning and everything seems promising. I will continue to update the result, maybe after letting it learn for two or three days!
+At the time of writing, the model is on its third day of learning and everything seems promising. I will continue to update the result, maybe after letting it learn for four or five more days!
 
 ### Summary
 
