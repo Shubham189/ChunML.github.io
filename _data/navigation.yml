@@ -15,6 +15,15 @@ main:
 posts:
   - title: Most Popular
     children:
+      - title: "■ Creating a language translation model"
+        url: /project/Sequence-To-Sequence/
+        
+      - title: "■ Creating a text generator with RNNs"
+        url: /project/Creating-Text-Generator-Using-Recurrent-Neural-Network/
+        
+      - title: "■ Running Faster R-CNN on Ubuntu"
+        url: /project/Running-Faster-RCNN-Ubuntu/
+        
       - title: "■ Installing Caffe on Ubuntu 16.04"
         url: /project/Installing-Caffe-Ubuntu/
         
