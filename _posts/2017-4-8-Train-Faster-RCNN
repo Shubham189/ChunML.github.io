@@ -1,0 +1,21 @@
+---
+title: "How To Prepare Data And Train Your Own Faster R-CNN Model"
+header:
+  teaser: projects/train-faster-rcnn/TBD.png
+categories:
+  - Project
+tags:
+  - machine-learning
+  - deep-learning
+  - caffe
+  - faster r-cnn
+  - faster rcnn
+  - gpu
+  - training
+  - data preparation
+  - object detection
+---
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+Hi guys! So I've been away for three months to do a project for my company, and unfortunately, in another prefecture. During that time, I received quite a lot of comments from you guys abou what I wrote before. Some said that my blog posts did help them a lot and told me to keep writing.
+To be honest, I was really really happy to hear that. And as long as my blog can be helpful, I will continue to write more and more posts (hope that they will be useful, too).
+Besides, I also received comments from you guys about the problems you came across while you were following my instructions. And I'm so sorry that I was so messed up with my work that I couldn't be any helpful (although I said I would try to help).
