@@ -32,3 +32,9 @@ In case you have a PC with GPU, which is strongly recommended... No, it's not ju
 
 So now let's suppose you have successfully compiled and run the demo file. Next we will talk about how to make one step further: to train your own model.
 
+### Train Faster R-CNN with PASCAL VOC 2007 dataset
+
+One problem we may face when it comes to train Faster R-CNN is that the data preparation is somehow tiresome. So, it's a good idea to start training using the well-known PASCAL VOC datasets.
+The first reason is, the PASCAL VOC datasets contain everything we need: the images and all associated annotations. The second reason is, PASCAL VOC datasets were officially used in Object Detection/Localization challenges to evaluate competitors' model, and of course, Faster R-CNN is among those, so the source code provided by its authors is, obviously enough, implemented to use PASCAL VOC dataset (version 2007) by default.
+It means that using PASCAL VOC dataset, we can start to train the model without having to modify a single line of code! After make sure that the training code actually works, we can make further steps to train our own dataset.
+
