@@ -38,3 +38,12 @@ One problem we may face when it comes to train Faster R-CNN is that the data pre
 The first reason is, the PASCAL VOC datasets contain everything we need: the images and all associated annotations. The second reason is, PASCAL VOC datasets were officially used in Object Detection/Localization challenges to evaluate competitors' model, and of course, Faster R-CNN is among those, so the source code provided by its authors is, obviously enough, implemented to use PASCAL VOC dataset (version 2007) by default.
 It means that using PASCAL VOC dataset, we can start to train the model without having to modify a single line of code! After make sure that the training code actually works, we can make further steps to train our own dataset.
 
+So, how can we train the Faster R-CNN using PASCAL VOL dataset? If you have read through the README file on Ross Girshick's py-faster-rcnn repository (link [here](https://github.com/rbgirshick/py-faster-rcnn) in case you want to take a look), you might already see his instructions on how to do that. But anyway, I will rewrite the necessary steps here, with some more details.
+
+First, you need to download the PASCAL VOC dataset. We're gonna use the version used in 2007 as pointed by the README file, other versions work well, of course:
+
+```shell
+wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtrainval_06-Nov-2007.tar
+wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar
+wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCdevkit_08-Jun-2007.tar
+```
