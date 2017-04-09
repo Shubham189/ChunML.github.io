@@ -64,9 +64,35 @@ cd $FasterRCNN # Remember that all scripts must be executed from the root folder
 ./data/scripts/fetch_imagenet_models.sh
 {% endhighlight %}
 
-It's gonna take another while, so please be patient. After the models are downloaded, you can start to train the Faster R-CNN right away:
+It's gonna take another while, so please be patient. After the models are downloaded, you can start to train the Faster R-CNN right away. Let's see how to do this:
 
+{% highlight Bash shell scripts %}
+cd $FasterRCNN
+./experiments/scripts/faster_rcnn_alt_opt.sh [GPU_ID] [NET] [--set ...]
+# GPU_ID is the GPU you want to train on
+# NET in {ZF, VGG_CNN_M_1024, VGG16} is the network arch to use
+# --set ... allows you to specify fast_rcnn.config options, e.g.
+#   --set EXP_DIR seed_rng1701 RNG_SEED 1701
+{% endhighlight %}
 
+Above is the instruction I grabbed on Ross's Faster R-CNN repository. We can see that we must provide some necessary parameters in order to execute the train command, such as GPU's id (which is usually 0 if you have only one GPU), the pre-trained model to use (ZF or VGG16).
+But that's just not enough. If you run the command below:
 
+{% highlight Bash shell scripts %}
+cd $FasterRCNN
+./experiments/scripts/faster_rcnn_alt_opt.sh 0 VGG16
+{% endhighlight %}
 
+Then an error will occur, telling you that you're missing the data specification. Of course, you can easily read the script to know the appropriate parameter, but I'll save you some time by showing you the right command right below:
+
+{% highlight Bash shell scripts %}
+cd $FasterRCNN
+./experiments/scripts/faster_rcnn_alt_opt.sh 0 VGG16 pascal_voc
+{% endhighlight %}
+
+The training process should be running now, here's the screenshot of mine:
+
+![pascal_train](/images/projects/train-faster-rcnn/pascal_train.png)
+
+If you made it till this step, then congratulations! We're now ready to move to the next step: to train Faster R-CNN models using our own set of data.
 
