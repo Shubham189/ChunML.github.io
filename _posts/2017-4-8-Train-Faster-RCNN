@@ -40,10 +40,33 @@ It means that using PASCAL VOC dataset, we can start to train the model without 
 
 So, how can we train the Faster R-CNN using PASCAL VOL dataset? If you have read through the README file on Ross Girshick's py-faster-rcnn repository (link [here](https://github.com/rbgirshick/py-faster-rcnn) in case you want to take a look), you might already see his instructions on how to do that. But anyway, I will rewrite the necessary steps here, with some more details.
 
-First, you need to download the PASCAL VOC dataset. We're gonna use the version used in 2007 as pointed by the README file, other versions work well, of course:
+First, you need to download the PASCAL VOC dataset. We're gonna use the version used in 2007 as pointed by the README file, other versions work well, of course. You can download to some specific folder, then create a symlink from Faster R-CNN data folder just like Ross's instruction. But in this post, for sake of simplicity, I will download directly to Faster R-CNN's *data* folder:
 
-```shell
-wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtrainval_06-Nov-2007.tar
-wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar
-wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCdevkit_08-Jun-2007.tar
-```
+{% highlight Bash shell scripts %}
+cd $FasterRCNN/data #FasterRCNN is the root folder where you cloned py-faster-rcnn
+wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtrainval_06-Nov-2007.tar && wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar && wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCdevkit_08-Jun-2007.tar
+{% endhighlight %}
+
+I recommend that you put all the download command together like above, so that they will be executed one after another while you can go take a nap :)
+
+Alright, it's gonna take a while for the download to finish. When the process is done, just go ahead and untar all of them:
+
+{% highlight Bash shell scripts %}
+tar xvf VOCtrainval_06-Nov-2007.tar
+tar xvf VOCtest_06-Nov-2007.tar
+tar xvf VOCdevkit_08-Jun-2007.tar
+{% endhighlight %}
+
+Next, we're gonna need the pre-trained models (in this case the ZF and VGG16 models). I assume that you have at least read the paper of Faster R-CNN twice, to understand briefly the idea behind their experiment. They didn't train from scratch, of course. No one wants global warming to get any worse, right? :)
+
+{% highlight Bash shell scripts %}
+cd $FasterRCNN # Remember that all scripts must be executed from the root folder of Faster R-CNN
+./data/scripts/fetch_imagenet_models.sh
+{% endhighlight %}
+
+It's gonna take another while, so please be patient. After the models are downloaded, you can start to train the Faster R-CNN right away:
+
+
+
+
+
