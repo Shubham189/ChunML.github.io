@@ -71,7 +71,7 @@ Next, we will install Tensorflow, let's suppose we are working on a CPU-only Win
 (tensorflow_windows)>pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/windows/cpu/tensorflow-1.1.0-cp35-cp35m-win_amd64.whl
 ```
 
-It couldn't have been simpler, right? Now, let's go ahead if Tensorflow is installed properly:
+It couldn't be simpler, right? Now, let's go ahead if Tensorflow is installed properly:
 
 ```
 (tensorflow_windows)>python
