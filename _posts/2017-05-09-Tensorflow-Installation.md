@@ -98,9 +98,9 @@ Well, it's a real headache if you want to install Keras into Windows machine. Bu
 
 Meanwhile, on other machines, that doesn't work (like the PC I'm using right now). The reason is, Keras requires SciPi, a library built on top of Numpy (and of course, for numerical computational optimization purposes), and sometimes, it has some problem with MKL, an optimization library from Intel. So what we're gonna do is, instead of installing Numpy and SciPy using native pip, we will download and install from customized wheel files. The download files' URLs are below:
 
-Remember to select the right one, which has *cp35* in its name!
-Numpy: (http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy)
-SciPy: (http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy)
+Remember to select the right one, which has *cp35* in its name!  
+Numpy: http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy  
+SciPy: http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy
 
 After downloading the two files, navigate to your download folder, and install them like this:
 
