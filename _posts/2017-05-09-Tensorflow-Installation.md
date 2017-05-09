@@ -14,7 +14,6 @@ tags:
   - note
 ---
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-
 Hello everyone, it's been a long long while, hasn't it? I was busy fulfilling my job and literally kept away from my blog. But hey, if this takes any longer then there will be a big chance that I don't feel like writing anymore, I suppose. So it might not be a bad idea to just make some simple posts (some kind of implementation note like the one I'm writing right now), until life becomes easier, right?
 
 That's enough talking. Let's get down to business. Today I'm gonna talk about some of my implementation notes when working with Tensorflow, not Tensorflow tutorial exactly :)
