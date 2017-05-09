@@ -1,7 +1,7 @@
 ---
 title: "Tensorflow Implementation Note: Installing Tensorflow and Keras on Windows"
 header:
-  teaser: projects/
+  teaser: projects/tensorflow-install/tensorflow_logo.png
 categories:
   - Project
 tags:
@@ -51,7 +51,7 @@ So if you use a Windows machine, I recommend that you stick with Anaconda to man
 
 After Anaconda is completely installed, it will provide you a customized command prompt (called Anaconda Prompt), where you can run Python shell with ease, and it understands some Linux commands too!
 
-![Anaconda Prompt]()
+![Anaconda Prompt](/images/projects/tensorflow-install/anaconda_prompt.PNG)
 
 So for now, let's get started. Firstly, you need to create a Python 3.5 environment in order to install Tensorflow:
 
@@ -90,7 +90,48 @@ b'Hello, Guys!'
 That's it. Now you have Tensorflow installed on your machine and you can start your first Tensorflow-based project. But I suggest that you keep reading. Yeah, I guess you don't want to miss out Keras, right?
 
 * Keras installation (Windows):
-Well, it's a real headache if you want to install Keras into Windows machine. But I highly recommend that! Having a framework built on top of Tensorflow will help your work become much easier.
+Well, it's a real headache if you want to install Keras into Windows machine. But I highly recommend that! Having a framework built on top of Tensorflow will help your work become much easier. On some machines, you can install Keras with just two commands like below:
 
+```
+(tensorflow_windows)>conda install mingw libpython
+(tensorflow_windows)>pip install keras
+```
 
+Meanwhile, on other machines, that doesn't work (like the PC I'm using right now). The reason is, Keras requires SciPi, a library built on top of Numpy (and of course, for numerical computational optimization purposes), and sometimes, it has some problem with MKL, an optimization library from Intel. So what we're gonna do is, instead of installing Numpy and SciPy using native pip, we will download and install from customized wheel files. The download files' URLs are below:
 
+Remember to select the right one, which has *cp35* in its name!
+Numpy: (http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy)
+SciPy: (http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy)
+
+After downloading the two files, navigate to your download folder, and install them like this:
+
+```
+(tensorflow_windows)>pip install numpy‑1.11.3+mkl‑cp35‑cp35m‑win_amd64.whl
+(tensorflow_windows)>pip install scipy‑0.19.0‑cp35‑cp35m‑win_amd64.whl
+```
+
+And for now, we can install Keras:
+
+```
+(tensorflow_windows)>pip install --upgrade keras
+```
+
+The installation should go smoothly without any error. Let's go ahead and check if it works properly:
+
+```
+(tensorflow_windows)>python
+>>> from keras import backend
+>>> print(backend._BACKEND)
+```
+
+The output would be something like this:
+
+```
+tensorflow
+```
+
+Then we are done!
+
+### Summary
+
+That's it for today. It may not be an informative post as you expected, but I hope you guys, especially Windows users can now install Tensorflow and Keras on Windows with no more annoying errors. So, get your hands dirty and begin your journey with Tensorflow! And see you next time.
