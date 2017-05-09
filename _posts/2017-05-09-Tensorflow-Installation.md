@@ -36,14 +36,14 @@ Still can't find it attracting? You can find more on Google and Youtube for more
 
 For Unix users, there shouldn't be any problems installing both Tensorflow and Keras, I believe, if you follow the instructions on their pages. Just one thing: Tensorflow has two seperate versions for CPU-only and GPU-accelerated PC, so don't download the wrong one, or you will end up in trouble!
 
-* Tensorflow installation:
+* **Tensorflow installation:**
 [Tensorflow installation](https://www.tensorflow.org/install/)
-* Keras installation:
+* **Keras installation:**
 [Keras installation](https://keras.io/#installation)
 
 For Windows users, installing Tensorflow can be done with ease, just like on Linux machine, you can install Tensorflow just by one single command. But it's a little bit tricky, though.
 
-* Tensorflow installation (Windows):
+* **Tensorflow installation (Windows):**  
 There's a couple of ways to install Tensorflow, as you can find here: [Tensorflow installation](https://www.tensorflow.org/install/install_windows). But there's a tiny problem: Tensorflow only works with Python 3.5.x on Windows, so as you might guess, other versions won't work. Well, you're not wrong.
 
 So if you use a Windows machine, I recommend that you stick with Anaconda to manage Python versions as well as its dependencies (you can use the native **pip** along with Anaconda too). To install Anaconda, please visit their [Windows install](https://docs.continuum.io/anaconda/install-windows).
@@ -88,7 +88,7 @@ b'Hello, Guys!'
 
 That's it. Now you have Tensorflow installed on your machine and you can start your first Tensorflow-based project. But I suggest that you keep reading. Yeah, I guess you don't want to miss out Keras, right?
 
-* Keras installation (Windows):
+* **Keras installation (Windows):**  
 Well, it's a real headache if you want to install Keras into Windows machine. But I highly recommend that! Having a framework built on top of Tensorflow will help your work become much easier. On some machines, you can install Keras with just two commands like below:
 
 ```
@@ -98,9 +98,9 @@ Well, it's a real headache if you want to install Keras into Windows machine. Bu
 
 Meanwhile, on other machines, that doesn't work (like the PC I'm using right now). The reason is, Keras requires SciPi, a library built on top of Numpy (and of course, for numerical computational optimization purposes), and sometimes, it has some problem with MKL, an optimization library from Intel. So what we're gonna do is, instead of installing Numpy and SciPy using native pip, we will download and install from customized wheel files. The download files' URLs are below:
 
-Remember to select the right one, which has *cp35* in its name!  
-Numpy: http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy  
-SciPy: http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy
+(Remember to select the right one, which has *cp35* in its name!)  
+ * Numpy: http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy  
+ * SciPy: http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy
 
 After downloading the two files, navigate to your download folder, and install them like this:
 
