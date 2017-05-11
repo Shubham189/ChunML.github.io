@@ -91,14 +91,25 @@ That's it. Now you have Tensorflow installed on your machine and you can start y
 
 * **Keras installation (Windows):**  
 
-Well, it's a real headache if you want to install Keras into Windows machine. But I highly recommend that! Having a framework built on top of Tensorflow will help your work become much easier. On some machines, you can install Keras with just two commands like below:
+Well, it's a real headache if you want to install Keras into Windows machine. But I highly recommend that! Having a framework built on top of Tensorflow will help your work become much easier. 
+
+The least tedious way to install Keras (as some of you might have done) requires just two commands like below:
 
 ```
 (tensorflow_windows)>conda install mingw libpython
 (tensorflow_windows)>pip install keras
 ```
 
-Meanwhile, on other machines, that doesn't work (like the PC I'm using right now). The reason is, Keras requires SciPi, a library built on top of Numpy (and of course, for numerical computational optimization purposes), and sometimes, it has some problem with MKL, an optimization library from Intel. So what we're gonna do is, instead of installing Numpy and SciPy using native **pip**, we will download and install from customized wheel files. The download files' URLs are below:
+But I hardly recommend it! As with Theano, installing Keras like above may result in trouble since the version to be installed is usually not up-to-date with the latest version of Tensorflow. So rather than the ones above, here's the recommended commands:
+
+```
+(tensorflow_windows)>conda install mingw libpython
+(tensorflow_windows)>pip install --upgrade keras
+```
+
+**--upgrade** flag will ensure that you install the latest version of Keras. But guess what, that's where the trouble comes from! The installation should be aborted, and you will see am error telling you that **scipy** failed to install.
+
+The reason is, Keras requires SciPi, a library built on top of Numpy (and of course, for numerical computational optimization purposes), and sometimes, it has some problem with MKL, an optimization library from Intel. So what we're gonna do is, instead of installing Numpy and SciPy using native **pip**, we will download and install from customized wheel files. The download files' URLs are below:
 
 (Remember to select the right one, which has **cp35** in its name!)  
  * Numpy: http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy  
