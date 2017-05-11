@@ -107,7 +107,7 @@ But I hardly recommend it! As with Theano, installing Keras like above may resul
 (tensorflow_windows)>pip install --upgrade keras
 ```
 
-**--upgrade** flag will ensure that you install the latest version of Keras. But guess what, that's where the trouble comes from! The installation should be aborted, and you will see an error telling you that **scipy** failed to install.
+**\-\-upgrade** flag will ensure that you install the latest version of Keras. But guess what, that's where the trouble comes from! The installation should be aborted, and you will see an error telling you that **scipy** failed to install.
 
 The reason is, Keras requires SciPi, a library built on top of Numpy (and of course, for numerical computational optimization purposes), and sometimes, it has some problem with MKL, an optimization library from Intel. So what we're gonna do is, instead of installing Numpy and SciPy using native **pip**, we will download and install from customized wheel files. The download files' URLs are below:
 
