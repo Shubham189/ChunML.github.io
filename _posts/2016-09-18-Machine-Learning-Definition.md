@@ -31,6 +31,17 @@ which make human's brain know it just saw a dog. Wait a minute, did I just say F
 
 I know you're excited now. Ready to move on? So what about Label? Well, it's much simpler than the Feature. Label is a name of guys who have specific features. So we call guy who have four legs, one black nose, one long tongue and one long tail a DOG. Well, I just can't make it simpler. So what about the other guys? At this time, I just call them "Not a dog". Maybe you will ask me why I don't make it more specific, just like "a Cat", "a Bird" or something. You will have the answer when we come to Logistic Regression. Oh my God, please don't care about that name. I'll remind you when the time is up. So please stay patient :) There is a lot of fun ahead, I promise.
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 So I've talked about Features and Labels, but what to do next? Remember when we were kids, our parents bought us some picture books? Then we spent days after days, kept pointing in and speak out loud names of things we saw, with so much pride. Omg, my parents must be so patient with me back in the day. So what the hell does the childhood's story make sense here? Well, we will do exactly what our parents did. We show them images, a large amount of them, just like this:
 
 ![Image_3](/images/tutorials/what-is-machine-learning/3.jpg)
