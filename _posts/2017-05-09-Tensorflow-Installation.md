@@ -53,6 +53,17 @@ After Anaconda is completely installed, it will provide you a customized command
 
 ![Anaconda Prompt](/images/projects/tensorflow-install/anaconda_prompt.PNG)
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 So for now, let's get started. Firstly, you need to create a Python 3.5 environment in order to install Tensorflow:
 
 ```
@@ -127,6 +138,17 @@ And for now, we can install Keras:
 ```
 (tensorflow_windows)>pip install --upgrade keras
 ```
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 The installation should go smoothly without any error. Let's go ahead and check if it works properly:
 
