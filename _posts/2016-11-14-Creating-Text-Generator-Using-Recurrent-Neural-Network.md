@@ -24,6 +24,17 @@ not uncertain that even Harry had taken in black tail as the train roared and wa
 
 Does it sound similar? Yeah, you may recognize J. K. Rowling's style in the paragraph above. That's because I trained the Model using the famous Harry Potter series! Do you feel excited and want to create something of your own? Just keep reading, a lot of fun is waiting ahead, I promise!
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 Many of you may know about Recurrent Neural Networks, and many may not, but I'm quite sure that you all heard about Neural Networks. We have already seen how Neural Networks can solve nearly all Machine Learning problems no matter how complicated they are. And because to fully understand how Neural Networks work does require a lot of time for reading and implementing by yourself, and yet I haven't made any tutorials on them, it's nearly impossible to write it all in this post. So it'd be better to leave them for some future tutorials and make it easy this time by looking at the picture below instead. 
 
 ![neural_network](/images/projects/creating-text-generator-using-recurrent-neural-network/neural_network.png)
@@ -41,6 +52,17 @@ The explanation of Recurrent Neural Networks such as what they are, how they wor
 * [The Unreasonable Effectiveness of Recurrent Neural Networks by Andrej Karpathy](http://karpathy.github.io/2015/05/21/rnn-effectiveness/){:target="_blank"}
 
 And because the fact that there are already many great posts on Recurrent Neural Networks, I will only talk briefly about some points which confused me, and may confuse you too, I think.
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 ### Vanilla RNN
 
@@ -110,6 +132,17 @@ $$
 
 That's all I want to tell you about RNNs and LSTMs. I suggest that you read the three articles above for better understanding about how they work. And now let's jump into the most interesting part (I think so): the Implementation section!
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 ### Implementation
 
 As I mentioned earlier in this post, there are quite a lot of excellent posts on how Recurrent Neural Networks work, and those guys also included the implementations for demonstration. Actually, because they wrote code for teaching purpose, reading the codes does help understanding the tutorials a lot. But I must say that it may hurt, especially if you don't have any experience in Theano or Torch (Denny wrote his code in Theano and Andrej used Torch). I want to make it easy for you, so I will show you how to implement RNN using Keras, an excellent work from François Chollet, which I had a chance to introduced to you in my previous posts.
@@ -150,6 +183,17 @@ chars
 ['I',' ', 'h', 'a', 'v', 'e', 'd', 'r', 'm', '.']
 {% endhighlight %}
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 As you could see, every element in *char* array only appears once. So the *data* array contains all the examples, and the *chars* array acts like a features holder, which we then create two dictionaries to map between indexes and characters:
 
 {% highlight python %} 
@@ -183,6 +227,17 @@ for i in range(0, len(data)/SEQ_LENGTH):
 {% endhighlight %}
 
 The code is not difficult to understand at all, but make sure you take a look before moving on.
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 **2. Create the Network**
 
@@ -223,6 +278,17 @@ while True:
         model.save_weights('checkpoint_{}_epoch_{}.hdf5'.format(HIDDEN_DIM, nb_epoch))
 {% endhighlight %}
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 **4. Generate text**
 
 Last but not least, I want to talk a little about the method to generate text. We begin with some random character and use the trained Model to predict the next one. Then we append the predicted character into the input, and have the Model predict the next one, which is the third character. We continue the process until we obtain a sequence with the length we want (500 characters by default). It's just that simple!
@@ -255,6 +321,17 @@ I created the Network with three LSTM layers, each layer has 700 hidden states, 
 > "What about this thing, you shouldn't," Harry said to Ron and Hermione.  "I have no furious test," said Hermione in a small voice.
 
 To be honest, I was impressed by what the Model can generate. After leaving it a while for learning, as you could see, not only it can generate nearly perfect English words, but it also learned the structures, which means it capitalizes the first letter after period, it knows how to use the quotation marks, etc. And if I don't tell you anything about RNNs, you may think (even I do too!) that the paragraphs above were written by somebody. So, it's now your turn to train your own Network using the dataset of your own choice, and see what you achieve. And if you find the result interesting, please let me know by dropping me a line below!
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 ### Summary
 
