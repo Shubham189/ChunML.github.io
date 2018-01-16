@@ -34,6 +34,17 @@ Now, let's get down to business. In today's post, I will mainly tell you about t
 
 So, I will go straight to each part right below.
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 **1. Downloading your data**  
 I think there's a lot of ways which everyone of you managed to get your own dataset. If your dataset has been already placed on your hard disk, then you can skip the **Downloading** section and jump right into the **Preparing** section. Here I'm assuming that you do not have any dataset of your own, and you're intending to use some dataset from free sources like ImageNet or Flickr or Kaggle. Then it's likely that: you can directly download the dataset (from sources like Kaggle), or you will be provided a text file which contains URLs of all the images (from sources like Flickr or ImageNet). The latter seems to be harder, but don't worry, it won't be that hard.
 
@@ -46,6 +57,17 @@ This kind of download is quite easy. Here I will use the **Dogs vs. Cats** datas
 As you could see above, it's great if every dataset was zipped and provided directly to developers. But in fact, due to the copyright of the images (as well as other data types), providing data that way isn't simple, especially when we talk about an extremely large dataset like ImageNet. So data providers have another way, which is providing you the URLs only, and you will have to access to the image hosts yourself to download the data. I will use a very famous site for example, which is ImageNet, the site which holds the annual ILSVRC. You can read more about ILSVRC [here](http://www.image-net.org/challenges/LSVRC/){:target="_blank"}.
 
 First, let's go to the ImageNet's URLs download page: [Download Image URLs](http://image-net.org/download-imageurls){:target="_blank"}. All you need to know to get the URLs is something called **WordNet ID** (or **wnid**). You can read more about ImageNet's dataset and WordNet to grab some more details because this post will be too long if I explain it here. To make it simple right now, ImageNet uses WordNet's synset, such as *n02084071*, *n02121620* which represents *dogs* and *cats* respectively, to name its classes. To find out what the synset of a particular noun, just access [Noun to Synset](http://www.image-net.org/synset?wnid){:target="_blank"}, then search for any noun you want, then you will see the corresponding synset. 
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 Once you knew the synset, you can download the URLs by going to this page:  
 http://www.image-net.org/api/text/imagenet.synset.geturls?wnid=[wnid], which *[wnid]* is the synset of the object you want to download data for. For example, let's use two synsets above, to download the URLs of the Dogs and Cats images of ImageNet:
@@ -73,6 +95,17 @@ mkdir DogsCats
 sudo cp finetune_flickr_style/* DogsCats/*
 {% endhighlight %}
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 What we just did, is to create the neccessary folders for storing the script (*./examples/DogsCats*) and the images (*./data/DogsCats), then we copied the script to download Flickr's images to our new folder. Obviously, we have to make some changes in order to make it work properly, just some minor changes.
 
 First, let's go to *./examples/DogsCats* folder, unzip the *flickr_style.csv.gz* to get a CSV file named *flickr_style.csv*. Open it up, take a look at the file. There are five columns but just three of them are actually used: *image_url*, *label* and *_split*. The *image_url* column stores all the URLs to all the images, the *label* column stores the label values, and the *_split* column tells whether each image is used for training or evaluating purpose.
@@ -91,6 +124,17 @@ So, we have done with the CSV file, let's go ahead and modify the Python script 
 cd examples/DogsCats
 sudo vim assemble_data.py
 {% endhighlight %}
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 First, let's replace all the phrase *data/finetune_flickr_style* with *data/DogsCats. That value tells where to store the downloaded images, so we have to point to our new created folder. Next, make some changes like below:
 
@@ -111,6 +155,17 @@ python assemble_data.py
 It will take a while for the script to run. Note that many of the URLs are inaccessible at the time of writing, since many of them were added quite so long ago. So if you notice that the number of downloaded images is not equal to the number of URLs, don't be confused.
 
 As soon as the script finished running, then your images are all stored on your drive. So now your dataset is ready for the next stage!
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 **2. Preparing the data before training**  
 So we just managed to have the desired dataset stored on your hard disk. And believe me or not, we have just completed the most time-consuming task! Before we can train our Network using the data we have just downloaded, there's some things we need to do. First, we need to convert the downloaded images into the format that the Networks can read. In fact, the Networks in Caffe accepts not just one kind of input data. As far as I know, there are three different ways to prepare our images so that the Networks can read them, and I'm gonna tell you about two of them: normal format and LMDB format. And second, we need to provide one special image called *the mean image*. Okay, let's get into each of them.
@@ -168,6 +223,17 @@ Then, all you have to do is to execute the Python script you have just created a
 python examples/DogsCatsKaggle/create_kaggle_txt.py
 {% endhighlight %}
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 Now let's jump into *./data/DogsCatsKaggle*, you will see *train.txt* and *test.txt* has been created. And that's just it. We have finished creating the two mapping files for *Dogs vs Cats* dataset from Kaggle!
 
 So, what about the Dogs and Cats images from ImageNet? Well, you may want to take a look at *./data/DogsCats*. Voila! When were the two files created? - You may ask. They were created when you ran the script to download the images! So with ImageNet's dataset, you don't have to create the mapping files yourself. That was great, right? Now we got the images, the mapping text files ready, there's only one step left to deal with the data: create the *mean image*.
@@ -189,6 +255,17 @@ $$
 $$
 
 So, above I just showed you a short explanation about one type for Data Normalization, which subtracting by the mean value to get a new dataset with zero mean. I will talk more about Data Normalization in future post. Now, how do we compute the mean image? As you may guess, of course Caffe provides some script to deal with some particular dataset. And we're gonna make use of it with some modifications! But before we can compute the mean image, we must convert our images into *LMDB* format first.
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 * Converting data into LMDB format
 
@@ -235,6 +312,17 @@ Next, let's go ahead and run the script above:
 
 It will take a while for the conversion to complete. After the process completes, take a look at *./examples/DogsCatsKaggle* folder, you will see two new folders which are named *dogscatskaggle_train_lmdb* and *dogscatskaggle_val_lmdb*, and new LMDB files were placed inside each folder, created from the training data and test data respectively.
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 * Making the mean image
 
 After creating LMDB files, making the mean image is no other than one last simple task to complete. All we have to do is to copy and apply some tiny changes into the script which computes the mean image.
@@ -261,6 +349,17 @@ And, only one last command to execute:
 {% endhighlight %}
 
 And that's it. Let's go into *./data/DogsCatsKaggle* folder, you will see one new file called *dogscatskaggle_mean.binaryproto*, which means that the mean image was created successfully!
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 **3. Training with your prepared data**  
 So now you nearly got everything ready to train the Network with the data prepared by yourself. The last thing is, of course, the Network! At this time, you may want to create a Network of your own, and train it using the data above (of your own, too!). But I recommend you try some available Networks which is provided by Caffe, some of which are very famous such as VGG16 or AlexNet. Let's pick AlexNet for now since it's quite simpler than VGG16, which will make it train faster. We need to create one new folder and copy the necessary files for Network definition. And for your information, Caffe uses the *protobuf* format to define the Networks, which you can read for details here: [Protocol Buffers](https://developers.google.com/protocol-buffers/){:target="_blank"}.
@@ -326,6 +425,17 @@ layer {
 }
 {% endhighlight %}
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 And there's only one place left to change: the output layer. Let's look through the file to find the layer named *fc8*, that's the last layer of our Network. It now has 1000 outputs because it was created to train on full ImageNet's images. Let's change the number of output according to our dataset:
 
 {% highlight vim %}
@@ -349,6 +459,3 @@ Our Network should be running flawlessly now. And all we have to do is wait unti
 ### Summary
 
 So in today's post, I have shown you how to train the Network in Caffe, using your own dataset. We went through from how to download the data from URLs file (or directly from host), how to prepare the data to be read by the Network and how to make change to the Network to make it work using our dataset. As you could see, it was not so hard, but it did require some time to dig into. I hope this post can save you quite some of your previous times, and instead, you can spend them on improving your Network's performance. And that's all for today. Thank you for reading such a long post. And I'm gonna see you again in the coming post!
-
-
-
