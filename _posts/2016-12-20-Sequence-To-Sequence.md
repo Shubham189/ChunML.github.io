@@ -28,6 +28,17 @@ As you already saw in my previous post, inputs are actually sequences of charact
 
 But here comes a big question: What if input sequence and output sequence have different lengths?
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 You know, there are many types of Machine Learning problems out there where input and output sequences don't necessarily have the exact same length. And in terms of Natural Language Processing (or NLP for short), you are more likely to face problems where their lengths are totally different, not only between each pair of input and output sequence, but also between input sequences themselves! For example, in building a language translation model, each pair of input and output sequence are in different languages, so there's a big chance that they don't have the same length. Moreover, I can bet my life that there is no known language where we can create all sentences with the exact same length! Obviously, that is a really big big problem, because the model I showed you in the last post required all the input and output sequences have the same length. Sounds impossible, huh?
 
 The answer is: NO. Big problems only got smart people attracted, and as a result, solved by not only one, but many solutions. Let's go back to our problem. A lot of attempts were made, each of them has its own advantages and disadvantages when compared to others. And in today's post, I will introduce to you one approach which received great attention from NLP community: The Sequence To Sequence Networks (or seq2seq for short), great work by Ilya Sutskever, Oriol Vinyals, Quoc V. Le from Google.
@@ -60,6 +71,17 @@ Here I prepared five sentences (they were actually from a great song of Twenty O
 You might get this now. And that's why it is called **zero padding**. In fact, what I did above is not exactly zero padding, and we will likely implement it differently. I'll tell you more in the Implementation section. For now, all I wanted to do is just to help you understand zero padding without any hurt.
 
 We are half way there! We now know all we need to know about the-state-of-the-art Sequence to Sequence Learning. I can't help jumping right into Implementation section. Neither can you, right?
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 ### Implementation
 
@@ -101,6 +123,17 @@ where α, β, γ is the translation of a, b, c. This way, a is in close proximit
 β, and so on, a fact that makes it easy for SGD to “establish communication” between the input and
 the output. We found this simple data transformation to greatly boost the performance of the LSTM.
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 If you noticed the graph I drew above, you would have some doubt about the order of the input sequence. Yeah, as you might guess, the order of the input sequence is reversed before going into the network. And that's the reason why I added **[::-1]** to reverse the sequence split from the raw text. So, the final input sequences look like below:
 
 ![reverse_sequences](/images/projects/sequence-to-sequence/reverse_sequences.png)
@@ -134,6 +167,17 @@ X_ix_to_word.append('UNK')
 {% endhighlight %}
 
 With the vocabulary set we created above, it's pretty easy to create an array to store only the words, and eliminate their frequencies of occurrence (we don't need that information after all). But you may wonder, we were supposed to create some kind of dictionary here in order to convert each index to its associated word, and now what I told you to create is an array. Well, since we want to create the index-to-word dictionary, and we can access any element of an array through its index, it's better just to create a simple array instead of a dictionary where keys are all indexes! I'm sure you get that now.
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 Next, we will need to add two special words. As I mentioned earlier, we need a word called **ZERO** in order to make all sequences have the exact same length, and another word called **UNK**, which stands for **unknown words** or **out of vocabulary** in order to represent words which are not in the vocabulary set. There's nothing special with the word "UNK", which we can just append it to the end of the index-to-word array. But I want you to pay attention to the word "ZERO", **it must be the element of index 0**! You will understand why as we move on to the next steps.
 
@@ -183,6 +227,17 @@ And here's what our sequences looks like, after zero padded.
 
 As you could see from the image above, what **pad_sequences** method did is just add additional \\(0\\) to each sequence, to make all the sequences have a same length with the longest one. So it's very important that the original sequences don't contain any \\(0\\). That's the reason why we must add the word **ZERO** to the beginning of the index-to-word array, so that the index of every word in the vocabulary set is not \\(0\\). If we don't, and have some word with index \\(0\\) instead, then our network won't be able to decide whether that \\(0\\) is padded zero, or index of a particular word. And it will definitely lead to a really bad learning.
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 So we now got a new array of sequences which all the lengths are the same. But it still can't be understand by the network. Concretely, we have to do a final processing step called vectorization:
 
 {% highlight python %}
@@ -220,6 +275,17 @@ model.compile(loss='categorical_crossentropy',
             optimizer='rmsprop',
             metrics=['accuracy'])
 {% endhighlight %}
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 So we finally got everything ready. Let's go ahead and train our models. Due to some limitations of memory, I was able to train 1000 sequences, which means 1 batch at a time (with batch size 1000). I still can't find another better solution to this probem. If you guys have some ideas about it, please kindly let me know :)
 
