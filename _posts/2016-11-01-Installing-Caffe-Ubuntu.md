@@ -42,6 +42,17 @@ sudo apt-get update
 sudo apt-get upgrade
 {% endhighlight %}
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 Type the password if prompted. When the process completes, let's install all the necessary packages:
 
 {% highlight Bash shell scripts %}
@@ -75,6 +86,17 @@ And of course, a powerful module for dealing with arrays, Numpy:
 {% highlight Bash shell scripts %}
 pip install numpy
 {% endhighlight %}
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 In the next step, let's download OpenCV 3.0 and its contribution modules:
 
@@ -120,6 +142,17 @@ python
 
 If you got a result like above, then OpenCV 3.0 was successfully installed on your machine. If something goes wrong, try to do it all over again, this time make sure that you don't miss any line above. If you still can't make it work, please let me know by dropping me a line below. I'll be glad to help.
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 Unlike the previous post, I will skip the installation of Keras this time, and focus on installing Caffe instead. If you want to install Keras, please give the link above a look.
 
 So now we have OpenCV 3.0 successfully installed. Next we will continue with Caffe. I'm assuming that you have at least one GPU installed. If you don't, please refer to the post below:
@@ -146,6 +179,17 @@ After the download process completes, let's extract the downloaded file (assumin
 cd ~/Downloads
 tar -xvf cudnn-7.0-linux-x64-v4.0-prod.tgz
 {% endhighlight %}
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 In the next step, you just have to copy the two extracted folders to where CUDA was installed, which is most likely at */usr/local/cuda*:
 
@@ -200,6 +244,17 @@ LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/
 
 If you went through my post about installing Caffe in CPU_ONLY mode before, then all the modifications above should sound familiar with you. If you didn't, you might want to take a look at that post to know why we have to make those changes. The only difference with what we did in the previous post is, instead of uncommenting the *CPU_ONLY := 1* line, we uncomment the *USE_CUDNN := 1* to take advantage of cuDNN.
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 At this point, we can go through the compilation of Caffe without any error:
 
 {% highlight Bash shell scripts %}
@@ -229,6 +284,17 @@ python
 {% endhighlight %}
 
 If it don't show any import error, then Congratulations, you have just successfully installed Caffe. The installation itself was confusing a little, but it didn't require any complicated modifications, so somehow we still made it till the end. We can finally exhale now, lol.
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 ### Comparing the performance between CPU and GPU
 
@@ -266,6 +332,17 @@ And here's the result on my GTX 1070.
 
 The result came out nearly right after I hit Enter. I was really impressed, I admit. Each iteration took only 1.7ms to complete, in which 0.5ms for forward pass and 1.2ms for backpropagation. Let's do some calculation here: the computing time when using GPU is roughly 32 times faster than when using CPU. Hmm, not so bad, you may think. 
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 Because MNIST dataset is pretty small in size, which each example is just a 28x28 grayscale image, and it contains only 70000 images in total, the CPU still can give us an acceptable performance. Also note that in order to make use of the power of GPU, our computer has to take some times to transfer data to the GPU, so with small dataset and simple Network, the difference between the two may not be easily seen.
 
 Let's go ahead and give them a more challenging one.
@@ -295,6 +372,17 @@ And the result I had with my GTX 1070:
 ![cifar_gpu](/images/projects/installing-caffe-ubuntu/cifar10_gpu.png)
 
 Look at the result above. Unlike the significant decrease in performance as we saw when running on CPU, my GTX 1070 still brought me an impressive computing speed. It took only 11ms on one iteration, in which 3ms for forward pass and 8ms for backpropagation. So when running on CIFAR-10 dataset, the GPU really did outperform the CPU, which computed 48 times faster. Imagine you are working with some real large dataset in real life such as ImageNet, using GPU would save you a great deal of time (let's say days or even weeks) on training. The faster you obtain the result, the more you can spend on improving the Model. That's also the reason why Neural Network, especially Deep Neural Network, has become the biggest trend in Machine Learning after long time being ignored by the lack of computing power. Obviously not only nowadays, but Deep Neural Network will continue to grow in the future.
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 ### Summary
 
