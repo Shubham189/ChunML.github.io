@@ -56,6 +56,17 @@ To make it more concrete, let's see the image below:
 
 Yeah, at least the computer can now distinguish between a Dog and a Crab. Wait! It doesn't know about a Crab, at this point it only know the second image is NOT a Dog. Okay, whatever, though. It gets better someday, definitely.
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 ### When we talk about Machine Learning, we talk about Features, Labels, Activations, and ...
 
 So up to this point, I assume that you can draw your own sketch about what Machine Learning actually is, what Machine Learning actually does (or be done). Quite simple right? Then I have something for you:
