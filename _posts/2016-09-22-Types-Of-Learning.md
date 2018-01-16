@@ -37,6 +37,17 @@ So, based on Input types, we can divide Machine Learning into three categories l
 First, as you may know (in fact I think you don't even care), that I'm currently living in Japan (I'm not Japanese, though). When I tried to learn some Machine Learning's vocabularies in Japanese, I discovered some couple of interesting things. One of those is Supervised Learning term. Why am I telling you this? Because I think it may help you understand this term easily. They call it "Learning with a teacher" in Japanese. Does it make some sense to you? When your parents sat by your side and taught you each picture was about, they acted just like you teachers. When you tried to learn for you SAT or GMAT, it was not you who learned by yourselves! Where did you get those vocabularies from? From your teachers? From you instruction books? Doesn't matter, at least you learned from some sources. Or I can say, you were learning under the supervision of something. It means you knew what were right and what were wrong at the time you were learning.
 Everything is exactly the same in Machine Learning, Supervised Learning indicates that the computer knows whether it made a right guess or not, using the Label along with each Feature. Remember the Dog Recognition example on the previous post? Yep, it used the Labels to evaluate its work. So, whenever you see a Machine Learning problem where Labels provided along with Features, that's definitely Supervised Learning.
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 ### Unsupervised Learning
 Obviously, Unsupervised Learning is the opposite of Supervised Learning. It means that you will be given a mess of Features without any Labels on them. So it doesn't make any sense here, you may suppose. How can the computer actually learn without knowing whether it's doing right? A picture is worth of thousand words. Let me show you:
 
@@ -52,6 +63,17 @@ I just simply made them all Blue! So what's the computer supposed to do now? As 
 (Of course, actually it can't be always the same! Imagine that the computer will also have a group for things with two-leg features, two-swing features (for birds' images); a group for things with no-leg features, long-tongue features (for snakes' images) and so on. That's because Unsupervised Learning is not limited by the Input Labels, so the result may vary depending on how the computer learns)
 
 It may be too long to write all about these two types of Learning. Actually in this tutorial, I will mainly focus on Supervised Learning because it's very common, not only on research but also in real life projects. And via Supervised Learning you will understand the algorithms much faster, much deeper without hurting your enthuasiasm.
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 ### Reinforcement Learning
 To be honest, I rarely talk about something I don't know much about. Actually at the time of writing, I'm just in the beginning of my research on Reinforcement Learning. So for the sake of simplicity, Reinforcement Learning is the learning through the interaction with Environment. Supervised Learning and Unsupervised Learning are not. Why are they not? Remember the way they actually learn? We give them a set of Input for them to learn from. And they use what they learned from that Input to make predictions (another way of saying "Guess", I guess). So the way they predict depends entirely on the Input they learn from. We may see the disadvantage here, right?
