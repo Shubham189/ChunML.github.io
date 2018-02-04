@@ -1,7 +1,7 @@
 ---
 title: "Installing NVIDIA Docker"
 header:
-  teaser: projects/install-nvidia-docker/docker-logo.png
+  teaser: projects/installing-nvidia-docker/docker-logo.png
 categories:
   - Project
 tags:
