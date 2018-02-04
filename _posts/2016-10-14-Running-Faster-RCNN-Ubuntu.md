@@ -19,6 +19,17 @@ In my previous posts, I have done a project Real-time Object Recognition (you ca
 
 So it came to my next mission that I have to find a way to deal with Object Detection. Of course I knew some of them before, but what I wanted is something which applied Convolutional Neural Network. Among some great papers people had done out there, I chose Faster R-CNN.
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 In today's post, I have no intention to talk about how Faster R-CNN works. I just leave it for a future post, when I finish my task. Today I am just going to talk about how to compile and run Faster R-CNN on Ubuntu - in CPU Mode. And if you ever wonder why I am doing this post although I can find a great deal of tutorials on the net, the answer is: just like Caffe in CPU Mode, compiling Faster R-CNN was hard like hell too!
 
 Faster R-CNN was originally implemented in MATLAB, but they also provided a Python reimplementation code (phew!). So let's grab it from GitHub:
@@ -60,6 +71,17 @@ Extension('nms.gpu_nms',
     include_dirs = [numpy_include, CUDA['include']]
 ),
 {% endhighlight %}
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 To this:
 
@@ -103,6 +125,17 @@ cd ../caffe-fast-rcnn
 Similar to what we did with **caffe** before, this time we are likely to make some change to the *Makefile* files. But actually, they are just files which tell the compile how to compile things (like where to look for include files, library files, etc), so we can re-use our old *Makefile* which we have already modified. In case you haven't had a look at my old post yet, you can find it here: [Installing Caffe on Ubuntu](https://chunml.github.io/ChunML.github.io/project/Installing-Caffe-CPU-Only/){:target="_blank"}.
 
 So what we are gonna do is going to where we placed **caffe**, copy the *Makefile* and *Makefile.config* files, and paste them into the *caffe-fast-rcnn* folder.
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 But even after we did that, there is still one tiny change we have to make, let's open the *Makefile.config* file, uncomment the line below:
 
@@ -166,6 +199,17 @@ That is it. We should now be able to run the demo project now. So let's do it:
 ./tools/demo.py --cpu
 {% endhighlight %}
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 Note that you must provide the *--cpu* flag to tell it to run in CPU Mode. It will take a while to run, because it will process all images before outputting the results (in my case it took approximately 22s per image). The output should look like this:
 
 ![3](/images/projects/running-faster-rcnn-ubuntu/3.png)
@@ -174,10 +218,19 @@ Note that you must provide the *--cpu* flag to tell it to run in CPU Mode. It wi
 
 So, I have shown you how to compile and run the demo code of Faster R-CNN. It was not so hard especially if you experienced the *caffe* installation before. I will be glad if you find this post helpful. And even if you followed all the instructions above but you still couldn't make it through the frustrating errors, don't hesitate to leave me a comment below, I will help you as soon as possible, I promise!
 
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 And as I promised above, I will do some posts related to my current work using Faster R-CNN, and I will tell you more about Faster R-CNN too. So stay tuned! I'll be back.
 
 *Reference*:  
 Faster R-CNN GitHub page: https://github.com/rbgirshick/py-faster-rcnn
-
-
-
