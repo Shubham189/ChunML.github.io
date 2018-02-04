@@ -203,3 +203,5 @@ So I've just walked through the first part of the Real time Object Recognition p
 </script>
 
 That's all for part 1. Hope you enjoy it. In part 2, I will continue with real time object recognition through continuous input from camera. So stay updated and I'll see you there.
+
+You can find the second part of this post here: [Real Time Object Recognition (Part 2)](https://chunml.github.io/ChunML.github.io/project/Real-Time-Object-Recognition-part-two/){:target="_blank"}.
