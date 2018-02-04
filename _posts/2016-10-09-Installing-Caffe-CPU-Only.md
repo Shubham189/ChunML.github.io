@@ -17,6 +17,17 @@ First, to tell you guys the truth, I had no intention to write this post. You kn
 
 Remember I told you about how to prepare your AWS g2.x2large instance for Machine Learning? You can have a look at this post [here](https://chunml.github.io/ChunML.github.io/project/Prepare-AWS-Instance/){:target="_blank"}. I recommended you to use AWS's instance because of the fact that most of us can't afford a proper desktop to run Machine Learning stuff. But of course it is always a good idea to set things up similarly on your local machine. Why? Because we can do all the coding on your machine (like configure your network architecture, or test if your codes can be compiled without errors, etc), and just leave the heavy tasks for the GPU instance. It would help you save some money.
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 With that thought, I decided to install Caffe on my laptop. And guess what? It took me almost a whole working day to finish! What a shame, I thought. But soon I realize how experienced I became after struggling with it. You know, I should have been spending my Saturday wandering around with my guys without thinking a damn thing about Machine Learning related stuff. But I didn't regret a little bit, not even a little bit. Because at least I got it done. And I'm here to share my experience with all you guys.
 
 My laptop is running on Ubuntu 16.04, with OpenCV 3.0.0 installed. The other versions of Ubuntu should work as well, because it is the Caffe and the necessary dependencies matter, not the Ubuntu version.
@@ -28,6 +39,17 @@ First, Caffe does require a lot of necessary dependencies to make it work. And e
 As you may be recommended by other sites that you should use *Anaconda*, one distribution of Python which can self-manage packages installation. I am not saying that *Anaconda* is bad. In fact I used it a lot in the past, when I had very little experience in Python package installation. It did help me do most of the installing things.
 
 So what is the problem? In my case, having both Python and Anaconda installed caused some kind of a mess, and Caffe struggled with finding the appropriate libraries it needed. Note that Anaconda itself is a completely seperate Python distribution, which means I had two version of Python installed in my machine!
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 So I decided to remove *Anaconda* from my disk to try some luck. And guess what? The problem was **SOLVED**! So the first thing I want you to try is: if you have both Python and Anaconda installed, try to remove *Anaconda* first.
 
@@ -83,6 +105,17 @@ OPENCV_VERSION := 3
 # PYTHON_LIB := $(ANACONDA_HOME)/lib
 {% endhighlight %}
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 Now you got everything ready. Let's make it:
 
 {% highlight Bash shell scripts %}
@@ -124,6 +157,17 @@ And note that the postfixes of *hdf5* and *hdf5_hl* are not always the same. In 
 
 After doing that, try *make all* again, this time there should be no more errors!
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 Next, we will run two other commands:
 
 {% highlight Bash shell scripts %}
@@ -143,7 +187,18 @@ Next step is optional but I highly recommend because we are using Python for our
 make pycaffe
 {% endhighlight %}
 
-Here, most of your machine will compile without error. But someone may see some error like below (I did too).
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+Here, most of your machines will compile without error. But someone may see some error like below (I did too).
 
 {% highlight Bash shell scripts %}
 CXX/LD -o python/caffe/_caffe.so python/caffe/_caffe.cpp
@@ -189,6 +244,17 @@ python
 >>>
 {% endhighlight %}
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 But we are not done yet. Caffe provides us some examples of the most well-known models. We will use the LeNet model to train the MNIST dataset. Everything was already set up. All we have to do is just make it work:
 
 {% highlight Bash shell scripts %}
@@ -227,6 +293,17 @@ Well, that's OK. We just have to apply a tiny fix to the file *examples/mnist/le
 It will take a while to finish the training (maybe long since we are using CPU). When it completes, you may see something like this:
 
 ![Training](/images/projects/installing-caffe-cpu-only/training.png)
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 Your result may vary but we will likely achieve an accurary value of approximately 99%. Congratulations again! Caffe is now working perfectly on your machine!
 
