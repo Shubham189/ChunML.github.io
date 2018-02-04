@@ -15,6 +15,17 @@ So, I am here with you again, in the new post of Machine Learning tutorial serie
 
 In this post, I am assuming that you are using a computer running on Linux based OS (like Ubuntu, Red Hat, ect). For ones who are sticking to Windows, I am so sorry. I will write a post for Windows users soon.
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 We will install OpenCV for Computer Vision, and Keras (Theano backend) for Machine Learning. I will make it short and clear, just to make sure that you will have a working environment, without spending so much time on struggling with unknown errors.
 
 **1. INSTALL OPENCV**
@@ -54,6 +65,17 @@ In the next step, we will need to install *virtualenv* and *virtualenvwrapper*, 
 sudo pip install virtualenv virtualenvwrapper
 {% endhighlight %}
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 To make *virtualenv* work, we will have to apply these lines to our *~/.bashrc* by typing *sudo vim ~/.bashrc* (I prefer Vim, you can use whatever you want). Then add these lines to the end of the file:
 
 {% highlight Bash shell scripts %}
@@ -82,6 +104,17 @@ pip install numpy
 {% endhighlight %}
 
 **Note that you can not add *sudo* all the time. Because *sudo* means that you are execute as *superuser*, it will install directly into your system environment, not the virtual environment!**
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 Next, we will download **OpenCV**, then checkout to *3.0.0* branch:
 
@@ -132,6 +165,17 @@ python
 
 If you see the output like above, then Congratulations! You have successfully installed OpenCV! 
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 **2. INSTALL KERAS**
 
 Now let's move on to install Keras. Actually we will almost use the *scikit-learn* library, not Keras in the near future, but Keras is not so hard to install, so I decided to add it here so that I won't have to make another post for Keras.
@@ -179,8 +223,18 @@ Using Theano backend.
 
 If you had the exact output as above, then Congratulations again! Wait... what if you didn't, but received *Using TensorFlow backend* error instead. Well, sometimes Keras fails to choose the right backend, and you must do it manually. But don't worry, it should be just a piece of cake!
 
-All you have to do is modify the file *~/.keras/keras.json*, replace 'TensorFlow' with 'Theano', then try to test it again. It should work just fine!
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
+All you have to do is modify the file *~/.keras/keras.json*, replace 'TensorFlow' with 'Theano', then try to test it again. It should work just fine!
 
 So now you have installed all you need for learning Computer Vision and Machine Learning. Great job guys! It was not as hard as you imagined right?
 
