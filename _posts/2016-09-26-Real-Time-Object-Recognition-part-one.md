@@ -18,6 +18,17 @@ It was sometime in 2015, I watched a demo video from a startup company in Japan.
 My thought then? "That was impossible. How did they do that?"
 I kept questioning myself for a while. I just couldn't get it out of my mind. But unfortunately, because my first thought was "That was impossible", or at least "That was impossible to me", I gave it up, left the mystery unrevealed.
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 It was not until I paid serious attention to Machine Learning that I somehow made the mystery become clear. As I was working around with Convolutional Neural Network, then I suddenly thought of the mystery I gave up one year ago. I mean, that was really exciting and crazy. (Feels like Mission 6 accomplished to me, lol)
 
 Seems like a pretty long beginning (I didn't mean to write a preface for my book or something, though). So I am here to share my work. In fact, it was not something impresssive (especially when comparing to outstanding projects out there). But I really hope this post can help, especially for ones who have enthusiasm in Machine Learning and once came accross something like me before.
@@ -30,6 +41,17 @@ Writing it all in one post may hurt, so I separate this project into two parts l
 * Part 2: Real time object recognition through input from camera
 
 Before I begin, let's talk a little bit about how Machine Learning works. I had post about what Machine Learning exactly is, and how it exactly works here: [What is Machine Learning?](https://chunml.github.io/tutorial/Machine-Learning-Definition/){:target="_blank"}
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 The main part of any Machine Learning system, is the Model. It contains the algorithms and all the associated parameters. A good Model will produce a good prediction. Because of that, the training process (i.e. the process which produces the Model) can be heavily computational and take a lot of resources (you know, RAM and memories to store the parameters).
 
@@ -47,6 +69,17 @@ args = vars(ap.parse_args())
 files = [os.path.join(args["folder"], f) for f in os.listdir(args["folder"])]
 random.shuffle(files)
 {% endhighlight %}
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 As written in the code above, I passed the folder name, then got the list of file names stored in *files* variable. I shuffled the list for demonstration purpose (you don't want the same order everytime, right?)
 
@@ -79,6 +112,17 @@ image = cv2.imread(file)
 image = image.transpose((2, 0, 1))
 {% endhighlight %}
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 I prefer the second approach, you will understand why when we come to the second part of this project.
 
 Next, we need to add one more dimension to the array obtained above. Why we have to do that? If you have experience with Neural Network, you may find the term *mini_batch* similar. The additional dimension will tell the Model the number of input arrays (for example, you have 70,000 data, so you need to pass an array with shape (70000, depth, width, height) for the Model to run on, let's say SGD or RMSprop or something).
@@ -103,6 +147,17 @@ preds = model.predict(image)
 {% endhighlight %}
 
 Let's talk a little bit about ImageNet's image database (the database on which VGG16 was trained). It was organized according to WordNet hierarchy (you can find more details [here](http://wordnet.princeton.edu/){:target="_blank"}). But the predicting result is always numerical (Neural Network only works with numerical labels), so we have to map between the numerical result, and the noun provided by WordNet.
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 Once again, François Chollet provided a method to do that: decode_predictions method. It simply map the predicted result with a JSON file, and return the associated noun instead. Here's what the JSON file looks like:
 
@@ -135,5 +190,16 @@ Here are some results I got from my test images:
 ![Image_2](/images/projects/real-time-object-recognition/2.jpg)
 
 So I've just walked through the first part of the Real time Object Recognition project. You may think that it's not a big deal anyway. But in my opinion, it did help a lot in visualizing some real work on Object Recognition using Convolutional Neural Network. Just implementing the code to use the model may not take you some months to work on, but importantly, it now doesn't seem like magic anymore.
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 That's all for part 1. Hope you enjoy it. In part 2, I will continue with real time object recognition through continuous input from camera. So stay updated and I'll see you there.
