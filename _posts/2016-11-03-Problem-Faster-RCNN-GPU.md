@@ -26,11 +26,33 @@ And as you can guess, the next thing I did right after having Caffe installed on
 
 * [Compiling and Running Faster R-CNN on Ubuntu (CPU Mode)](https://chunml.github.io/ChunML.github.io/project/Running-Faster-RCNN-Ubuntu/){:target="_blank"}
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MyPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2103500933"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 Obviously, once you are able to run Faster R-CNN in CPU Mode, making it work with GPU may not sound like a big deal. Why? Because you had successfully installed Caffe, which means you had gone through all the most confusing steps to get CUDA and cuDNN libraries ready. But to tell the truth, I failed to, on the first try!
 
 It was a shock to me, which took me a while to overcome. Then I soon realized that, it's all on me now because it was me who built my own machine. So I had no choice, but to figure it out myself. And after just more than one hour, the problem was solved. The problem always looks harder than it's supposed to be. I've been taught that simple thing so many times in my life, and I just kept forgetting about it. And that's also the reason why I'm writing this post, to share with you some experience to deal with this kind of troubles.
 
 Let's start from the beginning. I was so excited to get everything ready right after installing Ubuntu, so I immediately jumped into installing Caffe without any consideration. And as you may guess, I grabbed all in the latest version, which means that at first, I installed cuDNN v5.1 to CUDA installation folder.
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 Things worked just right with Caffe, until it came to Faster R-CNN. To make it more clear, I downloaded the latest Python implementation of Faster R-CNN from their GitHub as before:
 
@@ -55,6 +77,17 @@ make -j8 && make pycaffe
 And I received some unexpected result, like below:
 
 ![cudnn5_error](/images/projects/problem-faster-rcnn-gpu/cudnn5_error.png)
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MyPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2103500933"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 Obviously, as the errors were self-explained, there was something wrong with the cuDNN v5.1 library. Did I just say *v5.1*? That was all my bad, since I forgot that Faster R-CNN is still **incompatible** with cuDNN v5.1. This wouldn't happen if I considered carefully before installing cuDNN. But that was an easy fix, since it seemed like replacing with *cuDNN v4* helps fix the problem. So I gave that thought a try. The installation of cuDNN v4 is exactly same as cuDNN v5.1 so I omit it from here.
 
@@ -87,6 +120,17 @@ And here's the result I had, nothing seems to go wrong, I guessed:
 ![cudnn4_no_image](/images/projects/problem-faster-rcnn-gpu/cudnn4_no_image.png)
 
 To tell the truth, I think I'm a very patient guy. So I just left it there for a while. "So, where are all the images?", I nearly talked to the screen. The reason why I couldn't stay calm is that, this time there were no errors shown, and no images came out to screen, either. It took me another while to admit that something was going wrong somewhere, and I had to figure it out. Since we ran the *demo.py* file, then looking at that file first may help find something.
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 Since I had read the paper of Faster R-CNN before, so it was somehow easy to understand what each part of the code is doing. To recap a little bit, as I shown you in the previous post, here's the result we want to see:
 
@@ -142,6 +186,17 @@ Demo for data/demo/004545.jpg
 Detection took 0.051s for 172 object proposals
 {% endhighlight %}
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MyPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2103500933"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 The model used for demo file was fine-tuned so that it can classify 20 classes, plus one *background* class, so we have 21 classes in total. Let's look at the result of the first image. The algorithm proposed 300 object regions (or we can say 300 rectangles can be drawn at max), and the corresponding scores had the shape of (300, 21). It means that each proposal, the algorithm computed all 21 probabilities for all classes. And we will base on those probabilities to decide which class it belongs to.
 
 Now let's look at the first part which I highlighted above. What it's doing is getting the first probability which is greater than the threshold value (it was set to 0.5 this time). So, let's print out the probabilities to see why it couldn't get through the *if* condition which followed:
@@ -173,11 +228,33 @@ The result was like below. I was totally speechless.
 
 So I got to go through such a long way, to find out the place which may cause the problem. And thanks to the CPU, or I have to say: I had to make use of the CPU to be sure whether I got it right. Anyway, at least I knew that the compilation was successfully got through. And, the problem is likely from the GPU. Wait, what? The most expensive part of the machine caused the problem? That was ridiculous, I thought. But I couldn't admit that, so I ran into the net right after. The bad news is: yeah, it was caused by the GPU. And the good news? The good news is: the problem happened because the new GPUs don't support cuDNN older than v5. Well, you gotta be kidding me. Caffe doesn't work with cuDNN newer than cuDNN v4, and my GTX 1070 doesn't support cuDNN older than v5. So does it mean that I won't be able to run Faster R-CNN on my machine?
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 Thinking it that way did depress me a lot. But fortunately, it turns out that re-compiling Faster R-CNN without cuDNN help solve it. So I moved on and gave it my last shot. I opened the *Makefile.config*, comment out the *USE_CUDNN* option, then compile it again. After the compilation completes, I ran it again, hoped that it works for me this time:
 
 ![gpu_ok](/images/projects/problem-faster-rcnn-gpu/gpu_ok.png)
 
 It finally worked! That was like you woke up after a nightmare. But it was fantastic! I mean, the feeling when you could finally make things done is hard to express, right?
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MyPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2103500933"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 ### Summary
 
