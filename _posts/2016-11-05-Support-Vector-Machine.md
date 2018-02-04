@@ -20,6 +20,17 @@ Many of you may have heard about the term SVM. For example, if you have experien
 
 > OpenCV provides an Linear SVM Model for People detection
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 And you will likely come across in other places with the same content, which gives us some proof of the irresistible power of SVM. Despite the fact that there are a great deal of supervised learning algorithms out there nowadays, SVM is still among the mostly applied algorithms. And everytime I face a new Machine Learning problem, the first algorithm I apply is SVM, not only for its performance, but also for its speed and easy-to-implement mechanism, which can give me an overview of the problem as fast as I expect.
 
 Above is a brief introduction about SVM. Now let's go finding the anwser for the question we are longing for: What is SVM?
@@ -29,6 +40,17 @@ SVM is a supervised learning algorithm which is mostly used for classification p
 And you may remember that I had made a post about one learning algorithm which can give awesome result when dealing with linear dataset. Yeah, I'm talking about Logistic Regression. So, to have a better understanding about Linear SVM, it's a great idea to recall a little bit about Logistic Regression, and see what they differ from each other. For ones who haven't skimmed through my post about Logistic Regression, you can find it right below:
 
 * [Machine Learning Part 6: Logistic Regression](https://chunml.github.io/ChunML.github.io/tutorial/Logistic-Regression/){:target="_blank"}
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 When we talk about Logistic Regression, we may all think of the sigmoid function, which we use as the activation function. Below is what a sigmoid function looks like:
 
@@ -54,6 +76,17 @@ Not let's consider the graph of each seperate part which I divided above:
 
 ![cost_1](/images/tutorials/support-vector-machine/cost_1.png)
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 As you can see, the \\(cost_1(\theta^TX)\\) term will be very large when \\(\theta^TX\\) is close to zero, and decrease toward zero as the value of \\(\theta^TX\\) increases. What does this mean? Before answering that question, let's consider the other one:
 
 * \\(cost_0(\theta^TX)\\)
@@ -65,6 +98,17 @@ Similar to the \\(cost_1(\theta^TX)\\) above, the \\(cost_0(\theta^TX)\\) term w
 The two terms above were divided from our cost function, which means that their values will be accumulated to the cost function. And our target is to minimize the cost function, you remember that? So, the smaller the two terms are, the smaller the cost function becomes. The smaller the cost function is, the closer our Predictions are comparing to the Label \\(y\\).
 
 Now, let's consider the \\(cost_1(\theta^TX)\\) term. We compute this term only when the corresponding label \\(y=1\\). As we saw in the graph above, when \\(\theta^TX\approx0\\), \\(cost_1(\theta^TX)\\) becomes very large. That is because we now have the probability that our Model predict the label \\(y=1\\) is very small, and may be even worse if it predict the label to be \\(0\\). As the result, the cost function will become large as a penalty. In contrast, if \\(\theta^TX\\) is much greater than \\(0\\), then the probability that \\(y=1\\) will be higher. And as the probability becomes nearly \\(1\\), we will have a nearly \\(0\\) cost value.
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 You can explain the \\(cost_0(\theta^TX)\\) term in the same way. As a conclusion, we will have a result like this:
 
@@ -96,6 +140,17 @@ Now how about saying we want to put more weight on the actual cost value? The an
 
 ![sklearn_reg_c](/images/tutorials/support-vector-machine/sklearn_reg_c.png)
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 With that approach, let's re-write our cost function again, using the inverse of regularization weight \\(\mathbf{C}\\) instead of \\(\lambda\\), here's what we will have:
 
 $$
@@ -113,6 +168,17 @@ And as I told you above about deciding the value of the Predictions by consideri
 ![cost_0_svm](/images/tutorials/support-vector-machine/cost_0_svm.png)
 
 Obviously, as you can see, the two cost terms of Linear SVM looks different from what we saw in Logistic Regression. It the difference in how we define the cost terms in Linear SVM makes it predict in a different way. Telling you about this now may makes you feel confusing a little. But in fact, many cannot tell the difference between Linear SVM and Logistic Regression, since they seem to work the same way. So before I talk further, I think it's good to notice the difference right this time, so you won't make any unexpected assumption.
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 ### Predictions of Linear SVM
 
@@ -141,6 +207,17 @@ from sklearn.svm import SVC
 from sklearn.datasets import make_classification
 import numpy as np
 {% endhighlight %}
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 Next, we will create our data using *make_classification* method:
 
@@ -172,6 +249,17 @@ a = -w[0] / w[1]
 yy= a * xx - (clf.intercept_[0]) / w[1]
 {% endhighlight %}
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 And remember that Linear SVM is different from Logistic Regression by the way it defines the cost terms, which then affects the way it decides the value of our Predictions. Concretely, SVM will tend to keep a safety margin when making Predictions, so we're gonna compute the upper boundary and the lower boundary to help visualize the term **maximum margin** better:
 
 {% highlight python %} 
@@ -197,6 +285,17 @@ And here's the result I received:
 ![maximum_margin](/images/tutorials/support-vector-machine/maximum-margin.png)
 
 As you could see in the graph above, what Linear SVM did is to find a decision boundary which can keep the maximum margins between the nearest point of each class. And that's the reason why SVM is usually called the **maximum margin classifier**. And through implementing Linear SVM as well as drawing both the upper and lower boundaries, I hope you now have a better visualization of what Linear SVM does.
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 ### Summary
 
