@@ -1,5 +1,5 @@
 ---
-title: "Installing NVIDIA Docker"
+title: "Installing NVIDIA Docker On Ubuntu 16.04"
 header:
   teaser: projects/installing-nvidia-docker/docker-logo.png
 categories:
@@ -20,6 +20,17 @@ Hey guys, it has been quite a long while since my last blog post (for almost a y
 When you come across the term **Docker** somewhere, you may feel (just like I did) a little bit confused about what it is, and why we should consider using it.
 That's totally understandable if you are just machine learning enthusiasts like I was before, which you may not need to care about managing resources, setting up development/testing/production environment or something like that.
 But what if you are serious about getting a career in this field, working on some large scale projects with a team? It is likely that you and your guys will end up sharing one "bucky" supermachine (such as DGX-1), rather than using your own machine. Because of that, it will be best if you know about Docker or at least know how to use it!
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 So, what is Docker? I'm not gonna rewrite any kind of long explanation since you can get it from Docker's page. In short (which is why it may not be absolutely precise), Docker is a software which help you create a virtual Linux/Windows environment called **container**, which you can then develop and run applications on.
 
@@ -44,6 +55,17 @@ For a more detailed comparison, you can take a look at this thread on StackOverf
 Last, but not least, what about NVIDIA Docker???
 
 Well, it's a pretty tedious task to get your graphic cards working on virtual machines, and the same thing happens when using Docker too. And then NVIDIA Docker, which is simply a plugin to Docker, came out and turn that task into just a piece of cake! And that's it, even the name explains itself, right?
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 ### Installing NVIDIA docker
 So now you may got some idea about what Docker is, let's get into the most important part: installing NVIDIA Docker.
@@ -124,6 +146,17 @@ Your screen should print out something like below:
 
 ![docker-hello-world](/images/projects/installing-nvidia-docker/docker-hello-world.png)
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 #### Installing NVIDIA docker
 In the next step, we will finish our job by installing NVIDIA docker, which is just a plug in of Docker to help container use the GPUs of the host machine.
 
@@ -166,6 +199,17 @@ Remember that Docker somehow works the same way as VM? It means that in order to
 ![nvidia-docker-test](/images/projects/installing-nvidia-docker/nvidia-docker-test.png)
 
 The command above should print out the information of your host machine's GPU(s) (as the nvidia-smi command usually does).
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 ### Summary
 
