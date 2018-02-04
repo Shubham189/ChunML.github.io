@@ -19,6 +19,17 @@ The model performed pretty well, although I didn't even have to do any further p
 
 In the next step, I will use the same model, to predict object from a continuous input, such as video file or input from a camera. If you have ever done some work with Computer Vision before, you will see find it extremely easy. Let's say, just a slight improvement over the last one. Yeah, that's true!
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 For ones who have no experience in Computer Vision, I'll explain a little bit here. So, if you have an image, and want to have it recognized. Here is what you do:
 
 {% highlight python %}
@@ -42,6 +53,17 @@ Easy, right? As shown above, the result is shown continuously to your eyes. And 
 
 Here comes something to consider about. Remember the conflict between OpenCV and Keras that I mentioned in the last post? To recall a little bit, After reading the input image, OpenCV and Keras turn it into arrays in different ways. So basically, if we want the model to recognize the input image, we have two choices to pick.
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 Use the Keras' method:
 {% highlight python %}
 from keras.preprocessing import image as image_utils
@@ -64,6 +86,17 @@ As you can see, Keras' method reads the image from file, then performs conversio
 Remember I said that I prefered the approach which using OpenCV's method? Because I just needed to perform one matrix transpose, and I had everything ready for Keras, without saving and reading from disk anymore.
 
 So, by just adding two lines of code made things done. Why the hell must I split it into two parts? Well, because there's a tiny problem in performance. Obviously, everyone does prefer a perfect show, right?
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 What's the problem then? I told you in the first part, that our model is quite a big guy (it can distinguish between 1000 classes). Big guys tend to move slowly, so does the VGG16 model. It took approximately 1.5 ~ 2 seconds to recognize ONE image (on my PC). So what will it be like when dealing with an input from a camera (or a video file)? Definitely, it will be a very horrible scene that you never wish to see.
 
@@ -99,6 +132,17 @@ for image in video:
   # Output the result
 {% endhighlight %}
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 Do you get the trick here? When implementing multi-threading, the codes which deal with recognition task is seperated from the output task. It will return the result each 2 seconds. On the other side, because the output won't have to wait for the recognition result, it just simply puts the last received result on, and updates when the new one is delivered.
 
 You make ask, so the recognition process is actually skipping everything between the 2-second periods, so what we see in the output may not be the exact result. For example, your camera was on a dog, and you passed the frame containing the dog to the recognition code, 2 seconds later, the Dog label was delivered, but you are now looking at a lion! What a shame on a real time recognition app! Well, it sounds like an interesting theory. But I think, no one moves their cameras that fast, let's say, abruptly change the view each second. Am I right?
@@ -112,6 +156,16 @@ Tired of reading? So sorry to make it long. I'll show you the result I got right
 <iframe width="560" height="315" src="https://www.youtube.com/embed/70Kv8Rr72ag" frameborder="0" allowfullscreen></iframe>
 {:/nomarkdown}
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="4068904466"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 Let's talk a little bit about the result above. You can see that, despite of the bad light condition (my room is only equipped with one damn yellow light!), the model still performed pretty well and totally satisfied me. Sometimes it got wrong (couldn't recognize my G-Shock, or having trouble in distinguishing whether it was a screen or a TV!), but that was far more than expected.
 
@@ -124,5 +178,16 @@ test_imagenet.py
 camera_test.py
 
 Hope you enjoy this project. Feel free to leave me some feedbacks or questions. I will be more than pleased to help.
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- MidPageAds2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3852793730107162"
+     data-ad-slot="2275566366"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 So we are done with this Real time Object Recognition project, but not with Machine Learning! And I'll see you soon, in the next projects!
