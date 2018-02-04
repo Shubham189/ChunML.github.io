@@ -50,7 +50,7 @@ What we can see from the picture is that, using VM requires creating a full copy
 * Docker containers can boot within seconds
 * Containerized software will always run the same, regardless of the environment
 
-For a more detailed comparison, you can take a look at this thread on StackOverflow: [How is Docker different from VM?](https://stackoverflow.com/questions/16047306/how-is-docker-different-from-a-normal-virtual-machine)
+For a more detailed comparison, you can take a look at this thread on StackOverflow: [How is Docker different from VM?](https://stackoverflow.com/questions/16047306/how-is-docker-different-from-a-normal-virtual-machine){:target="_blank"}
 
 Last, but not least, what about NVIDIA Docker???
 
@@ -77,7 +77,7 @@ As I said in the previous part, NVIDIA docker is just a plugin to docker, which 
 #### Installing NVIDIA driver
 NVIDIA driver is simply the necessary driver to use your GPU. You only need to install NVIDIA driver to your PC in order to use NVIDIA docker, which is a big advantage of docker.
 How to install NVIDIA driver depends on what Linux distribution you are using. And NVIDIA has a very detailed step-by-step instructions for all Linux distributions, so I think I should leave this part for you guys :) It's very easy, don't panic. My one piece of advice is: the newer the driver is, the better! The reason is that, newer version of CUDA toolkit may not work with old version of NVIDIA driver.
-Here is the link to the instructions: [CUDA Installation Guide](http://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html).
+Here is the link to the instructions: [CUDA Installation Guide](http://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html){:target="_blank"}.
 
 #### Installing docker
 Next, we will install docker. Docker has two available editions: Community Edition (CE) and Enterprise Edition (EE). And just like NVIDIA driver, you need to know what Linux distribution you are using to choose the proper installation file.
