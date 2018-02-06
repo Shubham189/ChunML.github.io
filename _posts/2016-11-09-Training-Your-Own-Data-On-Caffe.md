@@ -207,14 +207,12 @@ with open('{}/train.txt'.format(TXT_DIR), 'w') as f:
         f.write('{} 0\n'.format(image))
     for image in cat_train:
         f.write('{} 1\n'.format(image))
-    f.close()
  
 with open('{}/text.txt'.format(TXT_DIR), 'w') as f:
     for image in dog_test:
         f.write('{} 0\n'.format(image))
     for image in cat_test:
         f.write('{} 1\n'.format(image))
-    f.close()
 {% endhighlight %}
 
 Then, all you have to do is to execute the Python script you have just created above:
