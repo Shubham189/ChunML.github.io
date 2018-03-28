@@ -307,3 +307,10 @@ compress_html:
   clippings: all
   ignore:
     envs: development
+
+# Tipue search settings
+tipue_search:
+  include:
+    pages: true
+  exclude:
+    files: [search.html]
