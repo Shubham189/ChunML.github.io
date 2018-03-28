@@ -38,7 +38,7 @@ http://www.tipue.com/search
 {
      color: #333;
      max-width: 500px;
-     border-radis: 15px;
+     border-radius: 15px;
 	padding: 17px;
 	border: 1px solid #e3e3e3;
 	border-radius: 0;
@@ -73,7 +73,7 @@ http://www.tipue.com/search
 {
      height: 100%;
      border: none;
-     border-radius: 20px;
+     border-radius: 30px;
      padding-left: 20px;
      padding-right: 20px;
 }
