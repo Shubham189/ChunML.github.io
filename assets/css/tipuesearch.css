@@ -37,8 +37,8 @@ http://www.tipue.com/search
 #tipue_search_input
 {
      color: #333;
-     max-width: 500px;
-     border-radius: 15px;
+     max-width: 300px;
+     border-radius: 15px !important;
 	padding: 17px;
 	border: 1px solid #e3e3e3;
 	border-radius: 0;
@@ -64,7 +64,7 @@ http://www.tipue.com/search
      height: 57px;
 }
 
-.tipue_search_right:last-child
+.tipue_search_right:last-of-type
 {
      margin-left: 30px;
 }
