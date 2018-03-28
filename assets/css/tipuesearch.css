@@ -60,8 +60,15 @@ http://www.tipue.com/search
 .tipue_search_right
 {
      float: left;
+     height: 57px;
 }
 
+.tipue_search_right button
+{
+     height: 100%;
+     border: none;
+     border-radius: 20px;
+}
 
 /* search results */
 
