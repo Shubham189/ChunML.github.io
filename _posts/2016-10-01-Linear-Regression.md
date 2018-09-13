@@ -141,7 +141,7 @@ With the Gradient \\( \nabla J(\theta) \\) obtained above, we will perform updat
 
 $$\theta=\theta-\alpha\nabla J(\theta)$$
 
-Note that bote \\( \theta \\) and \\( \nabla J(\theta) \\) are vectors, so I can re-write the equation above like this:
+Note that both \\( \theta \\) and \\( \nabla J(\theta) \\) are vectors, so I can re-write the equation above like this:
 
 $$\begin{bmatrix}\theta_0\\\theta_1\\\vdots\\\theta_n\end{bmatrix}=\begin{bmatrix}\theta_0\\\theta_1\\\vdots\\\theta_n\end{bmatrix}-\alpha\begin{bmatrix}\frac{\partial}{\partial\theta_0}J(\theta)\\\frac{\partial}{\partial\theta_1}J(\theta)\\\vdots\\\frac{\partial}{\partial\theta_n}J(\theta)\end{bmatrix}$$
 
